@@ -230,7 +230,7 @@ module.exports = {
         ariaLabel: 'Documentation Menu',
         items: [
           { text: '教程', link: '/guide/introduction' },
-          { text: '风格指南', link: '/style-guide/' }
+          { text: '风格指南', link: '/style-guide/' },
           { text: '示例', link: '/examples/markdown' }
         ]
       },
