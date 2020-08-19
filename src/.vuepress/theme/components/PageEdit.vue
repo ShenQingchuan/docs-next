@@ -2,15 +2,11 @@
   <footer class="page-edit">
     <div class="container">
       <p>
-        Deployed on
-        <a href="https://url.netlify.com/HJ8X2mxP8">Netlify</a>.
+        （暂时）部署于
+        <a href="https://vue3doc.techdict.pro">沈青川的服务器</a>
         <span v-if="editLink" class="edit-link">
-          Caught a mistake or want to contribute to the documentation?
-          <a
-            :href="editLink"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          发现错误或是想贡献文档？
+          <a :href="editLink" target="_blank" rel="noopener noreferrer">
             {{ editLinkText }}
             <OutboundLink />
           </a>
@@ -44,7 +40,7 @@ export default {
       if (typeof this.$site.themeConfig.lastUpdated === 'string') {
         return this.$site.themeConfig.lastUpdated
       }
-      return 'Last Updated'
+      return 'Vue 官方英文文档仓库 · 最后更新于'
     },
 
     editLink() {
@@ -56,7 +52,7 @@ export default {
         repo,
         docsDir = '',
         docsBranch = 'master',
-        docsRepo = repo
+        docsRepo = repo,
       } = this.$site.themeConfig
 
       if (showEditLink && docsRepo && this.$page.relativePath) {
@@ -75,9 +71,9 @@ export default {
       return (
         this.$themeLocaleConfig.editLinkText ||
         this.$site.themeConfig.editLinkText ||
-        `Edit this page`
+        `编辑此页面`
       )
-    }
+    },
   },
 
   methods: {
@@ -105,8 +101,8 @@ export default {
         (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '') +
         path
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

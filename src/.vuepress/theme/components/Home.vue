@@ -26,7 +26,7 @@
       </div>
     </header>
 
-    <SpecialSponsors :sponsors="sponsors.special_sponsors" />
+    <!-- <SpecialSponsors :sponsors="sponsors.special_sponsors" /> -->
 
     <section v-if="data.features && data.features.length" class="section-features">
       <div class="inner">
@@ -39,12 +39,12 @@
 
     <Content class="theme-default-content custom" />
 
-    <section class="section-sponsors" ref="sponsors">
+    <!-- <section class="section-sponsors" ref="sponsors">
       <div class="inner">
         <PatreonSponsors :sponsors="sponsors" />
         <OpenCollectiveSponsors />
       </div>
-    </section>
+    </section>-->
 
     <section class="section-newsletter">
       <Newsletter />
@@ -81,11 +81,11 @@ export default {
     SpecialSponsors,
     PatreonSponsors,
     OpenCollectiveSponsors,
-    Newsletter
+    Newsletter,
   },
 
   data: () => ({
-    sponsors
+    sponsors,
   }),
 
   computed: {
@@ -99,7 +99,7 @@ export default {
         this.$description ||
         'The Progressive JavaScript Framework'
       )
-    }
+    },
   },
 
   mounted() {
@@ -126,7 +126,7 @@ export default {
         }
       }
     })
-  }
+  },
 }
 </script>
 

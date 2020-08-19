@@ -1,32 +1,52 @@
-# Introduction
+# 介绍
 
-## What is Vue.js?
+## Vue.js 是什么
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](../guide/single-file-component.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=0" />
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**渐进式框架**。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与[现代化的工具链](../guide/single-file-component.html)以及各种[支持类库](https://github.com/vuejs/awesome-vue#components--libraries)结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](TODO:comparison.html).
+如果你想在深入学习 Vue 之前对它有更多了解，我们<a id="modal-player"  href="#">制作了一个视频</a>，带您了解其核心概念和一个示例工程。
 
-## Getting Started
+如果你已经是有经验的前端开发者，想知道 Vue 与其它库/框架有哪些区别，请查看[对比其它框架](TODO:comparison.html)。
+
+## 起步
+
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=1" />
 
 <p>
   <ActionLink class="primary" url="installation.html">
-    Installation
+    安装
   </ActionLink>
 </p>
 
-::: tip
-The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+::: warning 注意
+官方指南假设你已了解关于 HTML、CSS 和 JavaScript 的中级知识。如果你刚开始学习前端开发，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来吧！之前有其它框架的使用经验会有帮助，但这不是必需的。
 :::
 
-The easiest way to try out Vue.js is using the [Hello World example](https://codepen.io/team/Vue/pen/KKpRVpx). Feel free to open it in another tab and follow along as we go through some basic examples.
+尝试 Vue.js 最简单的方法是使用 [Hello World 例子](https://codepen.io/team/Vue/pen/KKpRVpx)。你可以在浏览器新标签页中打开它，跟着例子学习一些基础用法。或者你也可以[创建一个`.html`文件](https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html)，然后通过如下方式引入 Vue：
 
-The [Installation](installation.md) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+```html
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
 
-## Declarative Rendering
+或者：
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+```html
+<!-- 生产环境版本，优化了尺寸和速度 -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+
+[安装教程](installation.md) 给出了更多安装 Vue 的方式。请注意我们不推荐新手直接使用 `vue-cli`，尤其是在你还不熟悉基于 Node.js 的构建工具时。
+
+如果你喜欢交互式的东西，你也可以查阅[这个 Scrimba 上的系列教程](https://scrimba.com/g/gvuedocs)，它揉合了录屏和代码试验田，并允许你随时暂停和播放。
+
+## 声明式渲染
+
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=3" />
+
+Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：
 
 ```html
 <div id="counter">
@@ -46,7 +66,9 @@ const Counter = {
 Vue.createApp(Counter).mount('#counter')
 ```
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Take a look at the example below where `counter` property increments every second and you will see how rendered DOM changes:
+我们已经成功创建了第一个 Vue 应用！看起来这跟渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被建立了关联，所有东西都是**响应式**的。我们要怎么确认呢？打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 `app.message` 的值，你将看到上例相应地更新。
+
+注意我们不再和 HTML 直接交互了。一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 `#app`) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。
 
 ```js{8-10}
 const CounterApp = {
@@ -65,13 +87,12 @@ const CounterApp = {
 
 <FirstExample />
 
-In addition to text interpolation, we can also bind element attributes like this:
+除了文本插值，我们还可以像这样来绑定元素 attribute：
 
 ```html
 <div id="bind-attribute">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound
-    title!
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
   </span>
 </div>
 ```
@@ -88,23 +109,27 @@ const AttributeBinding = {
 Vue.createApp(AttributeBinding).mount('#bind-attribute')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="KKpRVvJ" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Attribute dynamic binding">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/KKpRVvJ">
-  Attribute dynamic binding</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="html,result" data-user="shenqingchuan" data-slug-hash="XWddPPP" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="属性值动态绑定">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/XWddPPP">
+  属性值动态绑定</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Here we're encountering something new. The `v-bind` attribute you're seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here we are basically saying "_keep this element's `title` attribute up-to-date with the `message` property on the current active instance._"
+这里我们遇到了一点新东西。你看到的 `v-bind` attribute 被称为**指令**。指令带有前缀 v-，以表示它们是 Vue 提供的特殊 attribute。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 title attribute 和 Vue 实例的 `message` property 保持一致”。
 
-## Handling User Input
+如果你再次打开浏览器的 JavaScript 控制台，输入 `app2.message = '新消息'`，就会再一次看到这个绑定了 `title` attribute 的 HTML 已经进行了更新。
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our instances:
+## 处理用户输入
+
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=11" />
+
+为了让用户和你的应用进行交互，我们可以用 `v-on` 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：
 
 ```html
 <div id="event-handling">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">反转消息</button>
 </div>
 ```
 
@@ -128,16 +153,16 @@ const EventHandling = {
 Vue.createApp(EventHandling).mount('#event-handling')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="dyoeGjW" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Event handling">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/dyoeGjW">
-  Event handling</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="qBZZMLG" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="事件处理">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/qBZZMLG">
+  事件处理</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+注意在 `reverseMessage` 方法中，我们更新了应用的状态，但没有触碰 DOM——所有的 DOM 操作都由 Vue 来处理，你编写的代码只需要关注逻辑层面即可。
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue 还提供了 `v-model` 指令，它能轻松实现表单输入和应用状态之间的双向绑定。
 
 ```html
 <div id="two-way-binding">
@@ -158,16 +183,18 @@ const TwoWayBinding = {
 Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="poJVgZm" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Two-way binding">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/poJVgZm">
-  Two-way binding</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="shenqingchuan" data-slug-hash="YzqqOMX" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="双向绑定">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/YzqqOMX">
+  双向绑定</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-## Conditionals and Loops
+## 条件与循环
 
-It's easy to toggle the presence of an element, too:
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=8" />
+
+控制切换一个元素是否显示也相当简单：
 
 ```html
 <div id="conditional-rendering">
@@ -187,18 +214,20 @@ const ConditionalRendering = {
 Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
 ```
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](TODO) when elements are inserted/updated/removed by Vue.
+这个例子演示了我们不仅可以把数据绑定到 DOM 文本或 attribute，还可以绑定到 DOM **结构**。此外，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/移除元素时自动应用[过渡效果](TODO)。
 
-You can change `seen` from `true` to `false` in the sandbox below to check the effect:
+还有其它很多指令，每个都有特殊的功能。例如，`v-for` 指令可以绑定数组的数据来渲染一个项目列表：
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="oNXdbpB" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Conditional rendering">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/oNXdbpB">
-  Conditional rendering</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+你可以在此沙盒中点击按钮更改 `seen` 属性（使其为 `true` 或 `false`）来查看效果：
+
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="html,result" data-user="shenqingchuan" data-slug-hash="QWNNVXa" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="条件渲染">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/QWNNVXa">
+  条件渲染</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used to display a list of items using the data from an Array:
+还有其它很多指令，每个都有特殊的功能。例如，`v-for` 指令可以绑定数组的数据来渲染一个项目列表：
 
 ```html
 <div id="list-rendering">
@@ -215,9 +244,9 @@ const ListRendering = {
   data() {
     return {
       todos: [
-        { text: 'Learn JavaScript' },
-        { text: 'Learn Vue' },
-        { text: 'Build something awesome' }
+        { text: '学习 JavaScript' },
+        { text: '学习 Vue' },
+        { text: '整个厉害的项目' }
       ]
     }
   }
@@ -226,44 +255,44 @@ const ListRendering = {
 Vue.createApp(ListRendering).mount('#list-rendering')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="mdJLVXq" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="List rendering">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/mdJLVXq">
-  List rendering</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="MWyyqNB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="列表渲染">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/MWyyqNB">
+  列表渲染</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-## Composing with Components
+## 组件化应用构建
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树：
 
 ![Component Tree](/images/components.png)
 
-In Vue, a component is essentially an instance with pre-defined options. Registering a component in Vue is straightforward: we create a component object as we did with `App` objects and we define it in parent's `components` option:
+在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 Vue 实例。在 Vue 中注册组件很简单：
 
 ```js
-// Create Vue application
+// 创建 Vue 应用
 const app = Vue.createApp(...)
 
-// Define a new component called todo-item
+// 定义一个名为 todo-item 的组件
 app.component('todo-item', {
-  template: `<li>This is a todo</li>`
+  template: `<li>这是个待办项</li>`
 })
 
 // Mount Vue application
 app.mount(...)
 ```
 
-Now you can compose it in another component's template:
+现在你可以用它构建另一个组件模板：
 
 ```html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- 创建一个 todo-item 组件的实例 -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](component-basics.html#passing-data-to-child-components-with-props):
+但是这样会为每个待办项渲染同样的文本，这看起来并不炫酷。我们应该能从父作用域将数据传到子组件才对。让我们来修改一下组件的定义，使之能够接受一个 [prop](component-basics.html#passing-data-to-child-components-with-props):
 
 ```js
 app.component('todo-item', {
@@ -272,16 +301,16 @@ app.component('todo-item', {
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+现在，我们可以使用 `v-bind` 指令将待办项传到循环输出的每个组件中：
 
 ```html
 <div id="todo-list-app">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
+      我们也需要为每个组件提供一个“key”，稍后再
+      作详细解释。
     -->
     <todo-item
       v-for="item in groceryList"
@@ -297,9 +326,9 @@ const TodoList = {
   data() {
     return {
       groceryList: [
-        { id: 0, text: 'Vegetables' },
-        { id: 1, text: 'Cheese' },
-        { id: 2, text: 'Whatever else humans are supposed to eat' }
+        { id: 0, text: '蔬菜' },
+        { id: 1, text: '奶酪' },
+        { id: 2, text: '随便其它什么人吃的东西' }
       ]
     }
   }
@@ -315,16 +344,16 @@ app.component('todo-item', {
 app.mount('#todo-list-app')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="VwLxeEz" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Intro-Components-1">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/VwLxeEz">
-  Intro-Components-1</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="xxVVybo" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="介绍组件-1">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/xxVVybo">
+  介绍组件-1</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+尽管这只是一个刻意设计的例子，但是我们已经设法将应用分割成了两个更小的单元。子单元通过 prop 接口与父单元进行了良好的解耦。我们现在可以进一步改进 `<todo-item>` 组件，提供更为复杂的模板和逻辑，而不会影响到父单元。
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](component-basics.md), but here's an (imaginary) example of what an app's template might look like with components:
+在一个大型应用中，有必要将整个应用程序划分为组件，以使开发更易管理。在[后续教程](component-basics.md)中我们将详述组件，不过这里有一个 (假想的) 例子，以展示使用了组件的应用模板是什么样的：
 
 ```html
 <div id="app">
@@ -336,18 +365,16 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### 与自定义元素的关系
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+你可能已经注意到 Vue 组件非常类似于**自定义元素**——它是 [Web 组件规范](https://www.w3.org/wiki/WebComponents/)的一部分，这是因为 Vue 的组件语法部分参考了该规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` attribute。但是，还是有几个关键差别：
 
-1. The Web Components Spec has been finalized but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components work consistently in all supported browsers (IE11 with compatibility build and above). When needed, Vue components can also be wrapped inside a native custom element.
+Web Components 规范已经完成并通过，但未被所有浏览器原生实现。目前 Safari 10.1+、Chrome 54+ 和 Firefox 63+ 原生支持 Web Components。相比之下，Vue 组件不需要任何 polyfill，并且在所有支持的浏览器 (IE9 及更高版本) 之下表现一致。必要时，Vue 组件也可以包装于原生自定义元素之内。
 
-[//]: # 'TODO: link to compatibility build'
+Vue 组件提供了纯自定义元素所不具备的一些重要功能，最突出的是跨组件数据流、自定义事件通信以及构建工具集成。
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+虽然 Vue 内部没有使用自定义元素，不过在应用使用自定义元素、或以自定义元素形式发布时，[依然有很好的互操作性](https://custom-elements-everywhere.com/#vue)。Vue CLI 也支持将 Vue 组件构建成为原生的自定义元素。
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+## 准备好了吗
 
-## Ready for More?
-
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+我们刚才简单介绍了 Vue 核心最基本的功能——本教程的其余部分将更加详细地涵盖这些功能以及其它高级功能，所以请务必读完整个教程！

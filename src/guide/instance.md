@@ -1,27 +1,29 @@
-# The Application Instance
+# Vue 实例
 
-## Creating an Instance
+## 创建一个 Vue 实例
 
-Every Vue application starts by creating a new **application instance** with the `createApp` function:
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=2" />
+
+每个 Vue 应用都是从使用 `createApp` 函数创建一个应用实例开始的：
 
 ```js
 Vue.createApp(/* options */)
 ```
 
-After the instance is created, we can _mount_ it, passing a container to `mount` method. For example, if we want to mount a Vue application on `<div id="app"></div>`, we should pass `#app`:
+实例创建完成之后，我们可以 _挂载（mount）_ 它，为 `mount` 方法传入一个容器。例如，如果我们想将一个 Vue 应用挂载到 `<div id="app"></div>` 上，我们应该传入 `#app`。
 
 ```js
 Vue.createApp(/* options */).mount('#app')
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our instance.
+虽然没有完全遵循 [MVVM 模型](https://en.wikipedia.org/wiki/Model_View_ViewModel)，但是 Vue 的设计也受到了它的启发。因此在文档中经常会使用 `vm` (ViewModel 的缩写) 这个变量名表示 Vue 实例。
 
-When you create an instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/options-data.html).
+当创建一个 Vue 实例时，你可以传入一个**选项对象**。这篇教程主要描述的就是如何使用这些选项来创建你想要的行为。作为参考，你也可以在 [API 文档](../api/options-data.html)中浏览完整的选项列表。
 
-A Vue application consists of a **root instance** created with `createApp`, optionally organized into a tree of nested, reusable components. For example, a `todo` app's component tree might look like this:
+一个 Vue 应用由一个通过 `createApp` 创建的**根 Vue 实例**，以及可选的嵌套的、可复用的组件树组成。举个例子，一个 `todo` 应用的组件树可以是这样的：
 
-```
-Root Instance
+```text
+根实例
 └─ TodoList
    ├─ TodoItem
    │  ├─ DeleteTodoButton
@@ -31,40 +33,39 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](component-basics.html) in detail later. For now, just know that all Vue components are also instances, and so accept the same options object.
+我们会在稍后的[组件系统](component-basics.html)章节具体展开。不过现在，你只需要明白所有的 Vue 组件都是 Vue 实例，并且接受相同的选项对象 (一些根实例特有的选项除外)。
 
-## Data and Methods
+## 数据与方法
 
-When an instance is created, it adds all the properties found in its `data` to [Vue's **reactivity system**](reactivity.html). When the values of those properties change, the view will "react", updating to match the new values.
+当一个 Vue 实例被创建时，它将 `data` 对象中的所有的 property 加入到 [Vue 的响应式系统](reactivity.html)中。当这些 property 的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。
 
 ```js
-// Our data object
+// 我们的数据对象
 const data = { a: 1 }
 
-// The object is added to the root instance
+// 该对象被加入到一个 Vue 实例中
 const vm = Vue.createApp({
   data() {
     return data
   }
 }).mount('#app')
 
-// Getting the property on the instance
-// returns the one from the original data
+// 获得这个实例上的 property
+// 返回源数据中对应的字段
 vm.a === data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// 设置 property 也会影响到原始数据
 vm.a = 2
 data.a // => 2
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时就已经存在于 `data` 中的 property 才是**响应式的**。也就是说如果你添加一个新的 property，比如：
 
 ```js
 vm.b = 'hi'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+那么对 `b` 的改动将不会触发任何视图的更新。如果你知道你会在晚些时候需要一个 property，但是一开始它为空或不存在，那么你仅需要设置一些初始值。比如：
 
 ```js
 data() {
@@ -78,7 +79,7 @@ data() {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+这里唯一的例外是使用 `Object.freeze()`，这会阻止修改现有的 property，也意味着响应系统无法再 _追踪_ 变化。
 
 ```js
 const obj = {
@@ -97,12 +98,12 @@ const vm = Vue.createApp({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
+  <!-- 这里的 `foo` 不会更新！-->
   <button v-on:click="foo = 'baz'">Change it</button>
 </div>
 ```
 
-In addition to data properties, instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+除了数据 property，Vue 实例还暴露了一些有用的实例 property 与方法。它们都有前缀 `$`，以便与用户定义的 property 区分开来。例如：
 
 ```js
 const vm = Vue.createApp({
@@ -116,13 +117,15 @@ const vm = Vue.createApp({
 vm.$data.a // => 1
 ```
 
-In the future, you can consult the [API reference](../api/instance-properties.html) for a full list of instance properties and methods.
+以后你可以在[API 参考](../api/instance-properties.html)中查阅到完整的实例 property 和方法的列表。
 
-## Instance Lifecycle Hooks
+## 实例生命周期钩子
 
-Each instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=4" />
 
-For example, the [created](../api/options-lifecycle-hooks.html#created) hook can be used to run code after an instance is created:
+每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做**生命周期钩子**的函数，这给了用户在不同阶段添加自己的代码的机会。
+
+比如 [`created`](../api/options-lifecycle-hooks.html#created) 钩子可以用来在一个实例被创建之后执行代码：
 
 ```js
 Vue.createApp({
@@ -138,14 +141,16 @@ Vue.createApp({
 })
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [mounted](../api/options-lifecycle-hooks.html#mounted), [updated](../api/options-lifecycle-hooks.html#updated), and [unmounted](../api/options-lifecycle-hooks.html#unmounted). All lifecycle hooks are called with their `this` context pointing to the current active instance invoking it.
+也有一些其它的钩子，在实例生命周期的不同阶段被调用，如 [`mounted`](../api/options-lifecycle-hooks.html#mounted)、[`updated`](../api/options-lifecycle-hooks.html#updated)) 和 [`unmounted`](../api/options-lifecycle-hooks.html#unmounted)。生命周期钩子的 this 上下文指向调用它的 Vue 实例。
 
-::: tip
-Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn't have a `this`, `this` will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.
+::: danger 提示
+
+不要在选项 property 或回调上使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。
+
 :::
 
-## Lifecycle Diagram
+## 生命周期图示
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+下图展示了实例的生命周期。你不需要立马弄明白所有的东西，不过随着你的不断学习和使用，它的参考价值会越来越高。
 
 <img src="/images/lifecycle.png" width="840" height="auto" style="margin: 0px auto; display: block; max-width: 100%;" loading="lazy" alt="Instance lifecycle hooks">

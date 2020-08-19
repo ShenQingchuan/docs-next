@@ -1,7 +1,7 @@
 const sidebar = {
   guide: [
     {
-      title: 'Essentials',
+      title: '基础',
       collapsable: false,
       children: [
         '/guide/installation',
@@ -18,7 +18,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Components In-Depth',
+      title: '深入了解组件',
       collapsable: false,
       children: [
         '/guide/component-registration',
@@ -33,7 +33,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Transitions & Animation',
+      title: '过渡 & 动画',
       collapsable: false,
       children: [
         '/guide/transitions-overview',
@@ -43,7 +43,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Reusability & Composition',
+      title: '可复用性 & 组合',
       collapsable: false,
       children: [
         '/guide/mixins',
@@ -54,11 +54,11 @@ const sidebar = {
       ]
     },
     {
-      title: 'Advanced Guides',
+      title: '高级指南',
       collapsable: false,
       children: [
         {
-          title: 'Reactivity',
+          title: '响应式',
           children: [
             '/guide/reactivity',
             '/guide/reactivity-fundamentals',
@@ -66,7 +66,7 @@ const sidebar = {
           ]
         },
         {
-          title: 'Composition API',
+          title: '组合式 API',
           children: [
             '/guide/composition-api-introduction',
             '/guide/composition-api-setup',
@@ -80,7 +80,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Tooling',
+      title: '工具',
       collapsable: false,
       children: [
         '/guide/single-file-component',
@@ -89,12 +89,12 @@ const sidebar = {
       ]
     },
     {
-      title: 'Scaling Up',
+      title: '规模化',
       collapsable: false,
       children: ['/guide/routing', '/guide/state-management', '/guide/ssr']
     },
     {
-      title: 'Accessibility',
+      title: '可访问性',
       collapsable: false,
       children: [
         '/guide/a11y-basics',
@@ -104,7 +104,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Migration from Vue 2',
+      title: '从 Vue 2 迁移',
       collapsable: true,
       children: [
         'migration/introduction',
@@ -127,7 +127,7 @@ const sidebar = {
       ]
     },
     {
-      title: 'Contribute to the Docs',
+      title: '贡献文档',
       collapsable: true,
       children: [
         'contributing/writing-guide',
@@ -209,29 +209,29 @@ module.exports = {
     logo: '/logo.png',
     nav: [
       {
-        text: 'Docs',
+        text: '文档',
         ariaLabel: 'Documentation Menu',
         items: [
-          { text: 'Guide', link: '/guide/introduction' },
-          { text: 'Style Guide', link: '/style-guide/' }
+          { text: '教程', link: '/guide/introduction' },
+          { text: '风格指南', link: '/style-guide/' }
         ]
       },
-      { text: 'API Reference', link: '/api/application-config' },
+      { text: 'API 参考', link: '/api/application-config' },
       {
-        text: 'Ecosystem',
+        text: '生态系统',
         items: [
           {
-            text: 'Community',
+            text: '社区',
             ariaLabel: 'Community Menu',
             items: [
-              { text: 'Team', link: '/community/team/' },
-              { text: 'Partners', link: '/community/partners' },
-              { text: 'Join', link: '/community/join/' },
-              { text: 'Themes', link: '/community/themes/' }
+              { text: '团队', link: '/community/team/' },
+              { text: '合作伙伴', link: '/community/partners' },
+              { text: '加入我们', link: '/community/join/' },
+              { text: '主题', link: '/community/themes/' }
             ]
           },
           {
-            text: 'Official Projects',
+            text: '核心插件',
             items: [
               { text: 'Vue Router', link: 'https://router.vuejs.org/' },
               { text: 'Vuex', link: 'https://vuex.vuejs.org/' },
@@ -244,31 +244,31 @@ module.exports = {
                 text: 'Devtools',
                 link: 'https://github.com/vuejs/vue-devtools'
               },
-              { text: 'Weekly news', link: 'https://news.vuejs.org/' }
+              { text: '周刊', link: 'https://news.vuejs.org/' }
             ]
           }
         ]
       },
       {
-        text: 'Support Vue',
+        text: '支持 Vue',
         link: '/support-vuejs/',
         items: [
           {
-            text: 'One-time Donations',
+            text: '一次性赞助',
             link: '/support-vuejs/#one-time-donations'
           },
           {
-            text: 'Recurring Pledges',
+            text: '周期性赞助',
             link: '/support-vuejs/#recurring-pledges'
           },
-          { text: 'T-Shirt Shop', link: 'https://vue.threadless.com/' }
+          { text: 'T恤商店', link: 'https://vue.threadless.com/' }
         ]
       }
     ],
     repo: 'vuejs/docs-next',
     editLinks: false,
-    editLinkText: 'Edit this on GitHub!',
-    lastUpdated: 'Last updated',
+    editLinkText: '在 GitHub 上编辑!',
+    lastUpdated: 'Vue 官方英文文档仓库 · 最后更新于',
     docsDir: 'src',
     sidebarDepth: 2,
     sidebar: {
