@@ -1,4 +1,4 @@
-# Event Handling
+# 事件处理
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-user-events?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how to handle events on Vue School">Learn how to handle events in a free Vue School lesson</a></div>
 
@@ -292,7 +292,7 @@ The `.exact` modifier allows control of the exact combination of system modifier
 
 These modifiers restrict the handler to events triggered by a specific mouse button.
 
-## Why Listeners in HTML?
+## Why Listeners in HTML
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on` or `@`:
 

@@ -1,4 +1,4 @@
-# List Rendering
+# 列表渲染
 
 ## Mapping an Array to Elements with `v-for`
 

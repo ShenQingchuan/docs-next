@@ -1,20 +1,22 @@
-# Class and Style Bindings
+# Class 与 Style 绑定
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是 attribute，所以我们可以用 `v-bind` 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 `v-bind` 用于 `class` 和 `style` 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。
 
-## Binding HTML Classes
+## 绑定 HTML Class
 
-### Object Syntax
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=7" />
 
-We can pass an object to `:class` (short for `v-bind:class`) to dynamically toggle classes:
+### 对象语法
+
+我们可以传给 `:class` 一个对象，以动态地切换 `class`：
 
 ```html
 <div :class="{ active: isActive }"></div>
 ```
 
-The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
+上面的语法表示 `active` 这个 class 存在与否将取决于数据 property isActive 的 [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)。
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+你可以在对象中传入更多字段来动态切换多个 class。此外，`:class` 指令也可以与普通的 `class` attribute 共存。当有如下模板：
 
 ```html
 <div
@@ -23,7 +25,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 ></div>
 ```
 
-And the following data:
+和如下 data：
 
 ```js
 data() {
@@ -34,15 +36,15 @@ data() {
 }
 ```
 
-It will render:
+结果渲染为：
 
 ```html
 <div class="static active"></div>
 ```
 
-When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+当 `isActive` 或者 `hasError` 变化时，`class` 列表将相应地更新。例如，如果 `hasError` 的值为 `true`，`class` 列表将变为 `"static active text-danger"`。
 
-The bound object doesn't have to be inline:
+绑定的数据对象不必内联定义在模板里：
 
 ```html
 <div :class="classObject"></div>
@@ -59,7 +61,7 @@ data() {
 }
 ```
 
-This will render the same result. We can also bind to a [computed property](computed.md) that returns an object. This is a common and powerful pattern:
+渲染的结果和上面一样。我们也可以在这里绑定一个返回对象的[计算属性](computed.md)。这是一个常用且强大的模式：
 
 ```html
 <div :class="classObject"></div>
@@ -82,9 +84,9 @@ computed: {
 }
 ```
 
-### Array Syntax
+### 数组语法
 
-We can pass an array to `:class` to apply a list of classes:
+我们可以把一个数组传给 `:class`，以应用一个 class 列表：
 
 ```html
 <div :class="[activeClass, errorClass]"></div>
@@ -99,33 +101,34 @@ data() {
 }
 ```
 
-Which will render:
+渲染为：
 
 ```html
 <div class="active text-danger"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+如果你也想根据条件切换列表中的 class，可以用三元表达式：
 
 ```html
 <div :class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
+这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 [truthy](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 时才添加 `activeClass`。
 
-However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
+不过，当有多个条件 class 时这样写有些繁琐。所以在数组语法中也可以使用对象语法：
 
 ```html
 <div :class="[{ active: isActive }, errorClass]"></div>
 ```
 
-### With Components
+### 用在组件上
 
 > This section assumes knowledge of [Vue Components](component-basics.md). Feel free to skip it and come back later.
+> 这个章节假设你已经对 [Vue 组件](component-basics.md)有一定的了解。当然你也可以先跳过这里，稍后再回过头来看。
 
-When you use the `class` attribute on a custom component with a single root element, those classes will be added to this element. Existing classes on this element will not be overwritten.
+当在一个自定义组件上使用 `class` property 时，这些 class 将被添加到该组件的根元素上面。这个元素上已经存在的 class 不会被覆盖。
 
-For example, if you declare this component:
+例如，如果你声明了这个组件：
 
 ```js
 const app = Vue.createApp({})
@@ -135,7 +138,7 @@ app.component('my-component', {
 })
 ```
 
-Then add some classes when using it:
+然后在使用它的时候添加一些 class：
 
 ```html
 <div id="app">
@@ -143,25 +146,25 @@ Then add some classes when using it:
 </div>
 ```
 
-The rendered HTML will be:
+HTML 将被渲染为：
 
 ```html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-The same is true for class bindings:
+对于带数据绑定 class 也同样适用：
 
 ```html
 <my-component :class="{ active: isActive }"></my-component>
 ```
 
-When `isActive` is truthy, the rendered HTML will be:
+当 `isActive` 为 [truthy](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 时，HTML 将被渲染成为：
 
 ```html
 <p class="foo bar active">Hi</p>
 ```
 
-If your component has multiple root elements, you would need to define which component will receive this class. You can do this using `$attrs` component property:
+如果你的组件有多个根元素，你将需要指明是由哪一个元素接收该 class，你可以使用组件的 `$attrs` property。
 
 ```html
 <div id="app">
@@ -180,13 +183,13 @@ app.component('my-component', {
 })
 ```
 
-You can learn more about component attribute inheritance in [Non-Prop Attributes](component-attrs.html) section.
+在 [非 Prop 的 Attribute](component-attrs.html) 章节，您可以了解更多关于组件属性继承的信息。
 
-## Binding Inline Styles
+## 绑定内联样式
 
-### Object Syntax
+### 对象语法
 
-The object syntax for `:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
+`:style` 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS property 名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名：
 
 ```html
 <div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -201,7 +204,7 @@ data() {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+直接绑定到一个样式对象通常更好，这会让模板更清晰：
 
 ```html
 <div :style="styleObject"></div>
@@ -218,26 +221,26 @@ data() {
 }
 ```
 
-Again, the object syntax is often used in conjunction with computed properties that return objects.
+同样的，对象语法常常结合返回对象的计算属性使用。
 
-### Array Syntax
+### 数组语法
 
-The array syntax for `:style` allows you to apply multiple style objects to the same element:
+`:style` 的数组语法可以将多个样式对象应用到同一个元素上：
 
 ```html
 <div :style="[baseStyles, overridingStyles]"></div>
 ```
 
-### Auto-prefixing
+### 自动添加前缀
 
-When you use a CSS property that requires [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `:style`, for example `transform`, Vue will automatically detect and add appropriate prefixes to the applied styles.
+当 `:style` 使用需要添加[浏览器引擎前缀](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix)的 CSS property 时，如 `transform`，Vue.js 会自动侦测并添加相应的前缀。
 
-### Multiple Values
+### 多重值
 
-You can provide an array of multiple (prefixed) values to a style property, for example:
+从 2.3.0 起你可以为 `style` 绑定中的 property 提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
 
 ```html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 `display: flex`。

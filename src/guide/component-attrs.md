@@ -1,6 +1,6 @@
-# Non-Prop Attributes
+# 非 Prop 的 Attribute
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> 该页面假设你已经阅读过了[组件基础](component-basics.md)。如果你还对组件不太了解，推荐你先阅读它。
 
 A component non-prop attribute is an attribute or event listener that is passed to a component, but does not have a corresponding property defined in [props](component-props) or [emits](component-custom-events.html#defining-custom-events). Common examples of this include `class`, `style`, and `id` attributes.
 
