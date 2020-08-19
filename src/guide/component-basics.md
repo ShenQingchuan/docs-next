@@ -17,7 +17,7 @@ app.component('button-counter', {
   },
   template: `
     <button @click="count++">
-      You clicked me {{ count }} times.
+      你点击了我 {{ count }} 次。
     </button>`
 })
 ```
