@@ -189,7 +189,7 @@ const sidebar = {
 
 module.exports = {
   title: 'Vue.js',
-  description: 'Vue.js - The Progressive JavaScript Framework',
+  description: 'Vue.js - 渐进式 JavaScript 框架',
   head: [
     [
       'link',
@@ -297,6 +297,7 @@ module.exports = {
       '/examples/': sidebar.examples
     },
     smoothScroll: false,
+    searchPlaceholder: '文档内搜索',
     algolia: {
       indexName: 'vuejs-v3',
       apiKey: 'bc6e8acb44ed4179c30d0a45d6140d3f'
@@ -309,8 +310,8 @@ module.exports = {
         serviceWorker: true,
         updatePopup: {
           '/': {
-            message: 'New content is available.',
-            buttonText: 'Refresh'
+            message: '有新的内容提供！',
+            buttonText: '刷新'
           }
         }
       }

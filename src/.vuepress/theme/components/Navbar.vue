@@ -33,7 +33,9 @@
         "
       />
       <NavLinks class="can-hide" />
-      <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+      <!-- 由于 Vue docs-next 对 i18n 的支持还不完善，
+      algolia 的配置也需要对已部署好的网站进行静态分析，故暂时禁用该搜索功能-->
+      <!-- <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" /> -->
     </div>
   </header>
 </template>
@@ -51,12 +53,12 @@ export default {
     SidebarButton,
     NavLinks,
     SearchBox,
-    AlgoliaSearchBox
+    AlgoliaSearchBox,
   },
 
   data() {
     return {
-      linksWrapMaxWidth: null
+      linksWrapMaxWidth: null,
     }
   },
 
@@ -69,7 +71,7 @@ export default {
 
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName
-    }
+    },
   },
 
   mounted() {
@@ -89,7 +91,7 @@ export default {
     }
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
-  }
+  },
 }
 
 function css(el, property) {

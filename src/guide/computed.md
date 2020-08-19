@@ -1,8 +1,8 @@
-# Computed Properties and Watchers
+# 计算属性和侦听器
 
-## Computed Properties
+## 计算属性
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example, if we have an object with a nested array:
+模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如：
 
 ```js
 Vue.createApp({
@@ -10,35 +10,31 @@ Vue.createApp({
     return {
       author: {
         name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
+        books: ['Vue 2 - 高级指南', 'Vue 3 - 基础指引', 'Vue 4 - 还是个谜']
       }
     }
   }
 })
 ```
 
-And we want to display different messages depending on if `author` already has some books or not
+另外我们想要根据 `author` 是否已经拥有了一些书来展示不同信息：
 
 ```html
 <div id="computed-basics">
-  <p>Has published books:</p>
+  <p>是否已经出版过书：</p>
   <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it performs a calculation depending on `author.books`. The problem is made worse when you want to include this calculation in your template more than once.
+在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是一个依赖于 `author.books` 的计算过程。当你想要在模板中更多包含此类计算时，会变得更加难以处理。
 
-That's why for complex logic that includes reactive data, you should use a **computed property**.
+所以，对于任何复杂逻辑，你都应当使用**计算属性**。
 
-### Basic Example
+### 基础示例
 
 ```html
 <div id="computed-basics">
-  <p>Has published books:</p>
+  <p>是否已经出版过书：</p>
   <span>{{ publishedBooksMessage }}</span>
 </div>
 ```
@@ -49,18 +45,14 @@ Vue.createApp({
     return {
       author: {
         name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
+        books: ['Vue 2 - 高级指南', 'Vue 3 - 基础指引', 'Vue 4 - 还是个谜']
       }
     }
   },
   computed: {
-    // a computed getter
+    // 计算属性的 getter
     publishedBooksMessage() {
-      // `this` points to the vm instance
+      // `this` 指向 vm 实例
       return this.author.books.length > 0 ? 'Yes' : 'No'
     }
   }
@@ -69,29 +61,29 @@ Vue.createApp({
 
 Result:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="NWqzrjr" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Computed basic example">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/NWqzrjr">
-  Computed basic example</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="BaKLQwR" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="计算属性基础示例">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/BaKLQwR">
+  计算属性基础示例</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Here we have declared a computed property `publishedBooksMessage`.
+在此我们已经声明了一个计算属性 `publishedBooksMessage`。
 
-Try to change the value of `books` array in the application `data` and you will see how `publishedBooksMessage` is changing accordingly.
+尝试更改这个应用的 `data` 中的 `books` 数组，你将会看到 `publishedBooksMessage` 是怎样相应地作出改变的。
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.publishedBooksMessage` depends on `vm.author.books`, so it will update any bindings that depend on `vm.publishedBooksMessage` when `vm.author.books` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+你可以像绑定普通 property 一样在模板中绑定计算属性。Vue 知道 `vm.publishedBooksMessage` 依赖于 `vm.author.books`，因此当 `vm.author.books` 发生改变时，所有依赖 `vm.publishedBooksMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用 (side effect) 的，这使它更易于测试和理解。
 
-### Computed Caching vs Methods
+### 计算属性缓存 vs 方法
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：
 
 ```html
 <p>{{ calculateBooksMessage() }}</p>
 ```
 
 ```js
-// in component
+// 在组件中
 methods: {
   calculateBooksMessage() {
     return this.author.books.length > 0 ? 'Yes' : 'No'
@@ -99,9 +91,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `author.books` has not changed, multiple access to the `publishedBooksMessage` computed property will immediately return the previously computed result without having to run the function again.
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是**计算属性是基于它们的响应式依赖进行缓存的**。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 `author.books` 还没有发生改变，多次访问 `publishedBooksMessage` 计算属性会立即返回之前的计算结果，而不必再次执行函数。
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+这也同样意味着下面的计算属性将不再更新，因为 `Date.now()` 不是响应式依赖：
 
 ```js
 computed: {
@@ -111,13 +103,13 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+相比之下，每当触发重新渲染时，调用方法将**总会**再次执行函数。
 
-Why do we need caching? Imagine we have an expensive computed property `list`, which requires looping through a huge array and doing a lot of computations. Then we may have other computed properties that in turn depend on `list`. Without caching, we would be executing `list`’s getter many more times than necessary! In cases where you do not want caching, use a `method` instead.
+我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 `list`，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A。如果没有缓存，我们将不可避免的多次执行 `list` 的 getter！如果你不希望有缓存，请用方法来替代。
 
-### Computed Setter
+### 计算属性的 setter
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+计算属性默认只有 getter，不过在需要时你也可以提供一个 setter：
 
 ```js
 // ...
@@ -138,18 +130,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+现在再运行 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也会相应地被更新。
 
-## Watchers
+## 侦听器
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 `watch` 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
 
 For example:
 
 ```html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    提一个 yes/no 的问题:
     <input v-model="question" />
   </p>
   <p>{{ answer }}</p>
@@ -157,21 +149,19 @@ For example:
 ```
 
 ```html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to use what you're familiar with.      -->
+<!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+<!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script>
   const watchExampleVM = Vue.createApp({
     data() {
       return {
         question: '',
-        answer: 'Questions usually contain a question mark. ;-)'
+        answer: '问句通常都是带问号的。;-)'
       }
     },
     watch: {
-      // whenever question changes, this function will run
+      // 当问题更改时，该函数就会重新运行
       question(newQuestion, oldQuestion) {
         if (newQuestion.indexOf('?') > -1) {
           this.getAnswer()
@@ -180,14 +170,14 @@ For example:
     },
     methods: {
       getAnswer() {
-        this.answer = 'Thinking...'
+        this.answer = '思考中...'
         axios
           .get('https://yesno.wtf/api')
           .then(response => {
             this.answer = response.data.answer
           })
           .catch(error => {
-            this.answer = 'Error! Could not reach the API. ' + error
+            this.answer = '出错了! 无法访问 API. ' + error
           })
       }
     }
@@ -197,20 +187,20 @@ For example:
 
 Result:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="GRJGqXp" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Watch basic example">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/GRJGqXp">
-  Watch basic example</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="MWyjbxZ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="侦听器基础示例">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/MWyjbxZ">
+  侦听器基础示例</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API) and sets a condition for performing this operation. None of that would be possible with a computed property.
+在这个示例中，使用 `watch` 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。
 
-In addition to the `watch` option, you can also use the imperative [vm.\$watch API](../api/instance-methods.html#watch).
+除了 watch 选项之外，您还可以使用命令式的 [`vm.$watch` API](../api/instance-methods.html#watch)。
 
-### Computed vs Watched Property
+### 计算属性 vs 侦听属性
 
-Vue does provide a more generic way to observe and react to data changes on a current active instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue 提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：侦听属性。当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 `watch`——特别是如果你之前使用过 AngularJS。然而，通常更好的做法是使用计算属性而不是命令式的 `watch` 回调。细想一下这个例子：
 
 ```html
 <div id="demo">{{ fullName }}</div>
@@ -236,7 +226,7 @@ const vm = Vue.createApp({
 }).mount('#demo')
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+上面代码是命令式且重复的。将它与计算属性的版本进行比较：
 
 ```js
 const vm = Vue.createApp({
@@ -254,4 +244,4 @@ const vm = Vue.createApp({
 }).mount('#demo')
 ```
 
-Much better, isn't it?
+好得多了，不是吗？
