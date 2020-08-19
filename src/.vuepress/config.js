@@ -167,6 +167,23 @@ const sidebar = {
       ]
     },
     '/api/composition-api'
+  ],
+  examples: [
+    {
+      title: 'Examples',
+      collapsable: false,
+      children: [
+        '/examples/markdown',
+        '/examples/commits',
+        '/examples/grid-component',
+        '/examples/tree-view',
+        '/examples/svg',
+        '/examples/modal',
+        '/examples/elastic-header',
+        '/examples/select2',
+        '/examples/todomvc'
+      ]
+    }
   ]
 }
 
@@ -214,6 +231,7 @@ module.exports = {
         items: [
           { text: '教程', link: '/guide/introduction' },
           { text: '风格指南', link: '/style-guide/' }
+          { text: '示例', link: '/examples/markdown' }
         ]
       },
       { text: 'API 参考', link: '/api/application-config' },
@@ -275,9 +293,14 @@ module.exports = {
       collapsable: false,
       '/guide/': sidebar.guide,
       '/community/': sidebar.guide,
-      '/api/': sidebar.api
+      '/api/': sidebar.api,
+      '/examples/': sidebar.examples
     },
-    smoothScroll: false
+    smoothScroll: false,
+    algolia: {
+      indexName: 'vuejs-v3',
+      apiKey: 'bc6e8acb44ed4179c30d0a45d6140d3f'
+    }
   },
   plugins: [
     [
