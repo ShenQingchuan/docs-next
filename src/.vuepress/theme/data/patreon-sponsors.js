@@ -73,14 +73,9 @@ export default {
       name: 'Neds'
     },
     {
-      url: 'https://icons8.com/',
-      img: 'icons_8.png',
-      name: 'Icons 8'
-    },
-    {
-      url: 'https://vuejobs.com/?ref=vuejs',
-      img: 'vuejobs.png',
-      name: 'VueJobs'
+      "url": "https://vuejobs.com/?ref=vuejs",
+      "img": "vuejobs.png",
+      "name": "VueJobs"
     },
     {
       url: 'https://tidelift.com/subscription/npm/vue',
@@ -88,14 +83,9 @@ export default {
       name: 'Tidelift'
     },
     {
-      url: 'https://devsquad.com/',
-      img: 'devsquad.png',
-      name: 'DevSquad'
-    },
-    {
-      url: 'https://www.firesticktricks.com/',
-      img: 'firestick_tricks.png',
-      name: 'Firestick Tricks'
+      "url": "https://www.firesticktricks.com/",
+      "img": "firestick_tricks.png",
+      "name": "Firestick Tricks"
     },
     {
       url: 'https://intygrate.com/',
@@ -143,24 +133,19 @@ export default {
       name: 'usave'
     },
     {
-      url: 'http://www.pullrequest.com',
-      img: 'pullrequest.svg',
-      name: 'PullRequest'
+      "url": "https://www.foo.software",
+      "img": "foo.png",
+      "name": "Foo"
     },
     {
-      url: 'https://unicorn.io/',
-      img: 'unicorn.png',
-      name: 'Unicorn.io'
+      "url": "https://flatlogic.com/templates",
+      "img": "flatlogic_templates.svg",
+      "name": "Flatlogic Templates"
     },
     {
-      url: 'https://www.vuescreencasts.com/',
-      img: 'happy_programmer_llc.png',
-      name: 'Happy Programmer LLC'
-    },
-    {
-      url: 'https://www.primefaces.org/primevue',
-      img: 'primevue.png',
-      name: 'PrimeVue'
+      "url": "http://moovweb.com/",
+      "img": "moovweb.png",
+      "name": "Moovweb"
     }
   ],
   silver_sponsors: [
@@ -170,9 +155,14 @@ export default {
       name: 'Roadster'
     },
     {
-      url: 'https://www.inkoop.io',
-      img: 'inkoop.png',
-      name: 'Inkoop'
+      "url": "https://www.inkoop.io",
+      "img": "inkoop.png",
+      "name": "Inkoop"
+    },
+    {
+      "url": "https://www.thecasinodb.com",
+      "img": "isolutions_uk_limited.png",
+      "name": "iSolutions UK Limited"
     }
   ],
   bronze_sponsors: [

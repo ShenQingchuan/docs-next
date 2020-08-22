@@ -59,7 +59,7 @@
   C
 </div>
 <div v-else>
-  Not A/B/C
+  不是 A、B 或 C
 </div>
 ```
 

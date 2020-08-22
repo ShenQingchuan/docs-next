@@ -1,8 +1,10 @@
 # 列表渲染
 
-## Mapping an Array to Elements with `v-for`
+## 用 `v-for` 把一个数组对应为一组元素
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=9" />
+
+我们可以用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要使用 `item in items` 形式的特殊语法，其中 `items` 是源数据数组，而 item 则是被迭代的数组元素的**别名**。
 
 ```html
 <ul id="array-rendering">
@@ -22,7 +24,7 @@ Vue.createApp({
 }).mount('#array-rendering')
 ```
 
-Result:
+结果：
 
 <p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="VwLGbwa" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Array">
   <span>See the Pen <a href="https://codepen.io/team/Vue/pen/VwLGbwa">
@@ -31,7 +33,7 @@ Result:
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+在 `v-for` 块中，我们可以访问所有父作用域的 property。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
 
 ```html
 <ul id="array-with-index">
@@ -52,7 +54,7 @@ Vue.createApp({
 }).mount('#array-with-index')
 ```
 
-Result:
+结果：
 
 <p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="wvaEdBP" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Array and index">
   <span>See the Pen <a href="https://codepen.io/team/Vue/pen/wvaEdBP">
@@ -61,15 +63,15 @@ Result:
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
+你也可以用 `of` 替代 `in` 作为分隔符，因为它更接近 JavaScript 迭代器的语法：
 
 ```html
 <div v-for="item of items"></div>
 ```
 
-## `v-for` with an Object
+## 在 `v-for` 里使用对象
 
-You can also use `v-for` to iterate through the properties of an object.
+你也可以用 `v-for` 来遍历一个对象的 property。
 
 ```html
 <ul id="v-for-object" class="demo">
@@ -84,8 +86,8 @@ Vue.createApp({
   data() {
     return {
       myObject: {
-        title: 'How to do lists in Vue',
-        author: 'Jane Doe',
+        title: '如何在 Vue 中制作列表',
+        author: '王小明',
         publishedAt: '2016-04-10'
       }
     }
@@ -93,16 +95,16 @@ Vue.createApp({
 }).mount('#v-for-object')
 ```
 
-Result:
+结果：
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="NWqLjqy" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/NWqLjqy">
-  v-for with Object</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="mdPOgbX" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for 遍历对象">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/mdPOgbX">
+  v-for 遍历对象</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-You can also provide a second argument for the property's name (a.k.a. key):
+你也可以提供第二个的参数为 property 名称 (也就是键名)：
 
 ```html
 <li v-for="(value, name) in myObject">
@@ -110,14 +112,14 @@ You can also provide a second argument for the property's name (a.k.a. key):
 </li>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="poJOPjx" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object and key">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/poJOPjx">
-  v-for with Object and key</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="shenqingchuan" data-slug-hash="LYNbvYW" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for 遍历对象带 key">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/LYNbvYW">
+  v-for 遍历对象带 key</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-And another for the index:
+还可以用第三个参数作为索引：
 
 ```html
 <li v-for="(value, name, index) in myObject">
@@ -125,46 +127,46 @@ And another for the index:
 </li>
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="abOaWdo" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with Object key and index">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/abOaWdo">
-  v-for with Object key and index</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="shenqingchuan" data-slug-hash="LYNbvEy" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for 遍历对象带 key 和 index">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/LYNbvEy">
+  v-for 遍历对象带 key 和 index</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-:::tip Note
-When iterating over an object, the order is based on the enumeration order of `Object.keys()`, which isn't guaranteed to be consistent across JavaScript engine implementations.
+:::danger 注意
+在遍历对象时，会按 `Object.keys()` 的结果遍历，但是**不能**保证它的结果在不同的 JavaScript 引擎下都一致。
 :::
 
-## Maintaining State
+## 维护状态
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index.
+当 Vue 正在更新使用 `v-for` 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。
 
-This default mode is efficient, but **only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+这个默认的模式是高效的，但是**只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出。**
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item:
+为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` attribute：
 
 ```html
 <div v-for="item in items" :key="item.id">
-  <!-- content -->
+  <!-- 内容 -->
 </div>
 ```
 
-It is recommended to provide a `key` attribute with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+建议尽可能在使用 `v-for` 时提供 `key` attribute，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
 
-Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
+因为它是 Vue 识别节点的一个通用机制，`key` 并不仅与 `v-for` 特别关联。后面我们将在指南中看到，它还具有其它用途。
 
-:::tip Note
-Don't use non-primitive values like objects and arrays as `v-for` keys. Use string or numeric values instead.
+:::danger 注意
+不要使用对象或数组之类的非基本类型值作为 `v-for` 的 `key`。请用字符串或数值类型的值。
 :::
 
-For detailed usage of the `key` attribute, please see the [`key` API documentation](../api/special-attributes.html#key).
+更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](../api/special-attributes.html#key)。
 
-## Array Change Detection
+## 数组更新检测
 
-### Mutation Methods
+### 变更方法
 
-Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
+Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
 
 - `push()`
 - `pop()`
@@ -174,23 +176,23 @@ Vue wraps an observed array's mutation methods so they will also trigger view up
 - `sort()`
 - `reverse()`
 
-You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
+你可以打开控制台，然后对前面例子的 `items` 数组尝试调用变更方法。比如 `example1.items.push({ message: 'Baz' })`。
 
-### Replacing an Array
+### 替换数组
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
+变更方法，顾名思义，会变更调用了这些方法的原始数组。相比之下，也有非变更方法，例如 `filter()`、`concat()` 和 `slice()`。它们不会变更原始数组，而**总是返回一个新数组**。当使用非变更方法时，可以用新数组替换旧数组：
 
 ```js
 example1.items = example1.items.filter(item => item.message.match(/Foo/))
 ```
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的启发式方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
 
-## Displaying Filtered/Sorted Results
+## 显示过滤/排序后的结果
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际变更或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组。
 
-For example:
+例如：
 
 ```html
 <li v-for="n in evenNumbers">{{ n }}</li>
@@ -209,7 +211,7 @@ computed: {
 }
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
 
 ```html
 <ul v-for="numbers in sets">
@@ -230,9 +232,9 @@ methods: {
 }
 ```
 
-## `v-for` with a Range
+## 在 `v-for` 里使用值范围
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` 也可以接受整数。在这种情况下，它会把模板重复对应次数。
 
 ```html
 <div id="range" class="demo">
@@ -240,18 +242,18 @@ methods: {
 </div>
 ```
 
-Result:
+结果：
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="html,result" data-user="Vue" data-slug-hash="NWqLjNY" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with a range">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/NWqLjNY">
-  v-for with a range</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="shenqingchuan" data-slug-hash="oNxYObe" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="在 v-for 里使用值范围">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/oNxYObe">
+  在 v-for 里使用值范围</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-## `v-for` on a `<template>`
+## 在 `<template>` 上使用 `v-for`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+类似于 `v-if`，你也可以利用带有 `v-for` 的 `<template>` 来循环渲染一段包含多个元素的内容。比如：
 
 ```html
 <ul>
@@ -262,13 +264,13 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## `v-for` with `v-if`
+## `v-for` 与 `v-if` 一同使用
 
-:::tip
-Note that it's **not** recommended to use `v-if` and `v-for` together. Refer to [style guide](../style-guide/#avoid-v-if-with-v-for-essential) for details.
+:::danger 注意
+注意我们**不推荐**在同一元素上使用 `v-if` 和 `v-for`。更多细节可查阅[风格指南](../style-guide/#avoid-v-if-with-v-for-essential)。
 :::
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+当它们处于同一节点，`v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你只想为部分项渲染节点时，这种优先级的机制会十分有用，如下：
 
 ```html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -276,9 +278,9 @@ When they exist on the same node, `v-for` has a higher priority than `v-if`. Tha
 </li>
 ```
 
-The above only renders the todos that are not complete.
+上面的代码将只渲染未完成的 todo。
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional#conditional-groups-with-v-if-on-lt-template-gt)). For example:
+而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional#conditional-groups-with-v-if-on-lt-template-gt)) 上。如：
 
 ```html
 <ul v-if="todos.length">
@@ -286,20 +288,20 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
     {{ todo }}
   </li>
 </ul>
-<p v-else>No todos left!</p>
+<p v-else>没有待办事项！</p>
 ```
 
-## `v-for` with a Component
+## 在组件上使用 `v-for`
 
-> This section assumes knowledge of [Components](component-basics.md). Feel free to skip it and come back later.
+> 这部分内容假定你已经了解[组件](component-basics.md)相关知识。你也完全可以先跳过它，以后再回来查看。
 
-You can directly use `v-for` on a custom component, like any normal element:
+在自定义组件上，你可以像在任何普通元素上一样使用 `v-for`。
 
 ```html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+然而，任何数据都不会被自动传递到组件里，因为组件有自己独立的作用域。为了把迭代数据传递到组件里，我们要使用 prop：
 
 ```html
 <my-component
@@ -310,20 +312,16 @@ However, this won't automatically pass any data to the component, because compon
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+不自动将 `item` 注入到组件里的原因是，这会使得组件与 `v-for` 的运作紧密耦合。明确组件数据的来源能够使组件在其他场合重复使用。
 
-Here's a complete example of a simple todo list:
+下面是一个简单的 todo 列表的完整例子：
 
 ```html
 <div id="todo-list-example">
   <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Add a todo</label>
-    <input
-      v-model="newTodoText"
-      id="new-todo"
-      placeholder="E.g. Feed the cat"
-    />
-    <button>Add</button>
+    <label for="new-todo">添加一个 todo</label>
+    <input v-model="newTodoText" id="new-todo" placeholder="例如：喂猫" />
+    <button>添加</button>
   </form>
   <ul>
     <todo-item
@@ -344,15 +342,15 @@ const app = Vue.createApp({
       todos: [
         {
           id: 1,
-          title: 'Do the dishes'
+          title: '洗碗'
         },
         {
           id: 2,
-          title: 'Take out the trash'
+          title: '丢垃圾'
         },
         {
           id: 3,
-          title: 'Mow the lawn'
+          title: '修建草坪'
         }
       ],
       nextTodoId: 4
@@ -373,7 +371,7 @@ app.component('todo-item', {
   template: `
     <li>
       {{ title }}
-      <button @click="$emit('remove')">Remove</button>
+      <button @click="$emit('remove')">清除</button>
     </li>
   `,
   props: ['title']
@@ -382,9 +380,9 @@ app.component('todo-item', {
 app.mount('#todo-list-example')
 ```
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="abOaWpz" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="v-for with components">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/abOaWpz">
-  v-for with components</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="GRZNLqG" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="在组件上使用 v-for">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/GRZNLqG">
+  在组件上使用 v-for</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
