@@ -109,7 +109,7 @@ const AttributeBinding = {
 Vue.createApp(AttributeBinding).mount('#bind-attribute')
 ```
 
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="html,result" data-user="shenqingchuan" data-slug-hash="XWddPPP" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="属性值动态绑定">
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="XWddPPP" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="属性值动态绑定">
   <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/XWddPPP">
   属性值动态绑定</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
@@ -220,7 +220,7 @@ Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
 
 你可以在此沙盒中点击按钮更改 `seen` 属性（使其为 `true` 或 `false`）来查看效果：
 
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="html,result" data-user="shenqingchuan" data-slug-hash="QWNNVXa" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="条件渲染">
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="QWNNVXa" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="条件渲染">
   <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/QWNNVXa">
   条件渲染</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
