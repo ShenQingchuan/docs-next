@@ -2,9 +2,9 @@
 
 > 这篇假设你已经阅读过了[组件基础](component-basics.md)，如果你还对组件不太了解，推荐你先阅读它。
 
-## Component Names
+## 组件名称
 
-When registering a component, it will always be given a name. For example, in the global registration we've seen so far:
+当注册一个组件时，通常要给出其名字，例如在我们之前看到的全局注册的组件：
 
 ```js
 const app = Vue.createApp({...})
