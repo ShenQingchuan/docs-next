@@ -486,7 +486,7 @@ app.component('blog-post', {
 
 需要注意的是**如果我们从以下来源使用模板的话，这条限制是*不存在*的：**
 
-- 字符串模板 (e.g. `template: '...'`)
+- 字符串模板 (例如：`template: '...'`)
 - [单文件 (`.vue`) 组件](single-file-component.html)
 - `<script type="text/x-template">`
 
