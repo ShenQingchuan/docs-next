@@ -1,4 +1,4 @@
-# Custom Events
+# 自定义事件
 
 > This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
 
@@ -85,7 +85,7 @@ app.component('my-component', {
     foo: String
   },
   template: `
-    <input 
+    <input
       type="text"
       :value="foo"
       @input="$emit('update:foo', $event.target.value)">
@@ -119,7 +119,7 @@ app.component('user-name', {
     lastName: String
   },
   template: `
-    <input 
+    <input
       type="text"
       :value="firstName"
       @input="$emit('update:firstName', $event.target.value)">
@@ -162,7 +162,7 @@ app.component('my-component', {
     }
   },
   template: `
-    <input type="text" 
+    <input type="text"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)">
   `,
@@ -225,7 +225,7 @@ For `v-model` bindings with arguments, the generated prop name will be `arg + "M
 app.component('my-component', {
   props: ['foo', 'fooModifiers'],
   template: `
-    <input type="text" 
+    <input type="text"
       :value="foo"
       @input="$emit('update:foo', $event.target.value)">
   `,

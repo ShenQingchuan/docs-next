@@ -1,4 +1,4 @@
-# Slots
+# 插槽
 
 > This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
 
@@ -279,7 +279,7 @@ Attributes bound to a `<slot>` element are called **slot props**. Now, in the pa
 </todo-list>
 ```
 
-<img src="/images/scoped-slot.png" width="611" height="auto" style="display: block; margin: 0 auto; max-width: 100%;" loading="lazy" alt="Scoped slot diagram"> 
+<img src="/images/scoped-slot.png" width="611" height="auto" style="display: block; margin: 0 auto; max-width: 100%;" loading="lazy" alt="Scoped slot diagram">
 
 In this example, we've chosen to name the object containing all our slot props `slotProps`, but you can use any name you like.
 

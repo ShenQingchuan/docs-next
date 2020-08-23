@@ -1,4 +1,4 @@
-# Dynamic & Async Components
+# 动态 & 异步组件
 
 > This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
 
