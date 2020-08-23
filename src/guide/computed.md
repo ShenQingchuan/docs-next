@@ -59,7 +59,7 @@ Vue.createApp({
 }).mount('#computed-basics')
 ```
 
-Result:
+结果：
 
 <p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="shenqingchuan" data-slug-hash="BaKLQwR" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="计算属性基础示例">
   <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/BaKLQwR">
