@@ -23,15 +23,7 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}"
     >
-      <SearchBox
-        v-if="
-          isAlgoliaSearch === false &&
-            !(
-              $site.themeConfig.search !== false &&
-              $page.frontmatter.search !== false
-            )
-        "
-      />
+      <SearchBox v-if="$site.themeConfig.search !== false" />
       <NavLinks class="can-hide" />
       <!-- 由于 Vue docs-next 对 i18n 的支持还不完善，
       algolia 的配置也需要对已部署好的网站进行静态分析，故暂时禁用该搜索功能-->
@@ -41,7 +33,7 @@
 </template>
 
 <script>
-import AlgoliaSearchBox from '@AlgoliaSearchBox'
+// import AlgoliaSearchBox from '@AlgoliaSearchBox'
 import SearchBox from '@SearchBox'
 import SidebarButton from '@theme/components/SidebarButton.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
@@ -53,7 +45,6 @@ export default {
     SidebarButton,
     NavLinks,
     SearchBox,
-    AlgoliaSearchBox,
   },
 
   data() {

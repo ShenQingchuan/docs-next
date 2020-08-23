@@ -298,10 +298,7 @@ module.exports = {
     },
     smoothScroll: false,
     searchPlaceholder: '文档内搜索',
-    algolia: {
-      indexName: 'vuejs-v3',
-      apiKey: 'bc6e8acb44ed4179c30d0a45d6140d3f'
-    }
+    search: true
   },
   plugins: [
     [
