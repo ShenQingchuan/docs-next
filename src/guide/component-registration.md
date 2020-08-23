@@ -1,6 +1,6 @@
 # 组件注册
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> 这篇假设你已经阅读过了[组件基础](component-basics.md)，如果你还对组件不太了解，推荐你先阅读它。
 
 ## Component Names
 
