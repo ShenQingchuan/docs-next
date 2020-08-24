@@ -2,6 +2,8 @@
 
 > 这篇假设你已经阅读过了[组件基础](component-basics.md)，如果你还对组件不太了解，推荐你先阅读它。
 
+<common-dcloud-video href="https://learning.dcloud.io/#/?vid=13" />
+
 ## 组件名称
 
 当注册一个组件时，通常要给出其名字，例如在我们之前看到的全局注册的组件：
@@ -14,22 +16,17 @@ app.component('my-component-name', {
 })
 ```
 
-The component's name is the first argument of `app.component`. In the example above, the component's name is "my-component-name".
+该组件名就是 Vue.component 的第一个参数。在上面的例子中，组件名是 "my-component-name"。
 
-The name you give a component may depend on where you intend to use it. When using a component directly in the DOM (as opposed to in a string template or [single-file component](../guide/single-file-component.html), we strongly recommend following the [W3C rules](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) for custom tag names:
+你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (而不是在字符串模板或[单文件组件](../guide/single-file-component.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
 
-1. All lowercase
-2. Contains a hyphen (i.e., has multiple words connected with the hyphen symbol)
+你可以在[风格指南](../style-guide/#base-component-names-strongly-recommended)中查阅到关于组件名的其它建议。
 
-By doing so, this will help you avoid conflicts with current and future HTML elements.
+### 组件名大小写
 
-You can see other recommendations for component names in the [Style Guide](../style-guide/#base-component-names-strongly-recommended).
+定义组件名的方式有两种：
 
-### Name Casing
-
-When defining components in a string template or a single-file component, you have two options when defining component names:
-
-#### With kebab-case
+#### 使用 kebab-case
 
 ```js
 app.component('my-component-name', {
@@ -37,7 +34,7 @@ app.component('my-component-name', {
 })
 ```
 
-When defining a component with kebab-case, you must also use kebab-case when referencing its custom element, such as in `<my-component-name>`.
+当使用 kebab-case (短横线分隔命名) 定义一个组件时，你也必须在引用这个自定义元素时使用 kebab-case，例如 `<my-component-name>`。
 
 #### With PascalCase
 
@@ -47,11 +44,11 @@ app.component('MyComponentName', {
 })
 ```
 
-When defining a component with PascalCase, you can use either case when referencing its custom element. That means both `<my-component-name>` and `<MyComponentName>` are acceptable. Note, however, that only kebab-case names are valid directly in the DOM (i.e. non-string templates).
+当使用 PascalCase (首字母大写命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说 `<my-component-name>` 和 `<MyComponentName>` 都是可接受的。注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
 
-## Global Registration
+## 全局注册
 
-So far, we've only created components using `app.component`:
+到目前为止，我们只用过 `Vue.component` 来创建组件：
 
 ```js
 Vue.createApp({...}).component('my-component-name', {
@@ -59,7 +56,7 @@ Vue.createApp({...}).component('my-component-name', {
 })
 ```
 
-These components are **globally registered** for the application. That means they can be used in the template of any component instance within this application:
+这些组件是**全局注册**的。也就是说它们在注册之后可以用在任何组件实例的模板中。比如：
 
 ```js
 const app = Vue.createApp({})
@@ -85,13 +82,13 @@ app.mount('#app')
 </div>
 ```
 
-This even applies to all subcomponents, meaning all three of these components will also be available _inside each other_.
+在所有子组件中也是如此，也就是说这三个组件在各自内部也都可以相互使用。
 
-## Local Registration
+## 局部注册
 
-Global registration often isn't ideal. For example, if you're using a build system like Webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.
+全局注册往往是不够理想的。比如，如果你使用一个像 webpack 这样的构建系统，全局注册所有的组件意味着即便你已经不再使用一个组件了，它仍然会被包含在你最终的构建结果中。这造成了用户下载的 JavaScript 的无谓的增加。
 
-In these cases, you can define your components as plain JavaScript objects:
+在这些情况下，你可以通过一个普通的 JavaScript 对象来定义组件：
 
 ```js
 const ComponentA = {
@@ -105,7 +102,7 @@ const ComponentC = {
 }
 ```
 
-Then define the components you'd like to use in a `components` option:
+然后在 `components` 选项中定义你想要使用的组件：
 
 ```js
 const app = Vue.createApp({
@@ -116,9 +113,9 @@ const app = Vue.createApp({
 })
 ```
 
-For each property in the `components` object, the key will be the name of the custom element, while the value will contain the options object for the component.
+对于 `components` 对象中的每个 property 来说，其 property 名就是自定义元素的名字，其 property 值就是这个组件的选项对象。
 
-Note that **locally registered components are _not_ also available in subcomponents**. For example, if you wanted `ComponentA` to be available in `ComponentB`, you'd have to use:
+注意**局部注册的组件在其子组件中不可用**。例如，如果你希望 `ComponentA` 在 `ComponentB` 中可用，则你需要这样写：
 
 ```js
 const ComponentA = {
@@ -133,7 +130,7 @@ const ComponentB = {
 }
 ```
 
-Or if you're using ES2015 modules, such as through Babel and Webpack, that might look more like:
+或者如果你通过 Babel 和 webpack 使用 ES2015 模块，那么代码看起来更像：
 
 ```js
 import ComponentA from './ComponentA.vue'
@@ -146,20 +143,20 @@ export default {
 }
 ```
 
-Note that in ES2015+, placing a variable name like `ComponentA` inside an object is shorthand for `ComponentA: ComponentA`, meaning the name of the variable is both:
+注意在 ES2015+ 中，在对象中放一个类似 `ComponentA` 的变量名其实是 `ComponentA: ComponentA` 的缩写，即这个变量名同时是：
 
-- the custom element name to use in the template, and
-- the name of the variable containing the component options
+- 用在模板中的自定义元素的名称
+- 包含了这个组件选项的变量名
 
-## Module Systems
+## 模块系统
 
-If you're not using a module system with `import`/`require`, you can probably skip this section for now. If you are, we have some special instructions and tips just for you.
+如果你没有通过 `import/require` 使用一个模块系统，也许可以暂且跳过这个章节。如果你使用了，那么我们会为你提供一些特殊的使用说明和注意事项。
 
-### Local Registration in a Module System
+### 在模块系统中局部注册
 
-If you're still here, then it's likely you're using a module system, such as with Babel and Webpack. In these cases, we recommend creating a `components` directory, with each component in its own file.
+如果你还在阅读，说明你使用了诸如 Babel 和 webpack 的模块系统。在这些情况下，我们推荐创建一个 components 目录，并将每个组件放置在其各自的文件中。
 
-Then you'll need to import each component you'd like to use, before you locally register it. For example, in a hypothetical `ComponentB.js` or `ComponentB.vue` file:
+然后你需要在局部注册之前导入每个你想使用的组件。例如，在一个假设的 `ComponentB.js` 或 `ComponentB.vue` 文件中：
 
 ```js
 import ComponentA from './ComponentA'
@@ -174,4 +171,4 @@ export default {
 }
 ```
 
-Now both `ComponentA` and `ComponentC` can be used inside `ComponentB`'s template.
+现在 `ComponentA` 和 `ComponentC` 都可以在 `ComponentB` 的模板中使用了。
