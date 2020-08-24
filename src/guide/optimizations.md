@@ -1,4 +1,4 @@
-# Rendering Mechanisms and Optimizations
+# 渲染机制与优化
 
 > This page is not required reading in order to learn how to use Vue well, but it provides more information, should you be curious how rendering works under the hood.
 

@@ -1,4 +1,4 @@
-# Server-Side Rendering
+# 服务端渲染
 
 ## The Complete SSR Guide
 

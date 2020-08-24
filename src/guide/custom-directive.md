@@ -1,4 +1,4 @@
-# Custom Directives
+# 自定义指令
 
 ## Intro
 

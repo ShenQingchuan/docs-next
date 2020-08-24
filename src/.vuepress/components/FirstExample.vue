@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <p>Counter: {{ counter }}</p>
-    <button @click="clearInterval">Stop timer</button>
+    <button @click="clearInterval">停止计时器</button>
   </div>
 </template>
 
@@ -10,19 +10,19 @@ export default {
   data() {
     return {
       counter: 0,
-      interval: null
+      interval: null,
     }
   },
   methods: {
     clearInterval() {
       clearInterval(this.interval)
-    }
+    },
   },
   mounted() {
     this.interval = setInterval(() => {
       this.counter++
     }, 1000)
-  }
+  },
 }
 </script>
 

@@ -1,4 +1,4 @@
-# State Management
+# 状态管理
 
 ## Official Flux-Like Implementation
 

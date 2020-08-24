@@ -36,7 +36,7 @@ yarn serve # or npm run serve
 
 ### 翻译要求
 
-由于 docs-next 官方英文仓库采用了大量的 codepen.io 的 demo 展示，有很多内置示例的内容也存在大量英文，**它们也应当是文档的一部分！**如果您在翻译某篇文档时遇到 codeopen.io 的 embed demo，**请不要改动他们**，而是在 Pull Request 当中留下说明。
+由于 docs-next 官方英文仓库采用了大量的 codepen.io 的 demo 展示，有很多内置示例的内容也存在大量英文，**它们也应当是文档的一部分！** 如果您在翻译某篇文档时遇到 codeopen.io 的 embed demo，**请不要改动他们**，而是在 Pull Request 当中留下说明。
 
 目前我已经 fork 了官方团队的部分 demo，并将其中必要的英文部分完成了翻译替换。为了保证之后访问的统一性，暂时采取这样的合作模式。
 

@@ -1,4 +1,4 @@
-# Computed and Watch
+# 计算属性与侦听器
 
 > This section uses [single-file component](single-file-component.html) syntax for code examples
 

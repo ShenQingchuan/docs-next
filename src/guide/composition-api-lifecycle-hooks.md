@@ -1,4 +1,4 @@
-# Lifecycle Hooks
+# 生命周期钩子
 
 > This guide assumes that you have already read the [Composition API Introduction](composition-api-introduction.html) and [Reactivity Fundamentals](reactivity-fundamentals.html). Read that first if you are new to Composition API.
 

@@ -1,4 +1,4 @@
-# Render Functions
+# 渲染函数
 
 Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
 
@@ -428,7 +428,7 @@ new Vue({
 
 For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx#installation).
 
-## Template Compilation
+## 模板编译
 
 You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 

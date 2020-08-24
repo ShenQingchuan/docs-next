@@ -78,7 +78,7 @@ To get type inference for the arguments passed to `setup()`, the use of [defineC
 
 - **See also**: [Composition API `setup`](../guide/composition-api-setup.html)
 
-## Lifecycle Hooks
+## 生命周期钩子
 
 Lifecycle hooks can be registered with directly-imported `onX` functions:
 

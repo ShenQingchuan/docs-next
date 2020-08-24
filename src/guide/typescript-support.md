@@ -1,4 +1,4 @@
-# TypeScript Support
+# TypeScript 支持
 
 > [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support.
 

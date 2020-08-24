@@ -1,4 +1,4 @@
-﻿# Plugins
+﻿# 插件
 
 Plugins are self-contained code that usually add global-level functionality to Vue. It is either an `object` that exposes an `install()` method, or a `function`.
 

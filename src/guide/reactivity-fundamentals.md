@@ -1,4 +1,4 @@
-# Reactivity Fundamentals
+# 响应式原理
 
 ## Declaring Reactive State
 
