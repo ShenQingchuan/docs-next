@@ -3,12 +3,6 @@
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
 
     <RouterLink :to="$localePath" class="home-link">
-      <img
-        v-if="$site.themeConfig.logo"
-        class="logo"
-        :src="$withBase($site.themeConfig.logo)"
-        :alt="$siteTitle"
-      />
       <span
         v-if="$siteTitle"
         ref="siteName"
@@ -113,10 +107,12 @@ $navbar-horizontal-padding = 1.5rem;
   }
 
   .site-name {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     font-weight: 500;
     color: $textColor;
     position: relative;
+    top: -2px;
+    font-family: 'Dosis';
   }
 
   .links {
