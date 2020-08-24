@@ -32,6 +32,8 @@ yarn serve # or npm run serve
 
 ## 翻译合作
 
+![合作群](http://rpzoss.oss-cn-chengdu.aliyuncs.com/picbed/2020-08-24-44CBBA296DF4CE817AF0AB9239397DE0.png)
+
 已为本仓库创建好了 Jenkins 自动化构建流程。若您对翻译有任何贡献的想法，请自行开启一个新的分支，翻译其中的某篇文档，然后向这里提交 Pull Request。
 
 ### 翻译要求
