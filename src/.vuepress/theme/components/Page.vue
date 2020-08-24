@@ -2,6 +2,7 @@
   <main class="page">
     <slot name="top" />
 
+    <VUEshopAd />
     <Content class="theme-default-content" />
     <PageEdit />
 
@@ -12,20 +13,21 @@
 </template>
 
 <script>
+import VUEshopAd from '@theme/components/sponsors/VUEshopAdvertisement.vue'
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
 
 export default {
-  components: { PageEdit, PageNav },
-  props: ['sidebarItems']
+  components: { PageEdit, PageNav, VUEshopAd },
+  props: ['sidebarItems'],
 }
 </script>
 
 <style lang="stylus">
-@require '../styles/wrapper.styl'
+@require '../styles/wrapper.styl';
 
-.page
-  padding-bottom 2rem
-  display block
-
+.page {
+  padding-bottom: 2rem;
+  display: block;
+}
 </style>

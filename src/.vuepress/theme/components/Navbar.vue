@@ -3,6 +3,7 @@
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
 
     <RouterLink :to="$localePath" class="home-link">
+      <img v-if="showLogo" class="logo" :src="$withBase($site.themeConfig.logo)" :alt="$siteTitle" />
       <span
         v-if="$siteTitle"
         ref="siteName"
@@ -56,6 +57,10 @@ export default {
 
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName
+    },
+
+    showLogo() {
+      return this.$site.themeConfig.logo && this.$page.path !== '/'
     },
   },
 

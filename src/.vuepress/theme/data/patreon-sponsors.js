@@ -9,13 +9,17 @@ export default {
     {
       url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=',
       img: 'dcloud.gif',
-      name: 'HBuilder X'
+      name: 'HBuilder X',
+      sidebar_img: 'dcloud-sidebar.gif',
+      sidebar_url: ''
     },
     {
       url:
         'https://coding.imooc.com/?c=vuejs&mc_marking=7cf403c3c89d6fccf944791e71e7a959&mc_channel=vuezwsq',
       img: 'imooc-sponsor.png',
-      name: '慕课网'
+      name: '慕课网',
+      sidebar_img: 'imooc-sidebar.png',
+      sidebar_url: ''
     }
   ],
   platinum_sponsors: [
