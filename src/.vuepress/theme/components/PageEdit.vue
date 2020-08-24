@@ -3,7 +3,7 @@
     <div class="container">
       <p>
         （暂时）部署于
-        <a href="https://vue3doc.techdict.pro">沈青川的服务器</a>
+        <a href="https://vue.techdict.pro">沈青川的服务器</a>
         <span v-if="editLink" class="edit-link">
           发现错误或是想贡献文档？
           <a :href="editLink" target="_blank" rel="noopener noreferrer">
