@@ -1,6 +1,6 @@
 <template>
   <SponsorsLayout extra-classes="sponsors__patreon">
-    <template #heading>Patreon Sponsors</template>
+    <template #heading>Patreon 赞助商</template>
 
     <template #content>
       <div class="platinum">
@@ -11,7 +11,7 @@
           v-for="sponsor in sponsors.platinum_sponsors"
           :key="sponsor.name"
         >
-          <img :src="`/images/sponsors/${sponsor.img}`" width="160" :alt="sponsor.name">
+          <img :src="`/images/sponsors/${sponsor.img}`" width="160" :alt="sponsor.name" />
         </a>
       </div>
       <div class="gold">
@@ -22,11 +22,11 @@
           v-for="sponsor in sponsors.gold_sponsors"
           :key="sponsor.name"
         >
-          <img :src="`/images/sponsors/${sponsor.img}`" width="120" :alt="sponsor.name">
+          <img :src="`/images/sponsors/${sponsor.img}`" width="120" :alt="sponsor.name" />
         </a>
       </div>
 
-      <RoundedButton url="https://vuejs.org/support-vuejs/">Become a Sponsor!</RoundedButton>
+      <RoundedButton url="https://vuejs.org/support-vuejs/">成为赞助者！</RoundedButton>
     </template>
   </SponsorsLayout>
 </template>
@@ -38,14 +38,14 @@ import RoundedButton from '@theme/components/ui/RoundedButton.vue'
 export default {
   components: {
     SponsorsLayout,
-    RoundedButton
+    RoundedButton,
   },
 
   props: {
     sponsors: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>

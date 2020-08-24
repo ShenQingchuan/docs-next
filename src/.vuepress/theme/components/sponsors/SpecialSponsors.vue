@@ -1,12 +1,8 @@
 <template>
   <div class="special-sponsors">
-    <h3>{{ heading }}</h3>
+    <h3>特别赞助</h3>
     <div class="blocks">
-      <SponsorBlock
-        v-for="sponsor in sponsors"
-        :sponsor="sponsor"
-        :key="sponsor.name"
-      />
+      <SponsorBlock v-for="sponsor in sponsors" :sponsor="sponsor" :key="sponsor.name" />
     </div>
   </div>
 </template>
@@ -14,26 +10,21 @@
 <script>
 export default {
   components: {
-    SponsorBlock: () => import('@theme/components/sponsors/SpecialSponsorBlock.vue')
+    SponsorBlock: () =>
+      import('@theme/components/sponsors/SpecialSponsorBlock.vue'),
   },
 
   props: {
     sponsors: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
-
-  computed: {
-    heading () {
-      return `Special Sponsor${this.sponsors.length === 1 ? '' : 's'}`
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@theme/styles/_settings.scss";
+@import '@theme/styles/_settings.scss';
 
 .special-sponsors {
   text-align: center;
@@ -53,7 +44,7 @@ export default {
       max-width: 30%;
 
       @media (max-width: $MQNarrow) {
-        &+a {
+        & + a {
           margin-top: 25px;
         }
 

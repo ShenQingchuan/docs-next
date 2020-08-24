@@ -7,10 +7,15 @@ export default {
   ],
   special_sponsors: [
     {
-      url: 'https://autocode.com',
-      img: 'autocode.svg',
-      name: 'Autocode',
-      description: 'Build app-to-app workflows and connect APIs'
+      url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=',
+      img: 'dcloud.gif',
+      name: 'HBuilder X'
+    },
+    {
+      url:
+        'https://coding.imooc.com/?c=vuejs&mc_marking=7cf403c3c89d6fccf944791e71e7a959&mc_channel=vuezwsq',
+      img: 'imooc-sponsor.png',
+      name: '慕课网'
     }
   ],
   platinum_sponsors: [
@@ -73,9 +78,9 @@ export default {
       name: 'Neds'
     },
     {
-      "url": "https://vuejobs.com/?ref=vuejs",
-      "img": "vuejobs.png",
-      "name": "VueJobs"
+      url: 'https://vuejobs.com/?ref=vuejs',
+      img: 'vuejobs.png',
+      name: 'VueJobs'
     },
     {
       url: 'https://tidelift.com/subscription/npm/vue',
@@ -83,9 +88,9 @@ export default {
       name: 'Tidelift'
     },
     {
-      "url": "https://www.firesticktricks.com/",
-      "img": "firestick_tricks.png",
-      "name": "Firestick Tricks"
+      url: 'https://www.firesticktricks.com/',
+      img: 'firestick_tricks.png',
+      name: 'Firestick Tricks'
     },
     {
       url: 'https://intygrate.com/',
@@ -133,19 +138,19 @@ export default {
       name: 'usave'
     },
     {
-      "url": "https://www.foo.software",
-      "img": "foo.png",
-      "name": "Foo"
+      url: 'https://www.foo.software',
+      img: 'foo.png',
+      name: 'Foo'
     },
     {
-      "url": "https://flatlogic.com/templates",
-      "img": "flatlogic_templates.svg",
-      "name": "Flatlogic Templates"
+      url: 'https://flatlogic.com/templates',
+      img: 'flatlogic_templates.svg',
+      name: 'Flatlogic Templates'
     },
     {
-      "url": "http://moovweb.com/",
-      "img": "moovweb.png",
-      "name": "Moovweb"
+      url: 'http://moovweb.com/',
+      img: 'moovweb.png',
+      name: 'Moovweb'
     }
   ],
   silver_sponsors: [
@@ -155,14 +160,14 @@ export default {
       name: 'Roadster'
     },
     {
-      "url": "https://www.inkoop.io",
-      "img": "inkoop.png",
-      "name": "Inkoop"
+      url: 'https://www.inkoop.io',
+      img: 'inkoop.png',
+      name: 'Inkoop'
     },
     {
-      "url": "https://www.thecasinodb.com",
-      "img": "isolutions_uk_limited.png",
-      "name": "iSolutions UK Limited"
+      url: 'https://www.thecasinodb.com',
+      img: 'isolutions_uk_limited.png',
+      name: 'iSolutions UK Limited'
     }
   ],
   bronze_sponsors: [

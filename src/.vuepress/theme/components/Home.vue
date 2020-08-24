@@ -26,7 +26,7 @@
       </div>
     </header>
 
-    <!-- <SpecialSponsors :sponsors="sponsors.special_sponsors" /> -->
+    <SpecialSponsors :sponsors="sponsors.special_sponsors" />
 
     <section v-if="data.features && data.features.length" class="section-features">
       <div class="inner">
@@ -39,12 +39,13 @@
 
     <Content class="theme-default-content custom" />
 
-    <!-- <section class="section-sponsors" ref="sponsors">
+    <section class="section-sponsors" ref="sponsors">
       <div class="inner">
         <PatreonSponsors :sponsors="sponsors" />
         <OpenCollectiveSponsors />
+        <VideoDelegateSponsor />
       </div>
-    </section>-->
+    </section>
 
     <section class="section-newsletter">
       <Newsletter />
@@ -71,6 +72,7 @@ import HomeActionLink from '@theme/components/ui/HomeActionLink.vue'
 import SocialIcon from '@theme/components/ui/SocialIcon.vue'
 import SpecialSponsors from '@theme/components/sponsors/SpecialSponsors.vue'
 import PatreonSponsors from '@theme/components/sponsors/PatreonSponsors.vue'
+import VideoDelegateSponsor from '@theme/components/sponsors/VideoDelegateSponsor.vue'
 import OpenCollectiveSponsors from '@theme/components/sponsors/OpenCollectiveSponsors.vue'
 import Newsletter from '@theme/components/Newsletter.vue'
 
@@ -80,6 +82,7 @@ export default {
     SocialIcon,
     SpecialSponsors,
     PatreonSponsors,
+    VideoDelegateSponsor,
     OpenCollectiveSponsors,
     Newsletter,
   },
@@ -94,11 +97,7 @@ export default {
     },
 
     tagline() {
-      return (
-        this.data.tagline ||
-        this.$description ||
-        'The Progressive JavaScript Framework'
-      )
+      return this.data.tagline || this.$description || '渐进式 JavaScript 框架'
     },
   },
 

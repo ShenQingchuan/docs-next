@@ -1,9 +1,9 @@
 <template>
   <SponsorsLayout extra-classes="sponsors__open-collective">
-    <template #heading>Open Collective Sponsors</template>
+    <template #heading>Open Collective 赞助商</template>
 
     <template #content>
-      <h4>Platinum</h4>
+      <h4>白金</h4>
       <a
         :href="`https://opencollective.com/vuejs/tiers/platinum-sponsors/${index}/website`"
         rel="sponsored noopener"
@@ -13,10 +13,10 @@
         <img
           :src="`https://opencollective.com/vuejs/tiers/platinum-sponsors/${index}/avatar.svg`"
           alt="Vue.JS platinum sponsor"
-        >
+        />
       </a>
 
-      <h4>Gold</h4>
+      <h4>黄金</h4>
       <a
         :href="`https://opencollective.com/vuejs/tiers/gold-sponsors/${index}/website`"
         rel="sponsored noopener"
@@ -26,7 +26,7 @@
         <img
           :src="`https://opencollective.com/vuejs/tiers/gold-sponsors/${index}/avatar.svg`"
           alt="Vue.JS gold sponsor"
-        >
+        />
       </a>
     </template>
   </SponsorsLayout>
@@ -37,15 +37,15 @@ import SponsorsLayout from '@theme/components/sponsors/SponsorsLayout.vue'
 
 export default {
   components: {
-    SponsorsLayout
+    SponsorsLayout,
   },
 
   data: () => ({
     featuredCount: {
       platium: 3,
-      gold: 10
-    }
-  })
+      gold: 10,
+    },
+  }),
 }
 </script>
 
