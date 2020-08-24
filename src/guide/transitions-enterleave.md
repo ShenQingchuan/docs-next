@@ -1,4 +1,4 @@
-# Enter & Leave Transitions
+# 进入/离开 过渡
 
 Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
 

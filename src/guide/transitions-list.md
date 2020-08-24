@@ -1,4 +1,4 @@
-# List Transitions
+# 列表过渡
 
 So far, we've managed transitions for:
 

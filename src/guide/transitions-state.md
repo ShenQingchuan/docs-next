@@ -1,4 +1,4 @@
-# State Transitions
+# 状态过渡
 
 Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
 
