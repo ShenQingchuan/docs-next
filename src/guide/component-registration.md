@@ -36,7 +36,7 @@ app.component('my-component-name', {
 
 当使用 kebab-case (短横线分隔命名) 定义一个组件时，你也必须在引用这个自定义元素时使用 kebab-case，例如 `<my-component-name>`。
 
-#### With PascalCase
+#### 使用 PascalCase
 
 ```js
 app.component('MyComponentName', {
