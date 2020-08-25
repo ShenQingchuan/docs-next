@@ -1,14 +1,14 @@
 # Provide / inject
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> 该页面假设你已经阅读过了[组件基础](component-basics.md)。如果你还对组件不太了解，推荐你先阅读它。
 
-Usually, when we need to pass data from the parent to child component, we use [props](component-props.md). Imagine the structure where you have some deeply nested components and you only need something from the parent component in the deep nested child. In this case, you still need to pass the prop down the whole component chain which might be annoying.
+通常，当我们需要从父组件传递数据到子组件时，我们会使用 [props](component-props.md)。想象我们有如图所示的一个层次结构很深的组件而你只需要将一段数据从父组件传递到最深层的叶子组件。在这个案例中，如果你仍然采用 prop 从上向下传递将会很困扰。
 
-For such cases, we can use the `provide` and `inject` pair. Parent components can serve as dependency provider for all its children, regardless how deep the component hierarchy is. This feature works on two parts: parent component has a `provide` option to provide data and child component has an `inject` option to start using this data.
+对于这样的需求，我们应该使用 `provide` 和 `inject` 这一对。父组件能够作为它所有子组件的依赖提供者，无论向下层级有多深。这个功能分为两个部分，父组件有一个 `provide` 选项来提供数据，而子组件有一个 `inject` 选项来注入、使用该数据。
 
-![Provide/inject scheme](/images/components_provide.png)
+![Provide/inject 结构](/images/components_provide.png)
 
-For example, if we have a hierarchy like this:
+例如，我们有一个这样的应用结构：
 
 ```
 Root
@@ -19,7 +19,7 @@ Root
       └─ TodoListStatistics
 ```
 
-If we want to pass the length of todo-items directly to `TodoListStatistics`, we would pass the prop down the hierarchy: `TodoList` -> `TodoListFooter` -> `TodoListStatistics`. With provide/inject approach, we can do this directly:
+如果我们想要传递待办事项列表的长度给 `TodoListStatistics`，我们将要将该 prop 传递过整个层次结构：`TodoList` -> `TodoListFooter` -> `TodoListStatistics`。若采用 provide/inject 我们可以直接这样做：
 
 ```js
 const app = Vue.createApp({})
@@ -27,7 +27,7 @@ const app = Vue.createApp({})
 app.component('todo-list', {
   data() {
     return {
-      todos: ['Feed a cat', 'Buy tickets']
+      todos: ['喂猫', '买票']
     }
   },
   provide: {
@@ -44,12 +44,12 @@ app.component('todo-list', {
 app.component('todo-list-statistics', {
   inject: ['user'],
   created() {
-    console.log(`Injected property: ${this.user}`) // > Injected property: John Doe
+    console.log(`注入 property: ${this.user}`) // > 注入 property: John Doe
   }
 })
 ```
 
-However, this won't work if we try to provide some component instance property here:
+然而，当我们尝试提供一些组件实例的 property 时却没有效果：
 
 ```js
 app.component('todo-list', {
@@ -59,7 +59,7 @@ app.component('todo-list', {
     }
   },
   provide: {
-    todoLength: this.todos.length // this will result in error 'Cannot read property 'length' of undefined`
+    todoLength: this.todos.length // 这将会抛出错误 'Cannot read property 'length' of undefined`
   },
   template: `
     ...
@@ -67,13 +67,13 @@ app.component('todo-list', {
 })
 ```
 
-To access component instance properties, we need to convert `provide` to be a function returning an object
+要想访问到组件实例的 property，我们需要将 `provide` 转为一个返回对象的函数：
 
 ```js
 app.component('todo-list', {
   data() {
     return {
-      todos: ['Feed a cat', 'Buy tickets']
+      todos: ['喂猫', '买票']
     }
   },
   provide() {
@@ -87,16 +87,18 @@ app.component('todo-list', {
 })
 ```
 
-This allows us to more safely keep developing that component, without fear that we might change/remove something that a child component is relying on. The interface between these components remains clearly defined, just as with props.
+这允许我们更安全地继续开发该组件，而不用担心我们可能会更改/删除子组件所依赖的东西。这些组件之间的接口仍然被清晰地定义，就像 props 一样。
 
+事实上，你可以把依赖注入想成是一种 “长距离 props”，期望：
 In fact, you can think of dependency injection as sort of “long-range props”, except:
 
-- parent components don’t need to know which descendants use the properties it provides
-- child components don’t need to know where injected properties are coming from
+- 父组件无需知道哪一个子组件要使用它提供的 property
+- 子组件同样无需知道注入的 property 从何而来
 
-## Working with reactivity
+## 与响应式协同工作
 
-In the example above, if we change the list of `todos`, this change won't be reflected in the injected `todoLength` property. This is because `provide/inject` bindings are _not_ reactive by default. We can change this behavior by passing a `ref` property or `reactive` object to `provide`. In our case, if we wanted to react to changes in the ancestor component, we would need to assign a Composition API `computed` property to our provided `todoLength`:
+在上面的例子中，如果我们更改了 `todos` 列表，该更改将不会反射到已经注入的 `todoLength` property 上。这是由于 `provide/inject` 绑定默认 _不是_ 响应式的。我们可以通过传递一个 `ref` property 或者 `reactive` 对象给 `provide` 来改变此行为。
+在此例中，如果我们想要对祖先组件的变化协同响应，我们应该通过组合式 API `computed` 包装我们提供的 `todolength` 。
 
 ```js
 app.component('todo-list', {
@@ -109,4 +111,4 @@ app.component('todo-list', {
 })
 ```
 
-In this, any change to `todos.length` will be reflected correctly in the components, where `todoLength` is injected. Read more about `reactive` provide/inject in the [Composition API section](composition-api-provide-inject.html#injection-reactivity)
+这样任何对 `todos.length` 的变更都将会正确反馈到各个 `todoLength` 被注入的组件中。你可以在 [组合式 API 章节](composition-api-provide-inject.html#injection-reactivity)中读到更多关于 `reactive` provide/inject 的内容。
