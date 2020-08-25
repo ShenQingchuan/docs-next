@@ -1,6 +1,6 @@
 <template>
   <a target="_blank" rel="noopener sponsored" :href="sponsor.url">
-    <img :src="`/images/sponsors/${sponsor.img}`" :alt="`${sponsor.name} logo`" width="160">
+    <img :src="`/images/sponsors/${sponsor.img}`" :alt="`${sponsor.name} logo`" width="200" />
     <span class="description">{{ sponsor.description }}</span>
   </a>
 </template>
@@ -10,14 +10,14 @@ export default {
   props: {
     sponsor: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@theme/styles/_settings.scss";
+@import '@theme/styles/_settings.scss';
 
 a {
   text-align: center;
@@ -29,6 +29,6 @@ a {
 
 span {
   display: block;
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 </style>
