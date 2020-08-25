@@ -143,12 +143,12 @@ yarn dev
 如果你需要在客户端编译模板 (比如传入一个字符串给 template 选项，或挂载到一个元素上并以其 DOM 内部的 HTML 作为模板)，就将需要加上编译器，即完整版：
 
 ```js
-// this requires the compiler
+// 需要编译器
 Vue.createApp({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// 不需要编译器
 Vue.createApp({
   render() {
     return Vue.h('div', {}, this.hi)
