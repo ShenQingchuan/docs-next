@@ -1,4 +1,11 @@
 const sidebar = {
+  cookbook: [
+    {
+      title: 'Cookbook',
+      collapsable: false,
+      children: ['/cookbook/', '/cookbook/editable-svg-icons']
+    }
+  ],
   guide: [
     {
       title: '基础',
@@ -231,6 +238,7 @@ module.exports = {
         items: [
           { text: '教程', link: '/guide/introduction' },
           { text: '风格指南', link: '/style-guide/' },
+          { text: 'Cookbook', link: '/cookbook/' },
           { text: '示例', link: '/examples/markdown' }
         ]
       },
@@ -293,6 +301,7 @@ module.exports = {
       collapsable: false,
       '/guide/': sidebar.guide,
       '/community/': sidebar.guide,
+      '/cookbook/': sidebar.cookbook,
       '/api/': sidebar.api,
       '/examples/': sidebar.examples
     },

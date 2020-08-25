@@ -135,7 +135,7 @@ yarn dev
 
 - `vue.cjs(.prod).js`:
   - 对于在 Node.js 服务端渲染请使用 `require()`。
-  - 如果你使用 webpack 打包，以 `target: 'node'` 为目标进行打包并已经正确外部化 `vue`，你应当使用这个构建版本。
+  - 如果你使用 webpack 打包，设置了 `target: 'node'` 目标进行打包并已经正确外部化 `vue`，你应当使用这个构建版本。
   - dev/prod 两个分支的文件已经预编译好，而具体是哪个取决于 `process.env.NODE_ENV`。
 
 ## 运行时 + 编译器 vs. 仅含运行时
