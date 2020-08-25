@@ -1,108 +1,108 @@
 # 插槽
 
-> This page assumes you've already read the [Components Basics](component-basics.md). Read that first if you are new to components.
+> 该页面假设你已经阅读过了[组件基础](component-basics.md)。如果你还对组件不太了解，推荐你先阅读它。
 
-## Slot Content
+## 插槽内容
 
-Vue implements a content distribution API inspired by the [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the `<slot>` element to serve as distribution outlets for content.
+Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web Components 规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，将 `<slot>` 元素作为承载分发内容的出口。
 
-This allows you to compose components like this:
+它允许你像这样合成组件：
 
 ```html
 <todo-button>
-  Add todo
+  添加待办事项
 </todo-button>
 ```
 
-Then in the template for `<todo-button>`, you might have:
+接下来在 `<todo-button>` 的模板中，你需要：
 
 ```html
-<!-- todo-button component template -->
+<!-- todo-button 组件模板 -->
 <button class="btn-primary">
   <slot></slot>
 </button>
 ```
 
-When the component renders, `<slot></slot>` will be replaced by "Add Todo".
+当组件渲染时，`<slot></slot>` 会被替换为 "Add Todo"。
 
 ```html
-<!-- rendered HTML -->
+<!-- 渲染出的 HTML -->
 <button class="btn-primary">
-  Add todo
+  添加待办事项
 </button>
 ```
 
-Strings are just the beginning though! Slots can also contain any template code, including HTML:
+作为入门字符串足矣！插槽也可以包含任意模板代码，包括 HTML：
 
 ```html
 <todo-button>
-  <!-- Add a Font Awesome icon -->
+  <!-- 添加一个 Font Awesome 图标 -->
   <i class="fas fa-plus"></i>
-  Add todo
+  添加待办事项
 </todo-button>
 ```
 
-Or even other components:
+甚至是其他的组件：
 
 ```html
 <todo-button>
-  <!-- Use a component to add an icon -->
+  <!-- 使用组件来添加一个图标 -->
   <font-awesome-icon name="plus"></font-awesome-icon>
-  Your Profile
+  你的资料
 </todo-button>
 ```
 
-If `<todo-button>`'s template did **not** contain a `<slot>` element, any content provided between its opening and closing tag would be discarded.
+如果 `<todo-button>`的模板**没有**包含一个 `<slot>` 元素，那么开闭标签之间的任何内容都将被忽略。
 
 ```html
-<!-- todo-button component template -->
+<!-- todo-button 组件模板 -->
 
 <button class="btn-primary">
-  Create a new item
+  创建新的一项
 </button>
 ```
 
 ```html
 <todo-button>
-  <!-- Following text won't be rendered -->
-  Add todo
+  <!-- 下面的文本将不会被渲染 -->
+  添加待办事项
 </todo-button>
 ```
 
-## Render Scope
+## 编译作用域
 
-When you want to use data inside a slot, such as in:
+当你想在一个插槽中使用数据时，例如：
 
 ```html
 <todo-button>
-  Delete a {{ item.name }}
+  删除 {{ item.name }}
 </todo-button>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template.
+该插槽跟模板的其它地方一样可以访问相同的实例 property (也就是相同的“作用域”)。
 
 <img src="/images/slot.png" width="447" height="auto" style="display: block; margin: 0 auto; max-width: 100%" loading="lazy" alt="Slot explanation diagram">
 
-The slot does **not** have access to `<todo-button>`'s scope. For example, trying to access `action` would not work:
+插槽 **不能** 访问到 `<todo-button>`的作用域。例如，尝试访问 `action` 是访问不到的：
 
 ```html
 <todo-button action="delete">
-  Clicking here will {{ action }} an item
+  点击这里将会 {{ action }} 一项
   <!--
-  The `action` will be undefined, because this content is passed
-  _to_ <todo-button>, rather than defined _inside_ the
-  <todo-button> component.
+  `action` 将是 undefined因为其 (指该插槽的) 内容是
+  _传递给_ <todo-button>而不是
+  在 <todo-button> 组件*内部*定义的。
   -->
 </todo-button>
 ```
 
-As a rule, remember that:
+作为一条规则，请记住：
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> 父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。
 
-## Fallback Content
+## 后备内容
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be rendered only when no content is provided. For example, in a `<submit-button>` component:
+有时为一个插槽设置具体的后备 (也就是默认的) 内容是很有用的，它只会在没有提供内容的时候被渲染。例如在一个 `<submit-button>` 组件中：
 
 ```html
 <button type="submit">
@@ -110,7 +110,7 @@ There are cases when it's useful to specify fallback (i.e. default) content for 
 </button>
 ```
 
-We might want the text "Submit" to be rendered inside the `<button>` most of the time. To make "Submit" the fallback content, we can place it in between the `<slot>` tags:
+我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为后备内容，我们可以将它放在 `<slot>` 标签内：
 
 ```html
 <button type="submit">
@@ -118,13 +118,13 @@ We might want the text "Submit" to be rendered inside the `<button>` most of the
 </button>
 ```
 
-Now when we use `<submit-button>` in a parent component, providing no content for the slot:
+现在当我在一个父级组件中使用 `<submit-button>` 并且不提供任何插槽内容时：
 
 ```html
 <submit-button></submit-button>
 ```
 
-will render the fallback content, "Submit":
+后备内容“Submit”将会被渲染：
 
 ```html
 <button type="submit">
@@ -132,7 +132,7 @@ will render the fallback content, "Submit":
 </button>
 ```
 
-But if we provide content:
+但是如果我们提供内容：
 
 ```html
 <submit-button>
@@ -140,7 +140,7 @@ But if we provide content:
 </submit-button>
 ```
 
-Then the provided content will be rendered instead:
+则这个提供的内容将会被渲染从而取代后备内容：
 
 ```html
 <button type="submit">
@@ -148,25 +148,25 @@ Then the provided content will be rendered instead:
 </button>
 ```
 
-## Named Slots
+## 具名插槽
 
-There are times when it's useful to have multiple slots. For example, in a `<base-layout>` component with the following template:
+有时我们需要多个插槽。例如对于一个带有如下模板的 `<base-layout>` 组件：
 
 ```html
 <div class="container">
   <header>
-    <!-- We want header content here -->
+    <!-- 我们希望把页头放这里 -->
   </header>
   <main>
-    <!-- We want main content here -->
+    <!-- 我们希望把主要内容放这里 -->
   </main>
   <footer>
-    <!-- We want footer content here -->
+    <!-- 我们希望把页脚放这里 -->
   </footer>
 </div>
 ```
 
-For these cases, the `<slot>` element has a special attribute, `name`, which can be used to assign a unique ID to different slots so you can determine where content should be rendered:
+对于这样的情况，`<slot>` 元素有一个特殊的 attribute：`name`。这个 attribute 可以用来定义额外的插槽：
 
 ```html
 <div class="container">
@@ -182,59 +182,61 @@ For these cases, the `<slot>` element has a special attribute, `name`, which can
 </div>
 ```
 
-A `<slot>` outlet without `name` implicitly has the name "default".
+一个不带 name 的 `<slot>` 出口会带有隐含的名字“default”。
 
-To provide content to named slots, we need to use the `v-slot` directive on a `<template>` element, providing the name of the slot as `v-slot`'s argument:
+在向具名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
 
 ```html
 <base-layout>
   <template v-slot:header>
-    <h1>Here might be a page title</h1>
+    <h1>这里将会是一个页面标题</h1>
   </template>
 
   <template v-slot:default>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一段</p>
+    <p>然后是另一段</p>
   </template>
 
   <template v-slot:footer>
-    <p>Here's some contact info</p>
+    <p>这里是一些联系方式</p>
   </template>
 </base-layout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots.
+现在 `<template>` 元素中的所有内容都将会被传入相应的插槽。
 
-The rendered HTML will be:
+渲染出的 HTML 是：
 
 ```html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里将会是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一段</p>
+    <p>然后是另一段</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里是一些联系方式</p>
   </footer>
 </div>
 ```
 
-Note that **`v-slot` can only be added to a `<template>`** (with [one exception](#abbreviated-syntax-for-lone-default-slots))
+注意 **`v-slot` 只能添加在 `<template>` 上**（只有一种[例外情况](#abbreviated-syntax-for-lone-default-slots)）。
 
-## Scoped Slots
+## 作用域插槽
 
-Sometimes, it's useful for slot content to have access to data only available in the child component. It's a common case when a component is used to render an array of items, and we want to be able to customize the way each item is rendered.
+有时让插槽内容能够访问子组件中才有的数据是很有用的。一个组件用来渲染一个数组是十分常见的需求，并且我们想要定制每一项渲染的方式。
 
-For example, we have a component, containing a list of todo-items.
+有时让插槽内容能够访问子组件中才有的数据是很有用的。例如，设想一个带有如下模板的 `<current-user>` 组件：
+
+例如，我们有一个组件，包含一列待办事项。
 
 ```js
 app.component('todo-list', {
   data() {
     return {
-      items: ['Feed a cat', 'Buy milk']
+      items: ['喂猫', '买牛奶']
     }
   },
   template: `
@@ -247,7 +249,7 @@ app.component('todo-list', {
 })
 ```
 
-We might want to replace the slot to customize it on parent component:
+我们想要在父组件上换掉插槽的备用内容：
 
 ```html
 <todo-list>
@@ -256,9 +258,9 @@ We might want to replace the slot to customize it on parent component:
 </todo-list>
 ```
 
-That won't work, however, because only the `<todo-list>` component has access to the `item` and we are providing the slot content from its parent.
+然而上述代码不会正常工作，因为只有 `<todo-list>` 组件可以访问到 `item` 而我们提供的内容是在父级渲染的。
 
-To make `item` available to the slot content provided by the parent, we can add a `<slot>` element and bind it as an attribute:
+为了让 `item` 在父级的插槽内容中可用，我们可以将它作为 `<slot>` 元素的一个 attribute 绑定上去：
 
 ```html
 <ul>
@@ -268,7 +270,7 @@ To make `item` available to the slot content provided by the parent, we can add 
 </ul>
 ```
 
-Attributes bound to a `<slot>` element are called **slot props**. Now, in the parent scope, we can use `v-slot` with a value to define a name for the slot props we've been provided:
+绑定在 `<slot>` 元素上的 attribute 被称为**插槽 prop**。现在在父级作用域中，我们可以使用带值的 v-slot 来定义我们提供的插槽 prop 的名字：
 
 ```html
 <todo-list>
@@ -281,11 +283,11 @@ Attributes bound to a `<slot>` element are called **slot props**. Now, in the pa
 
 <img src="/images/scoped-slot.png" width="611" height="auto" style="display: block; margin: 0 auto; max-width: 100%;" loading="lazy" alt="Scoped slot diagram">
 
-In this example, we've chosen to name the object containing all our slot props `slotProps`, but you can use any name you like.
+在这个例子中，我们选择将包含所有插槽 prop 的对象命名为 `slotProps`，但你也可以使用任意你喜欢的名字。
 
-### Abbreviated Syntax for Lone Default Slots
+### 独占默认插槽的缩写语法
 
-In cases like above, when _only_ the default slot is provided content, the component's tags can be used as the slot's template. This allows us to use `v-slot` directly on the component:
+在上述情况下，当被提供的内容只有默认插槽时，组件的标签才可以被当作插槽的模板来使用。这样我们就可以把 `v-slot` 直接用在组件上：
 
 ```html
 <todo-list v-slot:default="slotProps">
@@ -294,7 +296,7 @@ In cases like above, when _only_ the default slot is provided content, the compo
 </todo-list>
 ```
 
-This can be shortened even further. Just as non-specified content is assumed to be for the default slot, `v-slot` without an argument is assumed to refer to the default slot:
+这种写法还可以更简单。就像假定未指明的内容对应默认插槽一样，不带参数的 `v-slot` 被假定对应默认插槽：
 
 ```html
 <todo-list v-slot="slotProps">
@@ -303,22 +305,22 @@ This can be shortened even further. Just as non-specified content is assumed to 
 </todo-list>
 ```
 
-Note that the abbreviated syntax for default slot **cannot** be mixed with named slots, as it would lead to scope ambiguity:
+注意默认插槽的缩写语法**不能**和具名插槽混用，因为它会导致作用域不明确：
 
 ```html
-<!-- INVALID, will result in warning -->
+<!-- 无效，会导致警告 -->
 <todo-list v-slot="slotProps">
   <todo-list v-slot:default="slotProps">
     <i class="fas fa-check"></i>
     <span class="green">{{ slotProps.item }}<span>
   </todo-list>
   <template v-slot:other="otherSlotProps">
-    slotProps is NOT available here
+    slotProps 在这里不可用
   </template>
 </todo-list>
 ```
 
-Whenever there are multiple slots, use the full `<template>` based syntax for _all_ slots:
+只要出现多个插槽，请始终为 _所有的_ 插槽使用完整的基于 `<template>` 的语法：
 
 ```html
 <todo-list>
@@ -333,17 +335,17 @@ Whenever there are multiple slots, use the full `<template>` based syntax for _a
 </current-user>
 ```
 
-### Destructuring Slot Props
+### 解构插槽 Prop
 
-Internally, scoped slots work by wrapping your slot content in a function passed a single argument:
+作用域插槽的内部工作原理是将你的插槽内容包括在一个传入单个参数的函数里：
 
 ```js
 function (slotProps) {
-  // ... slot content ...
+  // ... 插槽内容 ...
 }
 ```
 
-That means the value of `v-slot` can actually accept any valid JavaScript expression that can appear in the argument position of a function definition. So you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) to pull out specific slot props, like so:
+这意味着 `v-slot` 的值实际上可以是任何能够作为函数定义中的参数的 JavaScript 表达式。所以在支持的环境下 ([单文件组件](single-file-components.md)或[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9))，你也可以使用 [ES2015 解构](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring)来传入具体的插槽 prop，如下：
 
 ```html
 <todo-list v-slot="{ item }">
@@ -352,7 +354,7 @@ That means the value of `v-slot` can actually accept any valid JavaScript expres
 </todo-list>
 ```
 
-This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props, e.g. `item` to `todo`:
+这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 `item` 重命名为 `todo`。
 
 ```html
 <todo-list v-slot="{ item: todo }">
@@ -361,7 +363,7 @@ This can make the template much cleaner, especially when the slot provides many 
 </todo-list>
 ```
 
-You can even define fallbacks, to be used in case a slot prop is undefined:
+你甚至可以定义后备内容，用于插槽 prop 是 undefined 的情形：
 
 ```html
 <todo-list v-slot="{ item = 'Placeholder' }">
@@ -370,9 +372,9 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 </todo-list>
 ```
 
-## Dynamic Slot Names
+## 动态插槽名
 
-[Dynamic directive arguments](template-syntax.md#dynamic-arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
+[动态指令参数](template-syntax.md#dynamic-arguments)也可以用在 `v-slot` 上，来定义动态的插槽名：
 
 ```html
 <base-layout>
@@ -382,31 +384,31 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 </base-layout>
 ```
 
-## Named Slots Shorthand
+## 具名插槽的缩写
 
-Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` can be rewritten as `#header`:
+跟 `v-on` 和 `v-bind` 一样，`v-slot` 也有缩写，即把参数之前的所有内容 (`v-slot:`) 替换为字符 `#`。例如 `v-slot:header` 可以被重写为 `#header`：
 
 ```html
 <base-layout>
   <template #header>
-    <h1>Here might be a page title</h1>
+    <h1>这里将会是一个页面标题</h1>
   </template>
 
   <template #default>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一段</p>
+    <p>然后是另一段</p>
   </template>
 
   <template #footer>
-    <p>Here's some contact info</p>
+    <p>这里是一些联系方式</p>
   </template>
 </base-layout>
 ```
 
-However, just as with other directives, the shorthand is only available when an argument is provided. That means the following syntax is invalid:
+然而，和其它指令一样，该缩写只在其有参数的时候才可用。这意味着以下语法是无效的：
 
 ```html
-<!-- This will trigger a warning -->
+<!-- 这样会触发一个警告 -->
 
 <todo-list #="{ item }">
   <i class="fas fa-check"></i>
@@ -414,7 +416,7 @@ However, just as with other directives, the shorthand is only available when an 
 </todo-list>
 ```
 
-Instead, you must always specify the name of the slot if you wish to use the shorthand:
+如果你希望使用缩写的话，你必须始终以明确插槽名取而代之：
 
 ```html
 <todo-list #default="{ item }">
