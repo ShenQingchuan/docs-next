@@ -89,8 +89,7 @@ app.component('todo-list', {
 
 这允许我们更安全地继续开发该组件，而不用担心我们可能会更改/删除子组件所依赖的东西。这些组件之间的接口仍然被清晰地定义，就像 props 一样。
 
-事实上，你可以把依赖注入想成是一种 “长距离 props”，期望：
-In fact, you can think of dependency injection as sort of “long-range props”, except:
+事实上，你可以把依赖注入想成是一种 “长距离 props”：
 
 - 父组件无需知道哪一个子组件要使用它提供的 property
 - 子组件同样无需知道注入的 property 从何而来
