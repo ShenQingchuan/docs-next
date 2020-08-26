@@ -1,12 +1,12 @@
 # 路由
 
-## Official Router
+## 官方路由
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+对于大多数单页面应用，都推荐使用官方支持的 [vue-router 库](https://github.com/vuejs/vue-router)。更多细节可以移步 [vue-router 文档](https://router.vuejs.org/)。
 
-## Simple Routing from Scratch
+## 从零开始简单的路由
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+如果你只需要非常简单的路由而不想引入一个功能完整的路由库，可以像这样动态渲染一个页面级的组件：
 
 ```js
 const NotFoundComponent = { template: '<p>Page not found</p>' }
@@ -37,8 +37,8 @@ const SimpleRouter = {
 Vue.createApp(SimpleRouter).mount('#app')
 ```
 
-Combined with the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API), you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/phanan/vue-3.0-simple-routing-example).
+结合 HTML5 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API)，你可以建立一个麻雀虽小但是五脏俱全的客户端路由器。可以直接看[实例应用](https://github.com/phanan/vue-3.0-simple-routing-example)。
 
-## Integrating 3rd-Party Routers
+## 整合第三方路由
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly straightforward](https://github.com/phanan/vue-3.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/phanan/vue-3.0-simple-routing-example/tree/pagejs) using Page.js.
+如果你有更偏爱的第三方路由，如 [Page.js](https://github.com/visionmedia/page.js) 或者 [Director](https://github.com/flatiron/director)，整合起来也[一样简单](https://github.com/phanan/vue-3.0-simple-routing-example/compare/master...pagejs)。这里有一个使用了 Page.js 的[完整示例](https://github.com/phanan/vue-3.0-simple-routing-example/tree/pagejs)。
