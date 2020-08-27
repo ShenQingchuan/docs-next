@@ -1,17 +1,15 @@
 <template>
-  <watch-video title="观看本节视频讲解" :href="href" />
+  <div class="dcloud-video">
+    <a :href="href" target="_blank" rel="sponsored noopener">{{ title }}</a>
+  </div>
 </template>
 
 <script>
-import WatchVideo from './watch-video.vue'
-
 export default {
   props: {
-    href: String,
-  },
-  components: {
-    WatchVideo,
-  },
+    title: String,
+    href: String
+  }
 }
 </script>
 

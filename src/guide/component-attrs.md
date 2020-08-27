@@ -81,7 +81,6 @@ const app = Vue.createApp({
 如果你不希望组件的根元素继承 attribute，你可以在组件的选项中设置 `inheritAttrs: false`。例如：
 
 禁用属性继承的常见场景是需要将属性应用于根节点之外的其他元素。
-The common scenario for disabling an attribute inheritance is when attributes need to be applied to other elements besides the root node.
 
 通过设置 `inheritAttrs` 选项为 `false`，使你能够访问到 `$attrs` property，它包含了所有没有写在组件 `props` 和 `emits` 里的 attribute（例如：`class`, `style`, `v-on` 监听器等等）。
 
