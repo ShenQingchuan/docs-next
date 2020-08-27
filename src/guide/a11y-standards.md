@@ -1,32 +1,32 @@
 # 标准规范
 
-The World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) develops web accessibility standards for the different components:
+万维网联盟(W3C)无障碍网页倡议(WAI)为不同的组件制定无障碍网页标准:
 
-- [User Agent Accessibility Guidelines (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
-  - web browsers and media players, including some aspects of assistive technologies
-- [Authoring Tool Accessibility Guidelines (ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
-  - authoring tools
-- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-  - web content - used by developers, authoring tools, and accessibility evaluation tools
+- [用户代理无障碍指南 (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
+  - 网络浏览器和媒体播放器，包括辅助技术的一些方面
+- [创作工具无障碍指南 (ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
+  - 创作工具
+- [网页内容无障碍指南 (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+  - web 内容 - 由开发人员，创作工具集，和无障碍评估工具使用
 
-## Web Content Accessibility Guidelines (WCAG)
+## Web 内容无障碍指南 (WCAG)
 
-[WCAG 2.1](https://www.w3.org/TR/WCAG21/) extends on [WCAG 2.0](https://www.w3.org/TR/WCAG20/) and allows implementation of new technologies by addressing changes to the web. The W3C encourages use of the most current version of WCAG when developing or updating Web accessibility policies.
+[WCAG 2.1](https://www.w3.org/TR/WCAG21/) 在 [WCAG 2.0](https://www.w3.org/TR/WCAG20/) 的基础上进行了扩展，并通过解决 Web 更改来实现新技术。在开发或更新 Web 无障碍策略时，W3C 鼓励使用最新版本的 WCAG。
 
-### WCAG 2.1 Four Main Guiding Principles (abbreviated as POUR)
+### WCAG 2.1 四个主要指导原则（缩写为 POUR）
 
-- [Perceivable](https://www.w3.org/TR/WCAG21/#perceivable)
-  - Users must be able to perceive the information being presented
-- [Operable](https://www.w3.org/TR/WCAG21/#operable)
-  - Interface forms, controls, and navigation are operable
-- [Understandable](https://www.w3.org/TR/WCAG21/#understandable)
-  - Information and the operation of user interface must be understandable to all users
-- [Robust](https://www.w3.org/TR/WCAG21/#robust)
-  - Users must be able to access the content as technologies advance
+- [可感知的](https://www.w3.org/TR/WCAG21/#perceivable)
+  - 用户必须能够感知所呈现的信息
+- [可操作的](https://www.w3.org/TR/WCAG21/#operable)
+  - 界面表单、控件和导航都是可操作的
+- [可读的](https://www.w3.org/TR/WCAG21/#understandable)
+  - 用户界面的信息和操作必须让所有用户都能理解
+- [健壮的](https://www.w3.org/TR/WCAG21/#robust)
+  - 随着技术的进步，用户必须能够访问内容
 
-### Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA)
+### 网页可访问性倡议-可访问的富互联网应用程序 (WAI-ARIA)
 
-W3C's WAI-ARIA provides guidance on how to build dynamic content and advanced user interface controls.
+W3C 的 WAI-ARIA 提供了关于如何构建动态内容和高级用户界面控件的指导
 
-- [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
-- [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
+- [可访问的富 Internet 应用程序 (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
+- [WAI-ARIA 创作实践 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
