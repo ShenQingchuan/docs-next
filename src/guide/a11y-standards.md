@@ -19,9 +19,9 @@
   - 用户必须能够感知所呈现的信息
 - [可操作的](https://www.w3.org/TR/WCAG21/#operable)
   - 界面表单、控件和导航都是可操作的
-- [可理解的](https://www.w3.org/TR/WCAG21/#understandable)
+- [可读的](https://www.w3.org/TR/WCAG21/#understandable)
   - 用户界面的信息和操作必须让所有用户都能理解
-- [稳健的](https://www.w3.org/TR/WCAG21/#robust)
+- [健壮的](https://www.w3.org/TR/WCAG21/#robust)
   - 随着技术的进步，用户必须能够访问内容
 
 ### 网页可访问性倡议-可访问的富互联网应用程序 (WAI-ARIA)
