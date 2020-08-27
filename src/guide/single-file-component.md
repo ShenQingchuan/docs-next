@@ -4,7 +4,7 @@
 
 <common-dcloud-video href="https://learning.dcloud.io/#/?vid=14" />
 
-在很多 Vue 项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
+在很多 Vue 项目中，通常是使用 `app.component()` 来定义全局组件，紧接着用 `app.mount('#app')` 在每个页面指定一个容器元素。
 
 这种方式在很多中小规模的项目中运作的很好，在这些项目里 JavaScript 只被用来加强特定的视图。但当在更复杂的项目中，或者你的前端完全由 JavaScript 驱动的时候，下面这些缺点将变得非常明显：
 
