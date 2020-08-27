@@ -1,10 +1,14 @@
-# 计算属性与侦听器
+~# 计算属性与侦听器
 
 > This section uses [single-file component](single-file-component.html) syntax for code examples
 
+> 这部分的示例代码采用的是[单页面组件](single-file-component.html)语法
 ## Computed values
 
 Sometimes we need state that depends on other state - in Vue this is handled with component [computed properties](computed.html#computed-properties). To directly create a computed value, we can use the `computed` method: it takes a getter function and returns an immutable reactive [ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs) object for the returned value from the getter.
+
+有时我们需要一个状态依赖另一个状态 -在vue中是通过[computed properties](computed.html#computed-properties)组件进行处理。可直接创建一个计算属性值，我们直接使用computed 方法：它是一个getter方法并返回一个只读的[ref](reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs)对象。
+
 
 ```js
 const count = ref(1)
@@ -16,6 +20,8 @@ plusOne.value++ // error
 ```
 
 Alternatively, it can take an object with `get` and `set` functions to create a writable ref object.
+
+或者它也可以是含有`get`和`set`函数的object，来创建一个可修改的ref object。
 
 ```js
 const count = ref(1)
@@ -33,6 +39,8 @@ console.log(count.value) // 0
 ## `watchEffect`
 
 To apply and _automatically re-apply_ a side effect based on reactive state, we can use the `watchEffect` method. It runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+
+基于响应状态更新或者自动更新，我们能使用`watchEffect`方法。它会响应式的追踪依赖，并在依赖变化时运行一个立即执行函数。
 
 ```js
 const count = ref(0)
