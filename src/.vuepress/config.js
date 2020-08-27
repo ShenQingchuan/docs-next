@@ -130,6 +130,7 @@ const sidebar = {
         'migration/keycode-modifiers',
         'migration/render-function-api',
         'migration/slots-unification',
+        'migration/transition',
         'migration/v-model'
       ]
     },
@@ -175,23 +176,21 @@ const sidebar = {
     },
     '/api/composition-api'
   ],
-  examples: [
-    {
-      title: 'Examples',
-      collapsable: false,
-      children: [
-        '/examples/markdown',
-        '/examples/commits',
-        '/examples/grid-component',
-        '/examples/tree-view',
-        '/examples/svg',
-        '/examples/modal',
-        '/examples/elastic-header',
-        '/examples/select2',
-        '/examples/todomvc'
-      ]
-    }
-  ]
+  examples: [{
+    title: 'Examples',
+    collapsable: false,
+    children: [
+      '/examples/markdown',
+      '/examples/commits',
+      '/examples/grid-component',
+      '/examples/tree-view',
+      '/examples/svg',
+      '/examples/modal',
+      '/examples/elastic-header',
+      '/examples/select2',
+      '/examples/todomvc'
+    ]
+  }]
 }
 
 module.exports = {
@@ -201,20 +200,21 @@ module.exports = {
     [
       'link',
       {
-        href:
-          'https://fonts.googleapis.com/css?family=Inter:300,400,500,600|Open+Sans:400,600;display=swap',
+        href: 'https://fonts.googleapis.com/css?family=Inter:300,400,500,600|Open+Sans:400,600;display=swap',
         rel: 'stylesheet'
       }
     ],
     [
       'link',
       {
-        href:
-          'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+        href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
         rel: 'stylesheet'
       }
     ],
-    ['link', { rel: 'icon', href: '/logo.png' }],
+    ['link', {
+      rel: 'icon',
+      href: '/logo.png'
+    }],
     [
       'script',
       {
@@ -231,37 +231,68 @@ module.exports = {
   ],
   themeConfig: {
     logo: '/logo.png',
-    nav: [
-      {
+    nav: [{
         text: '文档',
-        ariaLabel: 'Documentation Menu',
-        items: [
-          { text: '教程', link: '/guide/introduction' },
-          { text: '风格指南', link: '/style-guide/' },
-          { text: 'Cookbook', link: '/cookbook/' },
-          { text: '示例', link: '/examples/markdown' }
+        ariaLabel: '文档菜单',
+        items: [{
+            text: '教程',
+            link: '/guide/introduction'
+          },
+          {
+            text: '风格指南',
+            link: '/style-guide/'
+          },
+          {
+            text: 'Cookbook',
+            link: '/cookbook/'
+          },
+          {
+            text: '示例',
+            link: '/examples/markdown'
+          }
         ]
       },
-      { text: 'API 参考', link: '/api/application-config' },
+      {
+        text: 'API 手册',
+        link: '/api/application-config'
+      },
       {
         text: '生态系统',
-        items: [
-          {
+        items: [{
             text: '社区',
             ariaLabel: 'Community Menu',
-            items: [
-              { text: '团队', link: '/community/team/' },
-              { text: '合作伙伴', link: '/community/partners' },
-              { text: '加入我们', link: '/community/join/' },
-              { text: '主题', link: '/community/themes/' }
+            items: [{
+                text: '团队',
+                link: '/community/team/'
+              },
+              {
+                text: '合作伙伴',
+                link: '/community/partners'
+              },
+              {
+                text: '加入',
+                link: '/community/join/'
+              },
+              {
+                text: '主题',
+                link: '/community/themes/'
+              }
             ]
           },
           {
             text: '核心插件',
-            items: [
-              { text: 'Vue Router', link: 'https://router.vuejs.org/' },
-              { text: 'Vuex', link: 'https://vuex.vuejs.org/' },
-              { text: 'Vue CLI', link: 'https://cli.vuejs.org/' },
+            items: [{
+                text: 'Vue Router',
+                link: 'https://router.vuejs.org/'
+              },
+              {
+                text: 'Vuex',
+                link: 'https://vuex.vuejs.org/'
+              },
+              {
+                text: 'Vue CLI',
+                link: 'https://cli.vuejs.org/'
+              },
               {
                 text: 'Vue Test Utils',
                 link: 'https://vue-test-utils.vuejs.org/'
