@@ -101,7 +101,7 @@ const sidebar = {
       children: ['/guide/routing', '/guide/state-management', '/guide/ssr']
     },
     {
-      title: '可访问性',
+      title: '无障碍访问',
       collapsable: false,
       children: [
         '/guide/a11y-basics',
@@ -176,21 +176,23 @@ const sidebar = {
     },
     '/api/composition-api'
   ],
-  examples: [{
-    title: 'Examples',
-    collapsable: false,
-    children: [
-      '/examples/markdown',
-      '/examples/commits',
-      '/examples/grid-component',
-      '/examples/tree-view',
-      '/examples/svg',
-      '/examples/modal',
-      '/examples/elastic-header',
-      '/examples/select2',
-      '/examples/todomvc'
-    ]
-  }]
+  examples: [
+    {
+      title: 'Examples',
+      collapsable: false,
+      children: [
+        '/examples/markdown',
+        '/examples/commits',
+        '/examples/grid-component',
+        '/examples/tree-view',
+        '/examples/svg',
+        '/examples/modal',
+        '/examples/elastic-header',
+        '/examples/select2',
+        '/examples/todomvc'
+      ]
+    }
+  ]
 }
 
 module.exports = {
@@ -200,21 +202,26 @@ module.exports = {
     [
       'link',
       {
-        href: 'https://fonts.googleapis.com/css?family=Inter:300,400,500,600|Open+Sans:400,600;display=swap',
+        href:
+          'https://fonts.googleapis.com/css?family=Inter:300,400,500,600|Open+Sans:400,600;display=swap',
         rel: 'stylesheet'
       }
     ],
     [
       'link',
       {
-        href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+        href:
+          'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
         rel: 'stylesheet'
       }
     ],
-    ['link', {
-      rel: 'icon',
-      href: '/logo.png'
-    }],
+    [
+      'link',
+      {
+        rel: 'icon',
+        href: '/logo.png'
+      }
+    ],
     [
       'script',
       {
@@ -231,10 +238,12 @@ module.exports = {
   ],
   themeConfig: {
     logo: '/logo.png',
-    nav: [{
+    nav: [
+      {
         text: '文档',
         ariaLabel: '文档菜单',
-        items: [{
+        items: [
+          {
             text: '教程',
             link: '/guide/introduction'
           },
@@ -258,10 +267,12 @@ module.exports = {
       },
       {
         text: '生态系统',
-        items: [{
+        items: [
+          {
             text: '社区',
             ariaLabel: 'Community Menu',
-            items: [{
+            items: [
+              {
                 text: '团队',
                 link: '/community/team/'
               },
@@ -281,7 +292,8 @@ module.exports = {
           },
           {
             text: '核心插件',
-            items: [{
+            items: [
+              {
                 text: 'Vue Router',
                 link: 'https://router.vuejs.org/'
               },
