@@ -151,7 +151,7 @@ computed: {
 }
 ```
 
-::: danger 注意
+::: tip 注意
 注意在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变变更这个对象或数组本身**将会**影响到父组件的状态。
 :::
 
@@ -207,7 +207,7 @@ app.component('my-component', {
 
 当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。
 
-::: danger 注意
+::: tip 注意
 注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的 property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。
 :::
 

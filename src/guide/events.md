@@ -208,7 +208,7 @@ Vue 同时提供了 `.passive` 修饰符，对应于 [`addEventListener` 的 `pa
 
 `.passive` 修饰符对提升移动端设备上对体验十分有用。
 
-::: tip 提示
+::: tip 注意
 不要同时使用 `.passive` 和 `.prevent`，因为 `.prevent` 将被忽略并且浏览器可能会显示一个警告， 请记住，`.passive` 会告诉浏览器你不想阻止事件的默认行为。
 :::
 
@@ -266,7 +266,7 @@ Vue 为大部分常用键位都提供了别名绑定：
 <div @click.ctrl="doSomething">...</div>
 ```
 
-::: danger 注意
+::: tip 注意
 请注意修饰键与常规按键不同，在和 `keyup` 事件一起用时，事件触发时修饰键必须处于按下状态。换句话说，只有在按住 `ctrl` 的情况下释放其它按键，才能触发 `keyup.ctrl`。而单单释放 `ctrl` 也不会触发事件。如果你想要这样的行为，请为 `ctrl` 换用 `keyCode`：`keyup.17`。
 :::
 

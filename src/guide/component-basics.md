@@ -24,7 +24,7 @@ app.component('button-counter', {
 })
 ```
 
-::: tip 提示
+::: info 提示
 我们在此向你展示对是一个简单的示例，但通常在 Vue 应用中我们会使用单文件组件而不是字符串模板，你可以在[这个章节](single-file-component.html)中找到更多介绍。
 :::
 
@@ -311,7 +311,7 @@ methods: {
 ></custom-input>
 ```
 
-::: warning 提示
+::: warning 警告
 请注意对 `model-value` 这里我们使用对是短横线连接对 kebab-case 格式，因为我们使用的是 DOM 上对模板，您可以在[DOM 模板解析说明](#dom-template-parsing-caveats)中找到关于短横线连接格式 kebab-cased 和 camelCased 驼峰格式 attribute 的详细解释。
 :::
 
@@ -452,7 +452,7 @@ app.component('alert-box', {
 </table>
 ```
 
-:::warning
+:::warning 注意
 `v-is` 的值应该是一个 JavaScript 字符串字面量：
 
 ```html

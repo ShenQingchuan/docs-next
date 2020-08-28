@@ -40,7 +40,7 @@ this.$refs.usernameInput.focusInput()
 
 当 `ref` 和 `v-for` 一同使用时，获得的 ref 将是一个数组，其中包含镜像数据源的子组件。
 
-::: warning 注意
+::: warning 警告
 `$refs` 只能在组件被渲染完成后使用。它只是提供了一种能够直接操纵子元素的方式。——应当避免在模板和计算属性当中使用 `$refs`。
 :::
 
