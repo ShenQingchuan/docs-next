@@ -1,12 +1,12 @@
 # TypeScript 支持
 
-> [Vue CLI](https://cli.vuejs.org) provides built-in TypeScript tooling support.
+> [Vue CLI](https://cli.vuejs.org) 提供了内建的 TypeScript 工具支持。
 
-## Official Declaration in NPM Packages
+## 发布为 NPM 包的官方声明文件
 
-A static type system can help prevent many potential runtime errors as applications grow, which is why Vue 3 is written in TypeScript. This means you don't need any additional tooling to use TypeScript with Vue - it has a first-class citizen support.
+静态类型系统能帮助你有效防止许多潜在的运行时错误，而且随着你的应用日渐丰满会更加显著。这也是为什么 Vue 3 采用 TypeScript 编写。这意味着在 Vue 中你不需要任何额外的工具来使用 TypeScript——我们将其作为首要支持目标。
 
-## Recommended Configuration
+## 推荐配置
 
 ```js
 // tsconfig.json
@@ -14,35 +14,35 @@ A static type system can help prevent many potential runtime errors as applicati
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    // this enables stricter inference for data properties on `this`
+    // 这项使得对 this 上的 data property 进行更严格的推断
     "strict": true,
     "moduleResolution": "node"
   }
 }
 ```
 
-Note that you have to include `strict: true` (or at least `noImplicitThis: true` which is a part of `strict` flag) to leverage type checking of `this` in component methods otherwise it is always treated as `any` type.
+注意你需要引入 `strict: true` (或者至少 `noImplicitThis: true`，这是 `strict` 模式的一部分) 以利用组件方法中 `this` 的类型检查，否则它会始终被看作 any 类型。
 
-See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
+查看 [TypeScript 编译器选项文档](https://www.typescriptlang.org/docs/handbook/compiler-options.html)了解更多细节。
 
-## Development Tooling
+## 开发工具链
 
-### Project Creation
+### 工程创建
 
-[Vue CLI](https://github.com/vuejs/vue-cli) can generate new projects that use TypeScript. To get started:
+[Vue CLI](https://github.com/vuejs/vue-cli) 可以使用 TypeScript 生成新工程。创建方式：
 
 ```bash
-# 1. Install Vue CLI, if it's not already installed
+# 1. 如果没有安装 Vue CLI 就先安装
 npm install --global @vue/cli@next
 
-# 2. Create a new project, then choose the "Manually select features" option
+# 2. 创建一个新工程，并选择 "Manually select features (手动选择特性)" 选项
 vue create my-project-name
 
-# If you already have a Vue CLI project without TypeScript, please add a proper Vue CLI plugin:
+# 如果你已经有了一个以 Vue CLI 创建，但没有包含 TypeScript 的项目，请添加一个相应的 Vue CLI 插件：
 vue add typescript
 ```
 
-Make sure that `script` part of the component has TypeScript set as a language:
+确保单文件组件当中的 `script` 部分上标注使用语言为 TypeScript。
 
 ```html
 <script lang="ts">
@@ -50,27 +50,27 @@ Make sure that `script` part of the component has TypeScript set as a language:
 </script>
 ```
 
-### Editor Support
+### 编辑器支持
 
-For developing Vue applications with TypeScript, we strongly recommend using [Visual Studio Code](https://code.visualstudio.com/), which provides great out-of-the-box support for TypeScript. If you are using [single-file components](./single-file-components.html) (SFCs), get the awesome [Vetur extension](https://github.com/vuejs/vetur), which provides TypeScript inference inside SFCs and many other great features.
+要使用 TypeScript 开发 Vue 应用程序，我们强烈建议您使用 [Visual Studio Code](https://code.visualstudio.com/)，它为 TypeScript 提供了极好的“开箱即用”支持。如果你正在使用[单文件组件](./single-file-components.html) (SFC)，可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
 
-[WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue.
+[WebStorm](https://www.jetbrains.com/webstorm/) 同样为 TypeScript 和 Vue 提供了“开箱即用”的支持。
 
-## Defining Vue components
+## 定义 Vue 组件
 
-To let TypeScript properly infer types inside Vue component options, you need to define components with `defineComponent` global method:
+为了能让 TypeScript 准确推断 Vue 组件选项中的类型，你需要使用全局方法 `defineComponent` 来定义组件：
 
 ```ts
 import { defineComponent } from 'vue'
 
 const Component = defineComponent({
-  // type inference enabled
+  // 类型推断在此可用
 })
 ```
 
-## Using with Options API
+## 与选项式 API 配合使用
 
-TypeScript should be able to infer most of the types without defining types explicitly. For example, if you have a component with a number `count` property, you will have an error if you try to call a string-specific method on it:
+TypeScript 应该无需显示定义类型就能够推断大多数的类型。例如，如果你有一个含数字类型 `counter` property 的组件，当你试图对它使用一个字符串独有方法时会报错：
 
 ```ts
 const Component = defineComponent({
@@ -80,12 +80,12 @@ const Component = defineComponent({
     }
   },
   mounted() {
-    const result = this.count.split('') // => Property 'split' does not exist on type 'number'
+    const result = this.count.split('') // => 将报错：Property 'split' does not exist on type 'number'
   }
 })
 ```
 
-If you have a complex type or interface, you can cast it using [type assertion](https://www.typescriptlang.org/docs/handbook/basic-types.html#type-assertions):
+如果你有一个复杂的类型或接口，你可以使用 [类型断言](https://www.typescriptlang.org/docs/handbook/basic-types.html#type-assertions)来指出其类型：
 
 ```ts
 interface Book {
@@ -107,9 +107,9 @@ const Component = defineComponent({
 })
 ```
 
-### Annotating Return Types
+### 标注返回类型
 
-Because of the circular nature of Vue’s declaration files, TypeScript may have difficulties inferring the types of computed. For this reason, you may need to annotate the return type computed properties.
+由于 Vue 声明文件的循环特性，TypeScript 可能难以推断计算属性的类型。由于这个原因，您可能需要将其显示标注出来：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -121,12 +121,12 @@ const Component = defineComponent({
     }
   },
   computed: {
-    // needs an annotation
+    // 需要标注
     greeting(): string {
       return this.message + '!'
     }
 
-    // in a computed with a setter, getter needs to be annotated
+    // 在含 setter 的计算属性中，getter 需要标注返回类型
     greetingUppercased: {
       get(): string {
         return this.greeting.toUpperCase();
@@ -139,9 +139,9 @@ const Component = defineComponent({
 })
 ```
 
-### Annotating Props
+### 标注 Prop
 
-Vue does a runtime validation on props with a `type` defined. To provide these types to TypeScript, we need to cast the constructor with `PropType`:
+Vue 将会通过一个预定义的 `type` 做运行时校验。若要将这些类型提供给 TypeScript，我们需要通过 `PropType` 来转换这些构造器：
 
 ```ts
 import { defineComponent, PropType } from 'vue'
@@ -169,11 +169,11 @@ const Component = defineComponent({
 })
 ```
 
-If you find validator not getting type inference or member completion isn’t working, annotating the argument with the expected type may help address these problems.
+如果你发现验证器并没有得到类型推导或者没有成员变量的补全提示，那么请标注出参数的期望类型。
 
-## Using with Composition API
+## 与组合式 API 配合使用
 
-On `setup()` function, you don't need to pass a typing to `props` parameter as it will infer types from `props` component option.
+在 `setup()` 函数中，你不需要为 `props` 参数传递类型，它将直接从组件的 `props` 选项中自动推断得到。
 
 ```ts
 import { defineComponent } from 'vue'
@@ -187,15 +187,15 @@ const Component = defineComponent({
   },
 
   setup(props) {
-    const result = props.message.split('') // correct, 'message' is typed as a string
+    const result = props.message.split('') // 正确，'message' 是字符串类型
     const filtered = props.message.filter(p => p.value) // an error will be thrown: Property 'filter' does not exist on type 'string'
   }
 })
 ```
 
-### Typing `ref`s
+### `ref` 的类型
 
-Refs infer the type from the initial value:
+Ref 是通过传入的初始值来推断类型的：
 
 ```ts
 import { defineComponent, ref } from 'vue'
@@ -209,21 +209,21 @@ const Component = defineComponent({
 })
 ```
 
-Sometimes we may need to specify complex types for a ref's inner value. We can do that simply passing a generic argument when calling ref to override the default inference:
+有时我们可能需要明确指出 ref 内部值的复杂类型，只需在调用 ref 时传入一个泛型参数覆盖默认推导即可。
 
 ```ts
-const year = ref<string | number>('2020') // year's type: Ref<string | number>
+const year = ref<string | number>('2020') // year 的类型: Ref<string | number>
 
-year.value = 2020 // ok!
+year.value = 2020 // 正确！
 ```
 
-::: tip Note
-If the type of the generic is unknown, it's recommended to cast `ref` to `Ref<T>`.
+::: tip 注意
+如果泛型未知，建议将 `ref` 转换为 `Ref<T>`。
 :::
 
-### Typing `reactive`
+### `reactive` 的类型
 
-When typing a `reactive` property, we can use interfaces:
+当要检查 `reactive` property 的类型时可以使用接口：
 
 ```ts
 import { defineComponent, reactive } from 'vue'
@@ -237,17 +237,17 @@ export default defineComponent({
   name: 'HelloWorld',
   setup() {
     const book = reactive<Book>({ title: 'Vue 3 Guide' })
-    // or
+    // 或者
     const book: Book = reactive({ title: 'Vue 3 Guide' })
-    // or
+    // 或者
     const book = reactive({ title: 'Vue 3 Guide' }) as Book
   }
 })
 ```
 
-### Typing `computed`
+### `computed` 的类型
 
-Computed values will automatically infer the type from returned value
+计算属性会自动从内部返回值中推断类型：
 
 ```ts
 import { defineComponent, ref, computed } from 'vue'
@@ -257,10 +257,10 @@ export default defineComponent({
   setup() {
     let count = ref(0)
 
-    // read-only
+    // 只读的
     const doubleCount = computed(() => count.value * 2)
 
-    const result = doubleCount.value.split('') // => Property 'split' does not exist on type 'number'
+    const result = doubleCount.value.split('') // => 报错：Property 'split' does not exist on type 'number'
   }
 })
 ```
