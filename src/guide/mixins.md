@@ -162,9 +162,7 @@ app.mount('#mixins-global')
 // => "hello from component!"
 ```
 
-::: danger 注意
 大多数情况下，只应当应用于自定义选项，就像上面示例一样。推荐将其作为[插件](plugins.html)发布，以避免重复应用混入。
-:::
 
 ## 自定义选项合并策略
 
