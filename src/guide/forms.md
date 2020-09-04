@@ -2,7 +2,7 @@
 
 ## 基础用法
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=11" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=11" />
 
 你可以用 `v-model` 指令在表单 `<input>`、`<textarea>` 及 `<select>` 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。
 

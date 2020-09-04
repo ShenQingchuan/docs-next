@@ -2,7 +2,7 @@
 
 ## Vue.js 是什么
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=0" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=0" />
 
 Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**渐进式框架**。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与[现代化的工具链](../guide/single-file-component.html)以及各种[支持类库](https://github.com/vuejs/awesome-vue#components--libraries)结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
 
@@ -12,7 +12,7 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 ## 起步
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=1" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=1" />
 
 <p>
   <ActionLink class="primary" url="installation.html">
@@ -32,7 +32,7 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 ## 声明式渲染
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=3" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=3" />
 
 Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：
 
@@ -110,7 +110,7 @@ Vue.createApp(AttributeBinding).mount('#bind-attribute')
 
 ## 处理用户输入
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=11" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=11" />
 
 为了让用户和你的应用进行交互，我们可以用 `v-on` 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：
 
@@ -180,7 +180,7 @@ Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 
 ## 条件与循环
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=8" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=8" />
 
 控制切换一个元素是否显示也相当简单：
 

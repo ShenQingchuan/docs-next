@@ -8,7 +8,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 ## 插值
 
-<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=5" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=5" />
 
 ### 文本
 

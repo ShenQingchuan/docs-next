@@ -4,7 +4,7 @@
 
 ## 绑定 HTML Class
 
-<VideoBanner title="观看本节视频讲解" href="https://learning.dcloud.io/#/?vid=7" />
+<VideoBanner title="观看本节视频讲解" url="https://learning.dcloud.io/#/?vid=7" />
 
 ### 对象语法
 
