@@ -214,7 +214,7 @@ app.component('anchored-heading', {
 
 ## 约束
 
-### VNodes M 必须唯一
+### VNode 必须唯一
 
 组件树中的所有 VNode 必须是唯一的。这意味着，下面的渲染函数是不合法的：
 
