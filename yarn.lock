@@ -874,39 +874,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@docsearch/css@^1.0.0-alpha.27":
-  version "1.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-1.0.0-alpha.27.tgz#7f50985869ebab10ffb901b94ed7545269a3393c"
-  integrity sha512-Kw6R/gAHMZW2tKZO2a0gd3I8Yf6bJgTk3Dp+L0ZFrvEHEh8v3yQKvoxVify3ML9YVyvCxxAPQQuF9u3JNUwvXw==
-
-"@docsearch/js@^1.0.0-alpha.27":
-  version "1.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@docsearch/js/-/js-1.0.0-alpha.27.tgz#30eba3d17dd1b377c24b8515c2bbe6835c6c6f92"
-  integrity sha512-g1iRTGp9xp+3JZBFZ5WXE2euzngMZh7NRDOew3m8FM5qzWdsAm8pjDGImdKscBd33LI94bH0UGw47T//diV/Zw==
-  dependencies:
-    "@docsearch/react" "^1.0.0-alpha.27"
-    preact "^10.0.0"
-
-"@docsearch/react@^1.0.0-alpha.27":
-  version "1.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-1.0.0-alpha.27.tgz#eae61d648ddc3667c5dee82c4cd9d47bf35a3c85"
-  integrity sha512-jcgUHZsrNNRsaVsplqKhXWheh4VzRTCdhsPuVhJMRvfsFUqXEPo/7kVt5xIybtOj9u+/FVdeSO+APJEE2rakYA==
-  dependencies:
-    "@docsearch/css" "^1.0.0-alpha.27"
-    "@francoischalifour/autocomplete-core" "^1.0.0-alpha.27"
-    "@francoischalifour/autocomplete-preset-algolia" "^1.0.0-alpha.27"
-    algoliasearch "^4.0.0"
-
-"@francoischalifour/autocomplete-core@^1.0.0-alpha.27":
-  version "1.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-core/-/autocomplete-core-1.0.0-alpha.27.tgz#bd85058bf0ef02e9f9a57c7973c705edc2a25c41"
-  integrity sha512-kpKbtrjMt9l1HIFFmmH0u88633/1oBD+mEjKg1EIRJ1zQCeOBxlQvIXZ3X6GEoud79QjLVoc8HD4HN1OMRt+OA==
-
-"@francoischalifour/autocomplete-preset-algolia@^1.0.0-alpha.27":
-  version "1.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-preset-algolia/-/autocomplete-preset-algolia-1.0.0-alpha.27.tgz#29de9939274887363f6e3f41078b2ee3e9c56493"
-  integrity sha512-Mp4lhlLd8vuLOCXtuw8UTUaJXGRrXYL7AN/ZmhaMwqyL9e9XSqLlcv82EWP0NAMcoz/I1E1C709h4jnbnN4llw==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1414,7 +1381,7 @@ algoliasearch@^3.24.5:
     semver "^5.1.0"
     tunnel-agent "^0.6.0"
 
-algoliasearch@^4.0.0, algoliasearch@^4.4.0:
+algoliasearch@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-4.4.0.tgz#25c356d8bdcf7e3f941633f61e1ac111ddcba404"
   integrity sha512-Ag3wxe/nSodNl/1KbHibtkh7TNLptKE300/wnGVtszRjXivaWD6333nUpCumrYObHym/fHMHyLcmQYezXbAIWQ==
@@ -6271,11 +6238,6 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.2
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
-
-preact@^10.0.0:
-  version "10.4.7"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.7.tgz#5a530d34b4ba45f38234be8b1b3fe910098a165f"
-  integrity sha512-DtnnPbOm7oxW7Sxf5Co+KSIOxo7bGm0vLfJN/wGey7G2sAGKnGP5+bFyE2YIgutMISQl6xFVTsOd6l/Au88VVw==
 
 prepend-http@^2.0.0:
   version "2.0.0"

@@ -2,11 +2,11 @@
   <ClientOnly>
     <aside class="beta-banner" v-if="shouldShow">
       <p>
-        <span class="hide-sm">⚠️ Beta Version:</span>
-        Docs
-        <span class="hide-sm">are</span> in development and subject to change.
+        <span class="hide-sm">⚠️ Beta 版本：</span>
+        文档
+        <span class="hide-sm">正</span>处于开发阶段并可能随时变动。
       </p>
-      <button ref="closeButton" @click="close">Close</button>
+      <button ref="closeButton" @click="close">关闭</button>
     </aside>
   </ClientOnly>
 </template>

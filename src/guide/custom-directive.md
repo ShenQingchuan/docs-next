@@ -1,5 +1,7 @@
 # 自定义指令
 
+<common-watch-video title="Watch a free video lesson on Vue School" href="https://vueschool.io/lessons/create-vuejs-directive?friend=vuejs" />
+
 ## 简介
 
  除了核心功能默认内置的指令(`v-model` 或 `v-show`), Vue 也允许注册自定义指令. 注意，在 Vue 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。举个聚焦输入框的例子，如下：
