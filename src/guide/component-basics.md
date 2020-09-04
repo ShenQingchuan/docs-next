@@ -1,6 +1,6 @@
 # 组件基础
 
-<common-dcloud-video href="观看本节视频讲解" />
+<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=12" />
 
 ## 基本示例
 

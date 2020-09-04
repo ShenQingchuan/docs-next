@@ -2,7 +2,7 @@
 
 ## 介绍
 
-<common-dcloud-video href="https://learning.dcloud.io/#/?vid=14" />
+<VideoBanner title="观看本节视频讲解" href="https://learning\.dcloud\.io/#/\?vid=14" />
 
 在很多 Vue 项目中，通常是使用 `app.component()` 来定义全局组件，紧接着用 `app.mount('#app')` 在每个页面指定一个容器元素。
 

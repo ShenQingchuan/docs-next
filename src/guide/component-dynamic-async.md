@@ -51,7 +51,7 @@
 
 ## 异步组件
 
-<common-watch-video title="Watch a free video lesson on Vue School" href="https://vueschool.io/lessons/dynamically-load-components?friend=vuejs" />
+<VideoBanner title="Watch a free video lesson on Vue School" href="https://vueschool.io/lessons/dynamically-load-components?friend=vuejs" />
 
 在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。为了使其可行，Vue 提供了一个 `defineAsyncComponent` 方法：
 

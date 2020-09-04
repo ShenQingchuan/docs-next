@@ -1,6 +1,6 @@
 # 自定义指令
 
-<common-watch-video title="Watch a free video lesson on Vue School" href="https://vueschool.io/lessons/create-vuejs-directive?friend=vuejs" />
+<VideoBanner title="Watch a free video lesson on Vue School" href="https://vueschool.io/lessons/create-vuejs-directive?friend=vuejs" />
 
 ## 简介
 

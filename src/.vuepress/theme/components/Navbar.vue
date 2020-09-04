@@ -18,8 +18,8 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}"
     >
-      <SearchBox v-if="$site.themeConfig.search !== false" />
       <NavLinks class="can-hide" />
+      <SearchBox v-if="$site.themeConfig.search !== false" />
       <!-- 由于 Vue docs-next 对 i18n 的支持还不完善，
       algolia 的配置也需要对已部署好的网站进行静态分析，故暂时禁用该搜索功能-->
       <!-- <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" /> -->
