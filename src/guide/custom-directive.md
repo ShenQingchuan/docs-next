@@ -4,16 +4,16 @@
 
  除了核心功能默认内置的指令(`v-model` 或 `v-show`), Vue 也允许注册自定义指令. 注意，在 Vue 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。举个聚焦输入框的例子，如下：
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="JjdxaJW" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Custom directives: basic example">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/JjdxaJW">
-  Custom directives: basic example</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="zYqPwjg" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="自定义指令：基础示例">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/zYqPwjg">
+  自定义指令：基础示例</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-当页面加载时，该元素将获得焦点 (注意：`autofocus` 在移动版 Safari 上不工作)。事实上，只要你在打开这个页面后还没点击过任何内容，这个输入框就应当还是处于聚焦状态。此外，你可以点击`return`按钮并且输入框将处于聚焦状态。
+当页面加载时，该元素将被聚焦 (注意：`autofocus` 在移动版 Safari 上无效)。事实上，只要你在打开这个页面后还没点击过任何内容，这个输入框将会处于聚焦状态。此外，你可以点击 `Rerun` 按钮使输入框处于聚焦状态。
 
-现在让我们用指令来实现这个功能：
+现在让我们创建一个指令来实现这个功能：
 
 ```js
 const app = Vue.createApp({})
@@ -39,8 +39,7 @@ directives: {
 }
 ```
 
-然后你可以在模板中任何元素上使用新的 `v-focus` 属性，如下：
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+然后你可以在模板中任何元素上使用新的 `v-focus` attribute，例如：
 
 ```html
 <input v-focus />
@@ -54,7 +53,7 @@ Then in a template, you can use the new `v-focus` attribute on any element, like
 
 - `mounted`: 在绑定元素的父组件挂载时调用。
 
-- `beforeUpdate`: 在包含组件的VNode更新之前调用
+- `beforeUpdate`: 在所在组件的 VNode 更新之前调用
 
 :::tip 注意
 我们会在[稍后](render-function.html#the-virtual-dom-tree)讨论渲染函数时介绍更多 VNodes 的细节。
@@ -127,9 +126,9 @@ app.mount('#dynamic-arguments-example')
 
 结果:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="YzXgGmv" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Custom directives: dynamic arguments">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/YzXgGmv">
-  Custom directives: dynamic arguments</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="VwarbBm" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="自定义指令：动态参数">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/VwarbBm">
+  自定义指令：动态参数</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -173,9 +172,9 @@ app.directive('pin', {
 
 结果:
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="result" data-user="Vue" data-slug-hash="rNOaZpj" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Custom directives: dynamic arguments + dynamic binding">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/rNOaZpj">
-  Custom directives: dynamic arguments + dynamic binding</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="PoNOmyO" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="自定义指令：动态参数+动态绑定值">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/PoNOmyO">
+  自定义指令：动态参数+动态绑定值</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -209,9 +208,9 @@ app.directive('demo', (el, binding) => {
 
 ## 组件使用
 
-在3.0中，有了fragments支持，组件可能有多个根节点。当在具有多个根节点的组件上使用自定义指令时，会产生一个问题。
+在 3.0 中，有了 fragments 支持，组件可能有多个根节点。当在具有多个根节点的组件上使用自定义指令时，会产生一个问题。
 
-要解释自定义指令如何在3.0中的组件上工作的细节，我们首先需要了解自定义指令在3.0中是如何编译的。对于这样的指令:
+要解释自定义指令在 3.0 中的组件上的工作细节，我们首先需要了解自定义指令在 3.0 中是如何被编译的。对于这样的指令：
 
 ```vue-html
 <div v-demo="test"></div>
@@ -227,7 +226,7 @@ return withDirectives(h('div'), [[vDemo, test]])
 
 其中 `vDemo` 将是用户编写的指令对象，它包含 `mounted` 和 `updated` 的钩子。
 
-`withDirectives` 返回一个克隆的VNode，其中用户钩子被包装并注入为VNode生命周期钩子 (详情请参阅[渲染函数](render-function.html)):
+`withDirectives` 返回一个克隆的 VNode，其中用户钩子被包装并注入为 VNode 生命周期钩子（详情请参阅[渲染函数](render-function.html)）：
 
 ```js
 {
@@ -237,12 +236,12 @@ return withDirectives(h('div'), [[vDemo, test]])
 }
 ```
 
-**因此，自定义指令完全包含在VNode的数据中。当在组件上使用自定义指令时，这些 `onVnodeXXX` 钩子会作为外来的props传递到组件上并以 `this.$attrs`结束.**
+因此，自定义指令会全部包含在 VNode 的 data 中。当在组件上使用一个自定义指令时，这些 `onVnodeXXX` 钩子将会作为外来的 prop 向下传递给组件，同样也在 `this.attrs` 当中。
 
-这也意味着在template中直接挂钩到元素的生命周期是可能的，当自定义指令太复杂时，这很方便:
+这也意味着在模板中直接挂钩到元素的生命周期是可能的，当自定义指令太复杂时，这很方便：
 
 ```vue-html
 <div @vnodeMounted="myHook" />
 ```
 
-这与[属性失效行为](component-attrs.html)是一致的。因此，组件上的自定义指令的规则将与其他无关属性相同:由子组件决定在何处以及是否应用它。当子组件对内部元素使用 `v-bind="$attrs"`时，它也会应用在该元素上使用的任何自定义指令。
+这与[attribute 直落行为](component-attrs.html)是一致的。即组件其他附加 attribute 的规则也同样适用于自定义指令，由子组件决定在何处以及是否应用它。当子组件在内部元素上使用 `v-bind="$attrs"`时，也将会把所有自定义指令应用到该元素上。
