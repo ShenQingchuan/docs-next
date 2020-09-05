@@ -1,12 +1,12 @@
 # Teleport
 
-Vue encourages us to build our UIs by encapsulating UI and related behavior into components. We can nest them inside one another to build a tree that makes up an application UI.
+Vue 鼓励我们通过将 UI 和其相关行为封装到组件内的方式来构建用户界面。我们可以将它们彼此嵌套以构建生成一颗应用程序的 UI 树。
 
-However, sometimes a part of a component's template belongs to this component logically, while from a technical point of view, it would be preferable to move this part of the template somewhere else in the DOM, outside of the Vue app. 
+但是，有时候一部分组件模板虽然在逻辑上属于该组件，但从技术角度来看，最好方式是将这部分模板移动到 Vue 应用外部的 DOM 上。
 
-A common scenario for this is creating a component that includes a full-screen modal. In most cases, you'd want the modal's logic to live within the component, but the positioning of the modal quickly becomes difficult to solve through CSS, or requires a change in component composition.
+常见的情况是创建一个包含全屏模态框的组件。在大多数情况下，你希望模态框的逻辑写在组件中，但很快你会发现通过 CSS 或更改组件内的结构来解决模态框的定位问题是件很麻烦的事情。
 
-Consider the following HTML structure.
+考虑下面的 HTML 结构。
 
 ```html
 <body>
@@ -19,9 +19,9 @@ Consider the following HTML structure.
 </body>
 ```
 
-Let's take a look at `modal-button`. 
+让我们看看 `modal-button` 组件。
 
-The component will have a `button` element to trigger the opening of the modal, and a `div` element with a class of `.modal`, which will contain the modal's content and a button to self-close.
+这个组件拥有一个可以打开模态框的 `button`，以及一个具有 `.modal` 类名的 `div` 元素，其中包含模态框的内容和关闭按钮。
 
 ```js
 const app = Vue.createApp({});
@@ -49,11 +49,11 @@ app.component('modal-button', {
 })
 ```
 
-When using this component inside the initial HTML structure, we can see a problem - the modal is being rendered inside the deeply nested `div` and the `position: absolute` of the modal takes the parent relatively positioned `div` as reference.
+当在初始 HTML 结构中使用这个组件时，我们可以发现一个问题 - 模态框在深层嵌套的 `div` 中渲染且具有 `position: absolute` 定位的模态框相对于其父级 `div` 定位。
 
-Teleport provides a clean way to allow us to control under which parent in our DOM we want a piece of HTML to be rendered, without having to resort to global state or splitting this into two components.
+Teleport 提供了一个简单明了的方法，允许我们控制 DOM 节点在 HTML 哪部分结构中进行渲染，而不必借助于全局状态或将组件拆分成两部分。
 
-Let's modify our `modal-button` to use `<teleport>` and tell Vue "**teleport** this HTML **to** the "**body**" tag". 
+让我们使用 `<teleport>` 修改 `modal-button` 组件并告诉 Vue “**传送**这部分 HTML 到 **body** 标签下”
 
 ```js
 app.component('modal-button', {
@@ -82,7 +82,7 @@ app.component('modal-button', {
 })
 ```
 
-As a result, once we click the button to open the modal, Vue will correctly render the modal's content as a child of the `body` tag.
+结果一旦我们点击按钮打开模态框时，Vue 会将模态框的内容作为 `body` 标签的子节点正确的渲染。
 
 <p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="gOPNvjR" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Vue 3 Teleport">
   <span>See the Pen <a href="https://codepen.io/team/Vue/pen/gOPNvjR">
@@ -91,9 +91,9 @@ As a result, once we click the button to open the modal, Vue will correctly rend
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-## Using with Vue components
+## 与 Vue 组件一起使用
 
-If `<teleport>` contains a Vue component, it will remain a logical child component of the `<teleport>`'s parent:
+如果 `<teleport>` 包含一个 Vue 组件，该组件将成为 `<teleport>` 父级的逻辑子组件：
 
 ```js
 const app = Vue.createApp({
@@ -120,13 +120,13 @@ app.component('child-component', {
 })
 ```
 
-In this case, even when `child-component` is rendered in the different place, it will remain a child of `parent-component` and will receive a `name` prop from it.
+在这个例子中，即使当 `child-component` 在不同的地方渲染，它作为 `parent-component` 的子组件仍然能接收到父组件传递的 `name` 属性。
 
-This also means that injections from a parent component work as expected, and that the child component will be nested below the parent component in the Vue Devtools, instead of being placed where the actual content moved to.
+这也意味着来自父组件的注入会按预期方式工作，并且在 Vue Devtools 中子组件将嵌套在父组件下方，而不是放置在实际被移动到的位置。
 
-## Using multiple teleports on the same target
+## 在同一个目标上使用多个 teleport
 
-A common use case scenario would be a reusable `<Modal>` component of which there might be multiple instances active at the same time. For this kind of scenario, multiple `<teleport>` components can mount their content to the same target element. The order will be a simple append - later mounts will be located after earlier ones within the target element.
+常见的使用场景是可复用且同时拥有多个活动实例的 `<Modal>` 组件。对于这种情况，多个 `<teleport>` 组件可以将其内容挂载到同一个目标元素下。将按照追加顺序拼接 - 在同一目标元素中，较晚挂载的元素将在较早挂载元素之后。
 
 ```html
 <teleport to="#modals">
@@ -143,4 +143,4 @@ A common use case scenario would be a reusable `<Modal>` component of which ther
 </div>
 ```
 
-You can check `<teleport>` component options in the [API reference](../api/built-in-components.html#teleport)
+你可以在 [API reference](../api/built-in-components.html#teleport) 中查看 `<teleport>` 组件的选项。
