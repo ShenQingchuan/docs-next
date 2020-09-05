@@ -2,7 +2,7 @@
 
 Vue 鼓励我们通过将 UI 和其相关行为封装到组件内的方式来构建用户界面。我们可以将它们彼此嵌套以构建生成一颗应用程序的 UI 树。
 
-但是，有时候一部分组件模板虽然在逻辑上属于该组件，但从技术角度来看，最好方式是将这部分模板移动到 Vue 应用外部的 DOM 上。
+但是，有时候一部分组件模板虽然在逻辑上属于该组件，但从实现上来看，最好是将这部分模板移动到 Vue 应用外部的 DOM 上。
 
 常见的情况是创建一个包含全屏模态框的组件。在大多数情况下，你希望模态框的逻辑写在组件中，但很快你会发现通过 CSS 或更改组件内的结构来解决模态框的定位问题是件很麻烦的事情。
 
@@ -49,7 +49,7 @@ app.component('modal-button', {
 })
 ```
 
-当在初始 HTML 结构中使用这个组件时，我们可以发现一个问题 - 模态框在深层嵌套的 `div` 中渲染且具有 `position: absolute` 定位的模态框相对于其父级 `div` 定位。
+当在初始 HTML 结构中使用这个组件时，我们可以发现一个问题——模态框在深层嵌套的 `div` 中渲染且具有 `position: absolute` 定位的模态框相对于其父级 `div` 定位。
 
 Teleport 提供了一个简单明了的方法，允许我们控制 DOM 节点在 HTML 哪部分结构中进行渲染，而不必借助于全局状态或将组件拆分成两部分。
 
@@ -84,9 +84,9 @@ app.component('modal-button', {
 
 结果一旦我们点击按钮打开模态框时，Vue 会将模态框的内容作为 `body` 标签的子节点正确的渲染。
 
-<p class="codepen" data-height="300" data-theme-id="39028" data-default-tab="js,result" data-user="Vue" data-slug-hash="gOPNvjR" data-preview="true" data-editable="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Vue 3 Teleport">
-  <span>See the Pen <a href="https://codepen.io/team/Vue/pen/gOPNvjR">
-  Vue 3 Teleport</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>)
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="shenqingchuan" data-slug-hash="ZEWvQpL" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Vue 3 Teleport">
+  <span>See the Pen <a href="https://codepen.io/shenqingchuan/pen/ZEWvQpL">
+  Vue 3 Teleport</a> by shenqingchuan (<a href="https://codepen.io/shenqingchuan">@shenqingchuan</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -126,7 +126,7 @@ app.component('child-component', {
 
 ## 在同一个目标上使用多个 teleport
 
-常见的使用场景是可复用且同时拥有多个活动实例的 `<Modal>` 组件。对于这种情况，多个 `<teleport>` 组件可以将其内容挂载到同一个目标元素下。将按照追加顺序拼接 - 在同一目标元素中，较晚挂载的元素将在较早挂载元素之后。
+常见的使用场景是可复用且同时拥有多个活动实例的 `<Modal>` 组件。对于这种情况，多个 `<teleport>` 组件可以将其内容挂载到同一个目标元素下。将按照追加顺序拼接——在同一目标元素中，较晚挂载的元素将在较早挂载元素之后。
 
 ```html
 <teleport to="#modals">
