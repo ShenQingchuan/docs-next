@@ -2,7 +2,7 @@
 
 ## `v-if`
 
-<common-dcloud-video href="https://learning.dcloud.io/#/?vid=8" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=8" />
 
 `v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 truthy 值的时候被渲染。
 

@@ -4,8 +4,9 @@
 
     <VUEshopAd />
     <Content class="theme-default-content" />
+    <iMoocFixedAd />
+    
     <PageEdit />
-
     <PageNav v-bind="{ sidebarItems }" />
 
     <slot name="bottom" />
@@ -14,11 +15,12 @@
 
 <script>
 import VUEshopAd from '@theme/components/sponsors/VUEshopAdvertisement.vue'
+import iMoocFixedAd from '@theme/components/sponsors/iMoocFixedAd.vue'
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
 
 export default {
-  components: { PageEdit, PageNav, VUEshopAd },
+  components: { PageEdit, PageNav, VUEshopAd, iMoocFixedAd },
   props: ['sidebarItems'],
 }
 </script>

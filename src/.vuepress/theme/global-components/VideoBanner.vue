@@ -22,7 +22,9 @@ export default {
     target="_blank"
     rel="sponsored noopener"
   >
-    <slot />
+    <slot>
+      {{ title }}
+    </slot>
   </a>
 </template>
 
@@ -38,7 +40,10 @@ export default {
   padding-left: 3.25rem;
   border-radius: 2px;
   color: #486491;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  text-decoration: none !important;
 
   &::after {
     content: '';

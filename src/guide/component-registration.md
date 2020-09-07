@@ -2,7 +2,7 @@
 
 > 这篇假设你已经阅读过了[组件基础](component-basics.md)，如果你还对组件不太了解，推荐你先阅读它。
 
-<common-dcloud-video href="https://learning.dcloud.io/#/?vid=13" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=13" />
 
 ## 组件名称
 

@@ -1,6 +1,6 @@
 # 事件处理
 
-<common-dcloud-video href="https://learning.dcloud.io/#/?vid=10" />
+<VideoBanner title="观看本节视频讲解" url="https://learning\.dcloud\.io/#/\?vid=10" />
 
 ## 监听事件
 

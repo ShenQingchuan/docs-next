@@ -1,8 +1,8 @@
 # 渲染函数
 
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
+Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而我们仍有一些场景需要 JavaScript 的灵活的编程式表现力。这时我们就可以使用**渲染函数**。
 
-Let's dive into an example where a `render()` function would be practical. Say we want to generate anchored headings:
+让我们看一个能体现 `render()` 函数实用性的例子，假设我们要生成一些带锚点的标题：
 
 ```html
 <h1>
@@ -12,13 +12,13 @@ Let's dive into an example where a `render()` function would be practical. Say w
 </h1>
 ```
 
-Anchored headings are used very frequently, we should create a component:
+带锚点的标题十分常用，我们应该创建一个组件：
 
 ```vue-html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-The component must generate a heading based on the `level` prop, and we quickly arrive at this:
+当开始写一个只能通过 `level` prop 动态生成标题 (heading) 的组件时，你可能很快想到这样实现：
 
 ```js
 const app = Vue.createApp({})
@@ -53,9 +53,9 @@ app.component('anchored-heading', {
 })
 ```
 
-This template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level. And when we add the anchor element, we have to again duplicate it in every `v-if/v-else-if` branch.
+这里用[模板](template-syntax.html)并不是最好的选择：不但代码冗长，而且在每一个级别的标题中重复书写了 `<slot></slot>`，在要插入锚点元素时还要再次重复。
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render()` function:
+虽然模板语法在大多数组件中都非常好用，但是显然在这里它就不合适了。那么，我们来尝试使用 `render()` 函数重写上面的例子：
 
 ```js
 const app = Vue.createApp({})
@@ -65,9 +65,9 @@ app.component('anchored-heading', {
     const { h } = Vue
 
     return h(
-      'h' + this.level, // tag name
+      'h' + this.level, // 标签名称
       {}, // props/attributes
-      this.$slots.default() // array of children
+      this.$slots.default() // 子组件数组
     )
   },
   props: {
@@ -79,35 +79,35 @@ app.component('anchored-heading', {
 })
 ```
 
-The `render()` function implementation is much simpler, but also requires greater familiarity with component instance properties. In this case, you have to know that when you pass children without a `v-slot` directive into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default()`. If you haven't already, **it's recommended to read through the [instance properties API](../api/instance-properties.html) before diving into render functions.**
+`render()` 方法看起来简洁多了！但是需要你非常熟悉组件实例的 property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读实例 [property API](../api/instance-properties.html)**。
 
-## The DOM tree
+## 节点、树以及虚拟 DOM
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+在深入渲染函数之前，重点先了解一些浏览器的工作原理。以下面这段 HTML 为例：
 
 ```html
 <div>
-  <h1>My title</h1>
-  Some text content
-  <!-- TODO: Add tagline -->
+  <h1>我的标题</h1>
+  一些文本内容
+  <!-- TODO: 添加些标语 -->
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything.
+当浏览器读到这些代码时，它会建立一个 [“DOM 节点”树](https://javascript.info/dom-nodes)来帮助它追踪所有内容。
 
-The tree of DOM nodes for the HTML above looks like this:
+上述 HTML 对应的 DOM 节点树如下图所示：
 
 ![DOM Tree Visualization](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! Each node can have children (i.e. each node can contain other nodes).
+每个元素都是一个节点。每段文字也是一个节点。甚至注释也都是节点。每个节点都可以有子节点 (即每个节点可以包含其它节点)。
 
-Updating all these nodes efficiently can be difficult, but thankfully, we never have to do it manually. Instead, we tell Vue what HTML we want on the page, in a template:
+高效地更新所有节点会是比较困难的，不过所幸你不必手动完成这个工作。你只需要告诉 Vue 你希望页面上的 HTML 是什么，在模板里：
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or in a render function:
+或者在渲染函数里：
 
 ```js
 render() {
@@ -115,45 +115,45 @@ render() {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+在这两种情况下，Vue 都会随着 `blogTitle` 发生改变而自动更新页面。
 
-## The Virtual DOM tree
+## 虚拟 DOM
 
-Vue keeps the page updated by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue 通过让页面建立一个**虚拟 DOM**并追踪其自身的变化，来改变真实 DOM。请仔细阅读这行代码：
 
 ```js
 return Vue.h('h1', {}, this.blogTitle)
 ```
 
-What is the `h()` function returning? It's not _exactly_ a real DOM element. It returns a plain object which contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+`h()` 到底会返回什么呢？其实不是一个*实际的* DOM 元素。它返回一个普通对象，该对象包含向 Vue 描述其应在页面上呈现的节点类型的信息，包括所有子节点的描述。我们把这样的节点描述为“虚拟节点 (virtual node)”，也常简写它为“VNode” 。“虚拟 DOM”则是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
 
-## `h()` Arguments
+## `h()` 参数
 
-The `h()` function is a utility to create VNodes. It could perhaps more accurately be named `createVNode()`, but it's called `h()` due to frequent use and for brevity. It accepts three arguments:
+`h()` 函数的作用是创建 VNodes。也许称之为 `createVNode()` 更准确，但由于使用频繁，为了命名简洁将其定为 `h()`。它接受 3 个参数：
 
 ```js
 // @returns {VNode}
 h(
   // {String | Object | Function | null} tag
-  // An HTML tag name, a component, an async component or null.
-  // Using null would render a comment.
+  // 一个 HTML 标签名、一个组件，一个动态组件，或者 null。
+  // 如果是 null 则会生产一个注释
   //
-  // Required.
+  // 必填项
   'div',
 
   // {Object} props
-  // An object corresponding to the attributes, props and events
-  // we would use in a template.
+  // 一个包含 attributes, props 和 events 的对象
+  // 我们会在模板中使用
   //
-  // Optional.
+  // 可选项
   {},
 
   // {String | Array | Object} children
-  // Children VNodes, built using `h()`,
-  // or using strings to get 'text VNodes' or
-  // an object with slots.
+  // 子级虚拟节点 (VNodes), 用 `h()` 构建而成，
+  // 也可以使用字符串来生成“文本虚拟节点” 或者
+  // 一个带slots的对象
   //
-  // Optional.
+  // 可选项
   [
     'Some text comes first.',
     h('h1', 'A headline'),
@@ -164,14 +164,14 @@ h(
 )
 ```
 
-## Complete Example
+## 完整示例
 
-With this knowledge, we can now finish the component we started:
+有了这些知识，我们现在可以完成我们最开始想实现的组件：
 
 ```js
 const app = Vue.createApp({})
 
-/** Recursively get text from children nodes */
+/** 递归地从子节点获取文本 */
 function getChildrenTextContent(children) {
   return children
     .map(node => {
@@ -186,11 +186,11 @@ function getChildrenTextContent(children) {
 
 app.component('anchored-heading', {
   render() {
-    // create kebab-case id from the text contents of the children
+    // 在子节点中创建 kebab-case 风格的 ID
     const headingId = getChildrenTextContent(this.$slots.default())
       .toLowerCase()
-      .replace(/\W+/g, '-') // replace non-word characters with dash
-      .replace(/(^-|-$)/g, '') // remove leading and trailing dashes
+      .replace(/\W+/g, '-') // 用 - 代替非单词字符
+      .replace(/(^-|-$)/g, '') // 移除前后 - 符号
 
     return Vue.h('h' + this.level, [
       Vue.h(
@@ -212,23 +212,23 @@ app.component('anchored-heading', {
 })
 ```
 
-## Constraints
+## 约束
 
-### VNodes Must Be Unique
+### VNode 必须唯一
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+组件树中的所有 VNode 必须是唯一的。这意味着，下面的渲染函数是不合法的：
 
 ```js
 render() {
   const myParagraphVNode = Vue.h('p', 'hi')
   return Vue.h('div', [
-    // Yikes - duplicate VNodes!
+    // 报错 - 重复的 VNodes!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这渲染函数用完全合法的方式渲染了 20 个相同的段落：
 
 ```js
 render() {
@@ -240,11 +240,11 @@ render() {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## 使用 JavaScript 代替模板功能
 
-### `v-if` and `v-for`
+### `v-if` 和 `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+只要在原生的 JavaScript 中可以轻松完成的操作，Vue 的渲染函数就不会提供专有的替代方法。比如，在模板中使用的 `v-if` 和 `v-for`：
 
 ```html
 <ul v-if="items.length">
@@ -253,7 +253,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 <p v-else>No items found.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map()` in a render function:
+这些都可以在渲染函数中用 JavaScript 的 `if`/`else` 和 `map()` 来重写：
 
 ```js
 props: ['items'],
@@ -270,7 +270,7 @@ render() {
 
 ### `v-model`
 
-The `v-model` directive is expanded to `modelValue` and `onUpdate:modelValue` props during template compilation—we will have to provide these props ourselves:
+`v-model`指令可以在模版中用 props 属性 `modelValue`和`onUpdate:modelValue` 实现——我们必须自己实现相应的逻辑：
 
 ```js
 props: ['modelValue'],
@@ -284,7 +284,7 @@ render() {
 
 ### `v-on`
 
-We have to provide a proper prop name for the event handler, e.g., to handle `click` events, the prop name would be `onClick`.
+同时我们也需要实现事件所对应的 prop，比如，处理 `click` 事件，对应必须加入 prop 名称为 `onClick` 的事件处理。
 
 ```js
 render() {
@@ -294,11 +294,11 @@ render() {
 }
 ```
 
-#### Event Modifiers
+#### 事件修饰符
 
-For the `.passive`, `.capture`, and `.once` event modifiers, Vue offers object syntax of the handler:
+对于 `.passive`，`.capture`，和 `.once` 的事件修饰符，Vue 提供了带有对象语法的处理函数：
 
-For example:
+比如:
 
 ```javascript
 render() {
@@ -320,32 +320,32 @@ render() {
 }
 ```
 
-For all other event and key modifiers, no special API is necessary, because we can use event methods in the handler:
+对于所有其他事件和键修饰符，不需要特殊的 API，因为我们可以在处理程序中使用处理函数：
 
-| Modifier(s)                                           | Equivalent in Handler                                                                                                |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `.stop`                                               | `event.stopPropagation()`                                                                                            |
-| `.prevent`                                            | `event.preventDefault()`                                                                                             |
-| `.self`                                               | `if (event.target !== event.currentTarget) return`                                                                   |
-| Keys:<br>`.enter`, `.13`                              | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
-| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively)                  |
+| 修饰器                                                 | 处理方法                                                                                                   |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `.stop`                                               | `event.stopPropagation()`                                                                                  |
+| `.prevent`                                            | `event.preventDefault()`                                                                                   |
+| `.self`                                               | `if (event.target !== event.currentTarget) return`                                                         |
+| 按键：<br>`.enter`, `.13`                              | `if (event.keyCode !== 13) return` (将 `13` 修改为[其他键盘 key](http://keycode.info/) 用于其他关键修饰符) |
+| 修饰键：<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (将 `ctrlKey` 分别修改为 `altKey`，`shiftKey`，或者 `metaKey`)                |
 
-Here's an example with all of these modifiers used together:
+下面是这些修饰词一起使用的示例：
 
 ```js
 render() {
   return Vue.h('input', {
     onKeyUp: event => {
-      // Abort if the element emitting the event is not
-      // the element the event is bound to
+      // 如果触发事件的元素不是事件绑定的元素
+      // 则返回
       if (event.target !== event.currentTarget) return
-      // Abort if the key that went up is not the enter
-      // key (13) and the shift key was not held down
-      // at the same time
+      // 如果按下去的不是 enter 键或者
+      // 没有同时按下 shift 键
+      // 则返回
       if (!event.shiftKey || event.keyCode !== 13) return
-      // Stop event propagation
+      // 阻止 事件冒泡
       event.stopPropagation()
-      // Prevent the default keyup handler for this element
+      // 阻止该元素默认的 keyup 事件
       event.preventDefault()
       // ...
     }
@@ -353,9 +353,9 @@ render() {
 }
 ```
 
-### Slots
+### 插槽
 
-You can access slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
+您可以从 [this.$slots](../api/#vm-slots) 将插槽内容作为 VNode 数组访问
 
 ```js
 render() {
@@ -374,15 +374,15 @@ render() {
 }
 ```
 
-To pass slots to a child component using render functions:
+使用渲染函数将插槽内容传递给组件：
 
 ```js
 render() {
   // `<div><child v-slot="props"><span>{{ props.text }}</span></child></div>`
   return Vue.h('div', [
     Vue.h('child', {}, {
-      // pass `slots` as the children object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // 使用对象形式传递 `slots`
+      // 以 { name: props => VNode | Array <VNode> } 的形式
       default: (props) => Vue.h('span', props.text)
     })
   ])
@@ -391,7 +391,7 @@ render() {
 
 ## JSX
 
-If we're writing a lot of `render` functions, it might feel painful to write something like this:
+如果你写了很多 `render` 函数，可能会觉得下面这样的代码写起来很痛苦：
 
 ```js
 Vue.h(
@@ -403,13 +403,13 @@ Vue.h(
 )
 ```
 
-Especially when the template version is so concise in comparison:
+特别是对应的模板如此简单的情况下：
 
 ```vue-html
 <anchored-heading :level="1"> <span>Hello</span> world! </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/jsx)，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上：
 
 ```jsx
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -426,10 +426,11 @@ new Vue({
 })
 ```
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/jsx#installation).
+要了解更多关于 JSX 如何映射到 JavaScript，请阅读[使用文档](https://github.com/vuejs/jsx#installation)。
+<!-- TODO: Vue-JSX 现在官方的文档仍指向 2.x，而 https://github.com/vuejs/vue-next#jsx-support 还没有确定 JSX 的支持模式 -->
 
 ## 模板编译
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Vue 的模板实际上被编译成了渲染函数。这是一个实现细节，通常不需要关心。但如果你想看看模板的功能具体是怎样被编译的，可能会发现会非常有意思。下面是一个使用 `Vue.compile` 来实时编译模板字符串的简单示例：
 
 <iframe src="https://vue-next-template-explorer.netlify.app/" width="100%" height="420"></iframe>

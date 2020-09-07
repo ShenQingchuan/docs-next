@@ -130,6 +130,7 @@ $navbar-horizontal-padding = 1.5rem;
     right: $navbar-horizontal-padding;
     top: $navbar-vertical-padding;
     display: flex;
+    margin-right: 0.1rem;
 
     .search-box {
       flex: 0 0 auto;

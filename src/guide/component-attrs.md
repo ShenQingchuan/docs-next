@@ -58,7 +58,7 @@ app.component('date-picker', {
 })
 ```
 
-在这种情况下，`change` 事件侦听器从父组件传递到子组件，它将在原生 `select` 元素的`change` 事件上被触发。我们不需要从 `date-picker` 显式发出一个事件:
+在这种情况下，`change` 事件侦听器从父组件传递到子组件，它将在原生 `select` 元素的`change` 事件上被触发。我们不需要从 `date-picker` 显式触发一个事件:
 
 ```html
 <div id="date-picker" class="demo">
