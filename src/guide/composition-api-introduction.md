@@ -1,14 +1,14 @@
 # 介绍
 
-## Why Composition API?
+## 为什么需要组合式 API
 
-::: tip Note
-Reaching this far in the documentation, you should already be familiar with both [the basics of Vue](introduction.md) and [creating components](component-basics.md).
+::: tip 注意
+读到这里，我们假设你已经熟悉了[Vue 的基础](introduction.md)和[如何创建组件](component-basics.md)。
 :::
 
-Creating Vue components allows us to extract repeatable parts of the interface coupled with its functionality into reusable pieces of code. This alone can get our application pretty far in terms of maintainability and flexibility. However, our collective experience has proved that this alone might not be enough, especially when your application is getting really big – think several hundreds of components. When dealing with such large applications, sharing and reusing code becomes especially important.
+创建 Vue 组件使得我们可以将界面中的重复部分，同它的功能一起抽取得到可重用的代码。这将大大增强我们应用的灵活性和可维护性。然而目前的体验证明这也许还不够，特别是当你的应用变得非常大的时候——试想组件数量成百上千的时候。要构建大型应用，复用代码变得尤其重要。
 
-Let’s imagine that in our app, we have a view to show a list of repositories of a certain user. On top of that, we want to apply search and filter capabilities. Our component handling this view could look like this:
+假设在我们的应用中，我们有一个视图来显示某个用户的仓库列表。在此之上，我们希望应用搜索和筛选功能。我们处理这个视图的组件看起来像这样：
 
 ```js
 // src/components/UserRepositories.vue
@@ -44,37 +44,37 @@ export default {
 }
 ```
 
-This component has several responsibilities:
+这个组件有几个职责：
 
-1. Getting repositories from a presumedly external API for that user name and refreshing it whenever the user changes
-2. Searching for repositories using a `searchQuery` string
-3. Filtering repositories using a `filters` object
+1. 通过用户名，调用一个假设的外部 API 获取其仓库列表，并在用户名变化时刷新该列表。
+2. 通过一个 `searchQuery` 字符串来搜索
+3. 使用 `filters` 对象
 
-Organizing logics with component's options (`data`, `computed`, `methods`, `watch`) works in most cases. However, when our components get bigger, the list of **logical concerns** also grows. This can lead to components that are hard to read and understand, especially for people who didn't write them in the first place.
+大部分情况下我们都是使用组件的选项（`data`, `computed`, `methods`, `watch`）来管理逻辑，然而当我们的组件变得更大时，**逻辑关注点**的数量也在增长。如果不是作者，那么该组件将难以阅读和理解。
 
-![Vue Option API: Code grouped by option type](https://user-images.githubusercontent.com/499550/62783021-7ce24400-ba89-11e9-9dd3-36f4f6b1fae2.png)
+![Vue 选项式 API: 代码被组件选项分组](https://user-images.githubusercontent.com/499550/62783021-7ce24400-ba89-11e9-9dd3-36f4f6b1fae2.png)
 
-Example presenting a large component where its **logical concerns** are grouped by colors.
+这个例子展示来一个根据**逻辑关注点**进行染色的大型组件：
 
-Such fragmentation is what makes it difficult to understand and maintain a complex component. The separation of options obscures the underlying logical concerns. In addition, when working on a single logical concern, we have to constantly "jump" around option blocks for the relevant code.
+这样的碎片分段使得理解和维护一个复杂组件变得困难。选项的分离模糊了基本的逻辑关注点。此外，当处理单个逻辑问题时，我们必须不断地“跳转”相关代码的选项块。
 
-It would be much nicer if we could collocate code related to the same logical concern. And this is exactly what the Composition API enables us to do.
+如果我们能够配置与相同逻辑相关的代码，那就更好了。而这正是组合式 API 所能做到的。
 
-## Basics of Composition API
+## 组合式 API 基础
 
-Now that we know the **why** we can get to the **how**. To start working with the Compsition API we first need a place where we can actually use it. In a Vue component, we call this place the `setup`.
+理解了原因，现在我们来看如何使用。要开始使用组合式 API 我们需要一个能实际使用它的地方。在一个 Vue 组件中，这个地方叫做 `setup`。
 
-### `setup` Component Option
+### `setup` 组件选项
 
-The new `setup` component option is executed **before** the component is created, once the `props` are resolved, and serves as the entry point for composition API's.
+这个新的 `setup` 组件选项会在组件创建**之前**，当 `props` 被解析后，然后就将作为组合式 API 的入口点。
 
-::: warning
-Because the component instance is not yet created when `setup` is executed, there is no `this` inside a `setup` option. This means, with the exception of `props`, you won't be able to access any properties declared in the component – **local state**, **computed properties** or **methods**.
+::: warning 警告
+因为当 `setup` 被执行时组件实例还未创建完成，所以在 `setup` 中时无法使用 `this` 的。这意味着，除了 `props` 以外，你将无法访问到其他任何在组件上定义的 property——**组件局部状态**，**计算属性**或**方法**。
 :::
 
-The `setup` option should be a function that accepts `props` and `context` which we will talk about [later](composition-api-setup.html#arguments). Additionally, everything that we return from `setup` will be exposed to the rest of our component (computed properties, methods, lifecycle hooks and so on) as well as to the component's template.
+`setup` 选项应是一个函数，接受的参数为 `props` 和 [之后](composition-api-setup.html#arguments)会讲到的 `context`。另外，`setup` 返回值中的所有东西（计算属性，方法，生命周期钩子等等）将会暴露该组件的其他选项以及模板。
 
-Let’s add `setup` to our component:
+让我们给组件添加一个 `setup` 选项：
 
 ```js
 // src/components/UserRepositories.vue
@@ -87,27 +87,27 @@ export default {
   setup(props) {
     console.log(props) // { user: '' }
 
-    return {} // anything returned here will be available for the rest of the component
+    return {} // 这里返回的任何东西都将在组件其他部分可用
   }
-  // the "rest" of the component
+  // 组件其他部分
 }
 ```
 
-Now let’s start with extracting the first logical concern (marked as "1" in the original snippet).
+现在让我们开始抽取第一个逻辑关注点（即之前的标记了 “1” 的代码段）。
 
-> 1. Getting repositories from a presumedly external API for that user name and refreshing it whenever the user changes
+> 1. 通过用户名，调用一个假设的外部 API 获取其仓库列表，并在用户名变化时刷新该列表。
 
-We will start with the most obvious parts:
+我们先从最明显的几个部分开始：
 
-- The list of repositories
-- The function to update the list of repositories
-- Returning both the list and the function so they are accessible by other component options
+- 仓库列表
+- 更新仓库列表的函数
+- 返回该列表和该函数使得在组件其他部分可访问
 
 ```js
 // src/components/UserRepositories.vue `setup` function
 import { fetchUserRepositories } from '@/api/repositories'
 
-// inside our component
+// 在我们的组件中
 setup (props) {
   let repositories = []
   const getUserRepositories = async () => {
@@ -116,16 +116,16 @@ setup (props) {
 
   return {
     repositories,
-    getUserRepositories // functions returned behave the same as methods
+    getUserRepositories // 返回的函数与方法（methods）表现一致
   }
 }
 ```
 
-This is our starting point, except it's not working yet because our `repositories` variable is not reactive. This means from a user's perspective, the repository list would remain empty. Let's fix that!
+这只是个开始，意料之中它将不起作用，因为变量 `repositories` 不是响应式的。这意味着从用户角度上看这个仓库列表将始终为空。让我们修复这个问题！
 
-### Reactive Variables with `ref`
+### 使用 `ref` 定义响应式变量
 
-In Vue 3.0 we can make any variable reactive anywhere with a new `ref` function, like this:
+在 Vue 3.0 中我们可以使用一个新的 `ref` 函数使任何变量编委响应式的，就像这样：
 
 ```js
 import { ref } from 'vue'
@@ -133,7 +133,7 @@ import { ref } from 'vue'
 const counter = ref(0)
 ```
 
-`ref` takes the argument and returns it wrapped within an object with a `value` property, which can then be used to access or mutate the value of the reactive variable:
+`ref` 获取到该参数值后，将它包裹到一个对象中的 `.value` 属性中，对其的访问与更改都将是响应式的，最后返回该对象。
 
 ```js
 import { ref } from 'vue'
@@ -147,24 +147,24 @@ counter.value++
 console.log(counter.value) // 1
 ```
 
-Wrapping values inside an object might seem unnecessary but is required to keep the behavior unified across different data types in JavaScript. That’s because in JavaScript, primitive types like `Number` or `String` are passed by value, not by reference:
+将值包裹进一个对象看上去有些没有必要，但实际上这是为了统一在 JavaScript 中各个数据类型的表现。因为在 JavaScript 中，例如 `Number` 或 `String` 这些基础类型都将以值传递，而非以引用传递。
 
-![Pass by reference vs pass by value](https://blog.penjee.com/wp-content/uploads/2015/02/pass-by-reference-vs-pass-by-value-animation.gif)
+![传值 vs 传引用](https://blog.penjee.com/wp-content/uploads/2015/02/pass-by-reference-vs-pass-by-value-animation.gif)
 
-Having a wrapper object around any value allows us to safely pass it across our whole app without worrying about losing its reactivity somewhere along the way.
+又一个包含任意值的包裹对象使得我们能够安全地在整个组件间传递值，而不用担心在某处丢失其响应性。
 
-::: tip Note
-In other words, `ref` creates a **Reactive Reference** to our value. The concept of working with **References** will be used often throughout the Composition API.
+::: tip 注意
+换句话说，`ref` 为值创建了一个**响应式引用**。**引用**的概念将在组合式 API 中十分常见。
 :::
 
-Back to our example, let's create a reactive `repositories` variable:
+回到我们的例子中，让我们创建一个响应式的 `repositories` 变量：
 
 ```js
 // src/components/UserRepositories.vue `setup` function
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref } from 'vue'
 
-// in our component
+// 在我们的组件中
 setup (props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
@@ -178,7 +178,7 @@ setup (props) {
 }
 ```
 
-Done! Now whenever we call `getUserRepositories`, `repositories` will be mutated and the view will be updated to reflect the change. Our component should now look like this:
+完成了！现在无论在哪里调用 `getUserRepositories`，`repositories` 都将被更改，而视图也会相应地更新。我们的组件将会像这样：
 
 ```js
 // src/components/UserRepositories.vue
@@ -223,31 +223,31 @@ export default {
 }
 ```
 
-We have moved several pieces of our first logical concern into the `setup` method, nicely put close to each other. What’s left is calling `getUserRepositories` in the `mounted` hook and setting up a watcher to do that whenever the `user` prop changes.
+我们已经将第一个逻辑关注点的几个部分移动到了 `setup` 方法中，它们放在了相近的位置，这很棒。我们还剩 `mounted` 钩子中的 `getUserRepositories` 函数调用，再设置一个侦听器监听 `user` 的变化。
 
-We will start with the lifecycle hook.
+我们再从生命周期钩子开始。
 
-### Lifecycle Hook Registration Inside `setup`
+### 在 `setup` 中注册生命周期钩子
 
-To make Composition API feature-complete compared to Options API, we also need a way to register lifecycle hooks inside `setup`. This is possible thanks to several new functions exported from Vue. Lifecycle hooks on composition API have the same name as for Options API but are prefixed with `on`: i.e. `mounted` would look like `onMounted`.
+要使得组合式 API 的功能与选项式 API 完全幂等，我们还需能在 `setup` 中注册生命周期钩子。我们将会使用到 Vue 提供的几个新函数。组合式 API 中的生命周期钩子与选项式 API 有相同但名字但会多一个 `on` 前缀，例如 `mounted` 将会变为 `onMounted`。
 
-These functions accept a callback that will be executed when the hook is called by the component.
+这些方法都接收一个回调函数，作为钩子被组件调用执行。
 
-Let’s add it to our `setup` function:
+让我们将它们添加到 `setup` 函数中：
 
 ```js
 // src/components/UserRepositories.vue `setup` function
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted } from 'vue'
 
-// in our component
+// 在我们的组件中
 setup (props) {
   const repositories = ref([])
   const getUserRepositories = async () => {
     repositories.value = await fetchUserRepositories(props.user)
   }
 
-  onMounted(getUserRepositories) // on `mounted` call `getUserRepositories`
+  onMounted(getUserRepositories) // 在 `mounted` 阶段会调用 `getUserRepositories`
 
   return {
     repositories,
@@ -256,30 +256,30 @@ setup (props) {
 }
 ```
 
-Now we need to react to the changes made to the `user` prop. For that we will use the standalone `watch` function.
+现在我们将对那些 `user` prop 上的变更作出响应。对此我们会使用到一个单独对 `watch` 函数。
 
-### Reacting to Changes with `watch`
+### 使用 `watch` 响应变更
 
-Just like how we set up a watcher on the `user` property inside our component using the `watch` option, we can do the same using the `watch` function imported from Vue. It accepts 3 arguments:
+就像我们使用 `watch` 选项在组件中设置一个 `user` property 的侦听器那样，我们可以使用从 Vue 引入对 `watch` 函数。它接受三个参数：
 
-- A **Reactive Reference** or getter function that we want to watch
-- A callback
-- Optional configuration options
+- 一个监听对象的**响应式引用**或 getter 函数
+- 一个回调函数
+- 可选的配置对象
 
-**Here’s a quick look at how it works.**
+**这里是一个简单示例：**
 
 ```js
 import { ref, watch } from 'vue'
 
 const counter = ref(0)
 watch(counter, (newValue, oldValue) => {
-  console.log('The new counter value is: ' + counter.value)
+  console.log('计数器新的值是：' + counter.value)
 })
 ```
 
-Whenever `counter` is modified, for example `counter.value = 5`, the watch will trigger and execute the callback (second argument) which in this case will log `'The new counter value is: 5'` into our console.
+无论何时 `counter` 被更改，例如 `counter.value = 5`，侦听器会被触发并执行（第二个参数）回调函数，因而会在控制台打印出 `'The new counter value is: 5'`。
 
-**Below is the Options API equivalent:**
+**下面是等价的选项式 API 写法：**
 
 ```js
 export default {
@@ -290,35 +290,35 @@ export default {
   },
   watch: {
     counter(newValue, oldValue) {
-      console.log('The new counter value is: ' + this.counter)
+      console.log('计数器新的值是：' + this.counter)
     }
   }
 }
 ```
 
-For more details on `watch`, refer to our [in-depth guide]().
+关于 `watch` 的更多细节，请参考 [深入了解](TODO).
 
-**Let’s now apply it to our example:**
+**让我们将其应用到之前的示例中：**
 
 ```js
 // src/components/UserRepositories.vue `setup` function
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs } from 'vue'
 
-// in our component
+// 在我们的组件中
 setup (props) {
-  // using `toRefs` to create a Reactive Reference to the `user` property of props
+  // 使用 `toRefs` 将 props 中的 `user` 属性转为响应式引用。
   const { user } = toRefs(props)
 
   const repositories = ref([])
   const getUserRepositories = async () => {
-    // update `props.user` to `user.value` to access the Reference value
+    // 通过 `user.value` 访问到引用值，来更新 `props.user`
     repositories.value = await fetchUserRepositories(user.value)
   }
 
   onMounted(getUserRepositories)
 
-  // set a watcher on the Reactive Reference to user prop
+  // 对 user prop 的响应式引用设置一个侦听器
   watch(user, getUserRepositories)
 
   return {
@@ -328,13 +328,13 @@ setup (props) {
 }
 ```
 
-You probably have noticed the use of `toRefs` at the top of our `setup`. This is to ensure our watcher will react to changes made to the `user` prop.
+你可能注意到上面例子里在 `setup` 中使用到了 `toRefs`。这是为了确保侦听器能够对 `user` prop 的变更作出响应。
 
-With those changes in place, we've just moved the whole first logical concern into a single place. We can now do the same with the second concern – filtering based on `searchQuery`, this time with a computed property.
+通过上述更改，我们已经将第一个逻辑关注点移动到了同一处，对第二个关注点也是一样。——根据 `searchQuery` 过滤，这一次我们将用到一个计算属性。
 
-### Standalone `computed` properties
+### 单独的 `computed` 计算属性
 
-Similar to `ref` and `watch`, computed properties can also be created outside of a Vue component with the `computed` function imported from Vue. Let’s get back to our counter example:
+与 `ref` 和 `watch` 类似，计算属性同样可以通过从 Vue 引入的 `computed` 函数，在一个 Vue 组件外被创建。让我们回到计数器的例子中：
 
 ```js
 import { ref, computed } from 'vue'
@@ -347,29 +347,29 @@ console.log(counter.value) // 1
 console.log(twiceTheCounter.value) // 2
 ```
 
-Here, the `computed` function returns a _read-only_ **Reactive Reference** to the output of the getter-like callback passed as the first argument to `computed`. In order to access the **value** of the newly-created computed variable, we need to use the `.value` property just like with `ref`.
+在这里，`computed` 函数通过第一个参数，一个 getter 的回调函数返回了一个 _只读的_ **响应式引用**。为了访问到新创建的计算属性变量的**值**，我们需要使用 `.value`，就像 `ref` 那样。
 
-Let’s move our search functionality into `setup`:
+让我们将搜索功能移动到 `setup` 函数中：
 
 ```js
 // src/components/UserRepositories.vue `setup` function
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch, toRefs, computed } from 'vue'
 
-// in our component
+// 在我们的组件中
 setup (props) {
-  // using `toRefs` to create a Reactive Reference to the `user` property of props
+  // 使用 `toRefs` 将 props 中的 `user` 属性转为响应式引用。
   const { user } = toRefs(props)
 
   const repositories = ref([])
   const getUserRepositories = async () => {
-    // update `props.user` to `user.value` to access the Reference value
+    // 通过 `user.value` 访问到引用值，来更新 `props.user`
     repositories.value = await fetchUserRepositories(user.value)
   }
 
   onMounted(getUserRepositories)
 
-  // set a watcher on the Reactive Reference to user prop
+  // 对 user prop 的响应式引用设置一个侦听器
   watch(user, getUserRepositories)
 
   const searchQuery = ref('')
@@ -388,7 +388,7 @@ setup (props) {
 }
 ```
 
-We could do the same for other **logical concerns** but you might be already asking the question – _Isn’t this just moving the code to the `setup` option and making it extremely big?_ Well, that’s true. That’s why before moving on with the other responsibilities, we will first extract the above code into a standalone **composition function**. Let's start with creating `useUserRepositories`:
+我们对其他**逻辑关注点**也进行同样的操作，但你可能已经在思考来——_将所有代码都移动到 `setup` 选项中，它不就变得非常大了么？_ 答案是肯定的。所以我们接下来将带来更多原则，我们将首先把上述的代码抽取到单独的**组合函数**中，创建一个 `useUserRepositories`：
 
 ```js
 // src/composables/useUserRepositories.js
@@ -412,12 +412,12 @@ export default function useUserRepositories(user) {
 }
 ```
 
-And then the searching functionality:
+接下来是搜索的功能：
 
 ```js
 // src/composables/useRepositoryNameSearch.js
 
-import { ref, onMounted, watch } from 'vue'
+import { ref, computed } from 'vue'
 
 export default function useRepositoryNameSearch(repositories) {
   const searchQuery = ref('')
@@ -434,7 +434,7 @@ export default function useRepositoryNameSearch(repositories) {
 }
 ```
 
-**Now having those two functionalities in separate files, we can start using them in our component. Here’s how this can be done:**
+**现在有了上面两个分列在两个文件中的功能之后，在组件中使用它们。最后完成如下：**
 
 ```js
 // src/components/UserRepositories.vue
@@ -458,8 +458,8 @@ export default {
     } = useRepositoryNameSearch(repositories)
 
     return {
-      // Since we don’t really care about the unfiltered repositories
-      // we can expose the filtered results under the `repositories` name
+      // 因为我们并不关注过滤掉的仓库
+      // 通过 `repositories` 我们只将过滤出的仓库暴露出去
       repositories: repositoriesMatchingSearchQuery,
       getUserRepositories,
       searchQuery,
@@ -479,7 +479,7 @@ export default {
 }
 ```
 
-At this point you probably already know the drill, so let’s skip to the end and migrate the leftover filtering functionality. We don’t really need to get into the implementation details as it’s not the point of this guide.
+看到这里你或许已经懂了，因此让我们跳到最后，迁移剩余的过滤功能。我们不太需要深入实现细节，因为这不是本指南的重点。
 
 ```js
 // src/components/UserRepositories.vue
@@ -510,8 +510,8 @@ export default {
     } = useRepositoryFilters(repositoriesMatchingSearchQuery)
 
     return {
-      // Since we don’t really care about the unfiltered repositories
-      // we can expose the end results under the `repositories` name
+      // 因为我们并不关注过滤掉的仓库
+      // 通过 `repositories` 我们只将过滤出的仓库暴露出去
       repositories: filteredRepositories,
       getUserRepositories,
       searchQuery,
@@ -522,6 +522,8 @@ export default {
 }
 ```
 
-And we are done!
+到这里示例就完成了！
 
-Keep in mind that we've only scratched the surface of Composition API and what it allows us to do. To learn more about it, refer to the in-depth guide.
+目前我们只是触及了组合式 API 的表层，以及它允许我们做什么。要了解更多信息，请参阅深入指南。
+
+<!-- TODO：等待官方的深入指南 -->
