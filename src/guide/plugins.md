@@ -1,39 +1,39 @@
 ﻿# 插件
 
-Plugins are self-contained code that usually add global-level functionality to Vue. It is either an `object` that exposes an `install()` method, or a `function`.
+插件是独立的程序，通常用来为 Vue 添加全局功能。可以是包含 `install()` 的 `object`，也可以是个 `function`。
 
-There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+插件没有严格定义的范围，但是插件常见的用途有:
 
-1. Add some global methods or properties, e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element).
+1. 添加全局方法或者 property。如：[vue-custom-element](https://github.com/karol-f/vue-custom-element)。
 
-2. Add one or more global assets: directives/filters/transitions etc. (e.g. [vue-touch](https://github.com/vuejs/vue-touch)).
+2. 添加全局资源：指令/过滤器/过渡等。如：[vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some component options by global mixin (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+3. 通过全局混入来添加一些组件选项。如：[vue-router](https://github.com/vuejs/vue-router)
 
-4. Add some global instance methods by attaching them to `config.globalProperties`.
+4. 通过将一些全局实例方法附加到 `config.globalProperties`.
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router)).
+5. 一个库，提供自己的 API，同时提供上面提到的一个或多个功能。如 [vue-router](https://github.com/vuejs/vue-router)
 
-## Writing a Plugin
+## 编写插件
 
-In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` ready strings.
+为了更好地了解如何创建自己的 Vue.js 插件，我们将创建一个简化版本的显示 `i18n` 字符串插件。
 
-Whenever this plugin is added to an application, the `install` method will be called if it is an object. If it is a `function`, the function itself will be called. In both cases, it will receive two parameters - the `app` object resulting from Vue's `createApp`, and the options passed in by the user.
+当插件添加到一个应用是，如果它是一个对象，则将调用其 `install` 方法。如果它是一个 `function` ，则调用函数本身。在这两种情况下，它将接收两个参数 -- 由 Vue 的 `createApp` 生成的 `app` 对象，以及用户传递的插件配置项。
 
-Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+让我们从设置插件对象开始。建议在单独的文件中创建并导出，如下所示，保持逻辑的独立性。
 
 ```js
 // plugins/i18n.js
 export default {
   install: (app, options) => {
-    // Plugin code goes here
+    // 插件代码
   }
 }
 ```
 
-We want to make a function to translate keys available to the whole application, so we will expose it using `app.config.globalProperties`.
+我们想要一个可用于整个应用的函数来转换多语言 `key`，因此使用 `app.config.globalProperties`。
 
-This function will receive a `key` string, which we will use to look up the translated string in the user-provided options.
+此函数将接收一个 `key` 字符串，使用翻译字符串在用户提供的插件配置项中查找并返回转换后的字符串。
 
 ```js
 // plugins/i18n.js
@@ -48,17 +48,17 @@ export default {
 }
 ```
 
-We will assume that our users will pass in an object containing the translated keys in the `options` parameter when they use the plugin. Our `$translate` function will take a string such as `greetings.hello`, look inside the user provided configuration and return the translated value - in this case, `Bonjour!`
+我们假设用户在使用插件时会传入一个包含 `options` 参数中已翻译字符串的对象。其中 `$translate` 函数将通过诸如 `greetings.hello` 这样的字符串，去用户提供的插件配置项寻找并返回翻译后的值 -- 在本例中是 `你好！`
 
-Ex:
+示例:
 
 ```js
 greetings: {
-  hello: 'Bonjour!',
+  hello: '你好！',
 }
 ```
 
-Plugins also allow us to use `inject` to provide a function or attribute to the plugin's users. For example, we can allow the application to have access to the `options` parameter to be able to use the translations object.
+插件同时也可以使用 `inject` 注入一个 `function` 或者 `attribute` 给插件使用者。比如，应用可以设置 `options` 参数提供翻译对象。
 
 ```js
 // plugins/i18n.js
@@ -75,9 +75,9 @@ export default {
 }
 ```
 
-Plugin users will now be able to `inject['i18n']` into their components and access the object.
+插件使用者可以在组件中使用 `inject['i18n']` 去获取翻译信息。
 
-Additionally, since we have access to the `app` object, all other capabilities like using `mixin` and `directive` are available to the plugin. To learn more about `createApp` and the application instance, check out the [Application API documentation](/api/application-api.html).
+此外，由于我们可以访问 `app` 对象中所有其他功能，比如在插件中注入 `mixin` 和 `directive`。了解更多 `createApp` 以及 `app` 实例，请查看文档 [Application API 文档](/api/application-api.html)。
 
 ```js
 // plugins/i18n.js
@@ -92,14 +92,14 @@ export default {
 
     app.directive('my-directive', {
       mounted (el, binding, vnode, oldVnode) {
-        // some logic ...
+        // 逻辑 ...
       }
       ...
     })
 
     app.mixin({
       created() {
-        // some logic ...
+        // 逻辑 ...
       }
       ...
     })
@@ -107,20 +107,20 @@ export default {
 }
 ```
 
-## Using a Plugin
+## 使用插件
 
-After a Vue app has been initialized with `createApp()`, you can add a plugin to your application by calling the `use()` method.
+用 `createApp()` 创建 Vue 应用后，你可以使用 `use()` 方法添加插件。
 
-We will use the `i18nPlugin` we created in the [Writing a Plugin](#writing-a-plugin) section for demo purposes.
+我们将使用在 [编写插件](#编写插件) 章节中创建的 `i18nPlugin` 来进行演示。
 
-The `use()` method takes two parameters. The first one is the plugin to be installed, in this case `i18nPlugin`.
+`use()` 方法接收 2 个参数。第一个是要安装的插件，在本例中是 `i18nPlugin`。
 
-It also automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+`use()` 会自动阻止多次注册相同插件，如果重复添加同一个插件 ，默认只会安装一次。
 
-The second parameter is optional, and depends on each particular plugin. In the case of the demo `i18nPlugin`, it is an object with the translated strings.
+第二个参数是可选的，取决于每个特定的插件本身。在 `i18nPlugin` 的例子中，它是一个带有已翻译字符串的对象。
 
 :::info
-If you are using third party plugins such as `Vuex` or `Vue Router`, always check the documentation to know what that particular plugin expects to receive as a second parameter.
+如果你正在使用第三方插件，比如 `Vuex` 或 `Vue Router`，那么请查看相关文档，了解这个插件的第二个参数需要接收哪些内容。
 :::
 
 ```js
@@ -139,4 +139,4 @@ app.use(i18nPlugin, i18nStrings)
 app.mount('#app')
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+了解更多由社区贡献的插件和库请查看 [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries)。
