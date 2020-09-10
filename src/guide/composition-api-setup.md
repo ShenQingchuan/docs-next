@@ -8,41 +8,41 @@
 
 使用 `setup` 方法需要两个参数：
 
-1. `props`
+1. `prop`
 2. `context`
 
 下面让我们来深入了解一下这两个参数的用法。
 
-### Props
+### prop
 
-`setup` 函数中的第一个参数是 `props` 。如同普通组件中的一样， `setup` 中的 `props` 是响应式的，并且在传入新的props时会被更新。
+`setup` 函数中的第一个参数是 `prop` 。如同普通组件中的一样， `setup` 中的 `prop` 是响应式的，并且在传入新的prop时会被更新。
 
 ```js
 // MyBook.vue
 
 export default {
-  props: {
+  prop: {
     title: String
   },
-  setup(props) {
-    console.log(props.title)
+  setup(prop) {
+    console.log(prop.title)
   }
 }
 ```
 
 ::: warning 警告
-因为 `props` 具有响应性，所以你**不可以使用ES6的解构赋值**，这将会丢失其相应性！
+因为 `prop` 具有响应性，所以你**不可以使用ES6的解构赋值**，这将会丢失其相应性！
 :::
 
-你可以使用 `setup` 函数中的[toRefs](reactivity-fundamentals.html#destructuring-reactive-state)安全地对props使用解构赋值。
+你可以使用 `setup` 函数中的[toRefs](reactivity-fundamentals.html#destructuring-reactive-state)安全地对prop使用解构赋值。
 
 ```js
 // MyBook.vue
 
 import { toRefs } from 'vue'
 
-setup(props) {
-	const { title } = toRefs(props)
+setup(prop) {
+	const { title } = toRefs(prop)
 
 	console.log(title.value)
 }
@@ -50,20 +50,20 @@ setup(props) {
 
 ### Context
 
-传递给 `setup` 函数的第二个参数是 `context` 。 `context` 是一个普通的JavaScript对象，它有三个组件属性：
+传递给 `setup` 函数的第二个参数是 `context` 。 `context` 是一个普通的JavaScript对象，它有三个组件property：
 
 ```js
 // MyBook.vue
 
 export default {
-  setup(props, context) {
-    // 属性 （非响应式对象）
+  setup(prop, context) {
+    // Attributes （非响应式对象）
     console.log(context.attrs)
 
     // 插槽 （非响应式对象）
     console.log(context.slots)
 
-    // 触发事件 (方法)
+    // 抛出事件 (方法)
     console.log(context.emit)
   }
 }
@@ -74,19 +74,19 @@ export default {
 ```js
 // MyBook.vue
 export default {
-  setup(props, { attrs, slots, emit }) {
+  setup(prop, { attrs, slots, emit }) {
     ...
   }
 }
 ```
 
-`attrs` 和 `slots` 是有状态的对象，在组件本身更新时总是会更新。 你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `props` 不同的是， `attrs` 和 `slots` 这两个属性不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的更改使用副作用(side effects)，则应在 `onUpdated` 生命周期钩子中进行。
+`attrs` 和 `slots` 是有状态的对象，在组件本身更新时总是会更新。 你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `prop` 不同的是， `attrs` 和 `slots` 这两个property不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的更改使用副作用，则应在 `onUpdated` 生命周期钩子中进行。
 
-## 访问组件属性
+## 访问组件property
 
-执行 `setup` 时，组件实例尚未被创建。 此时你只能访问以下属性：
+执行 `setup` 时，组件实例尚未被创建。 此时你只能访问以下property：
 
-- `props`
+- `prop`
 - `attrs`
 - `slots`
 - `emit`
@@ -99,7 +99,7 @@ export default {
 
 ## 配合模版使用
 
-若 `setup` 返回的是一个对象，则可以在组件模板中访问该对象的属性：
+若 `setup` 返回的是一个对象，则可以在组件模板中访问该对象的property：
 
 ```vue-html
 <!-- MyBook.vue -->
