@@ -355,7 +355,7 @@ render() {
 
 ### 插槽
 
-您可以从 [this.$slots](../api/#vm-slots) 将插槽内容作为 VNode 数组访问
+您可以从 [`this.$slots`](../api/instance-properties.html#slots) 将插槽内容作为 VNode 数组访问
 
 ```js
 render() {
@@ -409,7 +409,7 @@ Vue.h(
 <anchored-heading :level="1"> <span>Hello</span> world! </anchored-heading>
 ```
 
-这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/jsx)，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上：
+这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/jsx-next)，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上：
 
 ```jsx
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -426,8 +426,7 @@ new Vue({
 })
 ```
 
-要了解更多关于 JSX 如何映射到 JavaScript，请阅读[使用文档](https://github.com/vuejs/jsx#installation)。
-<!-- TODO: Vue-JSX 现在官方的文档仍指向 2.x，而 https://github.com/vuejs/vue-next#jsx-support 还没有确定 JSX 的支持模式 -->
+要了解更多关于 JSX 如何映射到 JavaScript，请阅读[使用文档](https://github.com/vuejs/jsx-next#installation)。
 
 ## 模板编译
 
