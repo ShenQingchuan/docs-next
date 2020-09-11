@@ -1,8 +1,8 @@
-# Setup函数
+# Setup
 
-> 本章节将使用[单文件组件](single-file-component.html)语法作为代码示例。
+> 本章节将使用 [单文件组件](single-file-component.html)语法作为代码示例。
 
-> 这篇假设你已经阅读过了[组合式API](composition-api-introduction.html)和[响应式原理](reactivity-fundamentals.html)，如果你还对组合式API不太了解，推荐你先阅读它。
+> 这篇假设你已经阅读过了 [组合式API](composition-api-introduction.html)和 [响应式原理](reactivity-fundamentals.html)，如果你还对组合式 API 不太了解，推荐你先阅读它。
 
 ## 参数
 
@@ -31,10 +31,10 @@ export default {
 ```
 
 ::: warning 警告
-因为 `prop` 具有响应性，所以你**不可以使用ES6的解构赋值**，这将会丢失其相应性！
+因为 `prop` 具有响应性，所以你**不可以使用 ES6 的解构赋值**，这将会丢失其响应性！
 :::
 
-你可以使用 `setup` 函数中的[toRefs](reactivity-fundamentals.html#destructuring-reactive-state)安全地对prop使用解构赋值。
+你可以使用 `setup` 函数中的 [toRefs](reactivity-fundamentals.html#destructuring-reactive-state)安全地对 prop 使用解构赋值。
 
 ```js
 // MyBook.vue
@@ -50,26 +50,26 @@ setup(prop) {
 
 ### Context
 
-传递给 `setup` 函数的第二个参数是 `context` 。 `context` 是一个普通的JavaScript对象，它有三个组件property：
+传递给 `setup` 函数的第二个参数是 `context` 。 `context` 是一个普通的 JavaScript 对象，它有三个组件 property：
 
 ```js
 // MyBook.vue
 
 export default {
   setup(prop, context) {
-    // Attributes （非响应式对象）
+    // Attributes（非响应式对象）
     console.log(context.attrs)
 
-    // 插槽 （非响应式对象）
+    // 插槽（非响应式对象）
     console.log(context.slots)
 
-    // 抛出事件 (方法)
+    // 抛出事件（方法）
     console.log(context.emit)
   }
 }
 ```
 
-`context` 是一个普通的JavaScript对象，即说明这个对象不具有响应性，你可以放心大胆地对 `context` 使用解构赋值。
+`context` 是一个普通的 JavaScript 对象，即说明这个对象不具有响应性，你可以放心大胆地对 `context` 使用解构赋值。
 
 ```js
 // MyBook.vue
@@ -80,11 +80,11 @@ export default {
 }
 ```
 
-`attrs` 和 `slots` 是有状态的对象，在组件本身更新时总是会更新。 你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `prop` 不同的是， `attrs` 和 `slots` 这两个property不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的更改使用副作用，则应在 `onUpdated` 生命周期钩子中进行。
+`attrs` 和 `slots` 是有状态的对象，在组件本身更新时同步更新。你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `props` 不同的是， `attrs` 和 `slots` 这两个property 不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的变化应用一些副作用，则应在 `onUpdated` 生命周期钩子中进行。
 
-## 访问组件property
+## 访问组件 property
 
-执行 `setup` 时，组件实例尚未被创建。 此时你只能访问以下property：
+执行 `setup` 时，组件实例尚未被创建。 此时你只能访问以下 property：
 
 - `prop`
 - `attrs`
@@ -99,7 +99,7 @@ export default {
 
 ## 配合模版使用
 
-若 `setup` 返回的是一个对象，则可以在组件模板中访问该对象的property：
+若 `setup` 返回的是一个对象，则可以在组件模板中访问该对象的 property：
 
 ```vue-html
 <!-- MyBook.vue -->
@@ -125,7 +125,7 @@ export default {
 </script>
 ```
 
-请注意，从 `setup` 中返回[refs](../api/refs-api.html#ref)在模板中访问时会被[自动解构](../api/refs-api.html#access-in-templates)，因此你不应在模板中使用 `.value`。
+请注意，从 `setup` 中返回 [refs](../api/refs-api.html#ref) 在模板中访问时会被 [自动解构](../api/refs-api.html#access-in-templates)，因此你不应在模板中使用 `.value`。
 
 ## 配合渲染函数使用
 
@@ -148,4 +148,4 @@ export default {
 
 ## 配合 `this` 使用
 
-**在 `setup()` 内部，`this` 将不会引用当前活动实例**由于 `setup()` 在其他组件选项解析之前被调用，因此 `setup()` 内部的 `this` 将与在其他选项中 `this` 的选项完全不同。 与其他选项API一起使用 `setup()` 可能会引起混淆。
+**在 `setup()` 内部，`this` 将不会引用当前活动实例**，由于 `setup()` 在其他组件选项解析之前被调用，因此 `setup()` 内部的 `this` 将与在其他选项中 `this` 的选项完全不同。 与其他选项式 API 一起使用 `setup()` 可能会引起混淆。
