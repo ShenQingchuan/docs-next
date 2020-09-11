@@ -1,5 +1,7 @@
 # cn-v3.vuejs.org
 
+> ⚠️ 重要通知消息：本仓库将继续维护，作为主仓库的分支。如果您想继续为本仓库贡献我将十分欢迎。[官方 docs-next-cn 仓库请戳这里](https://github.com/vuejs/docs-next-zh-cn)
+
 目前本中文 Vue.js 3.0 文档仓库由 [@ShenQingchuan](https://github.com/ShenQingchuan) 个人进行维护，站点目前部署于 [个人腾讯云站点 vue.techdict.pro](https://vue.techdict.pro)。
 
 本站由 [VuePress](https://vuepress.vuejs.org/) 搭建而成，站点内文章皆由 Markdown 格式书写，存放于 `src` 文件夹中。
@@ -31,8 +33,6 @@ yarn serve # or npm run serve
 ```
 
 ## 翻译合作
-
-![合作群](http://rpzoss.oss-cn-chengdu.aliyuncs.com/picbed/2020-08-24-44CBBA296DF4CE817AF0AB9239397DE0.png)
 
 已为本仓库创建好了 Jenkins 自动化构建流程。若您对翻译有任何贡献的想法，请自行开启一个新的分支，翻译其中的某篇文档，然后向这里提交 Pull Request。
 

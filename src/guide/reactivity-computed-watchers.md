@@ -1,6 +1,6 @@
 # 计算属性与侦听器
 
-> 本章节将使用 [单文件组件](single-file-component.html)语法作为代码示例。
+> 本章节将使用 [单文件组件](single-file-component.html) 语法作为代码示例。
 
 ## 计算值
 
