@@ -1,6 +1,9 @@
 # Setup
 
 > 本章节将使用 [单文件组件](single-file-component.html)语法作为代码示例。
+
+<!-- ignore markdown lint MD028 https://github.com/DavidAnson/markdownlint/blob/v0.20.4/doc/Rules.md#md028 -->
+
 > 这篇假设你已经阅读过了 [组合式 API](composition-api-introduction.html) 和 [响应式原理](reactivity-fundamentals.html)，如果你还对组合式 API 不太了解，推荐你先阅读它。
 
 ## 参数
