@@ -1,8 +1,7 @@
 # Setup
 
 > 本章节将使用 [单文件组件](single-file-component.html)语法作为代码示例。
-
-> 这篇假设你已经阅读过了 [组合式API](composition-api-introduction.html)和 [响应式原理](reactivity-fundamentals.html)，如果你还对组合式 API 不太了解，推荐你先阅读它。
+> 这篇假设你已经阅读过了 [组合式 API](composition-api-introduction.html) 和 [响应式原理](reactivity-fundamentals.html)，如果你还对组合式 API 不太了解，推荐你先阅读它。
 
 ## 参数
 
@@ -15,7 +14,7 @@
 
 ### prop
 
-`setup` 函数中的第一个参数是 `prop` 。如同普通组件中的一样， `setup` 中的 `prop` 是响应式的，并且在传入新的prop时会被更新。
+`setup` 函数中的第一个参数是 `prop` 。如同普通组件中的一样， `setup` 中的 `prop` 是响应式的，并且在传入新的 prop 时会被更新。
 
 ```js
 // MyBook.vue
@@ -42,9 +41,9 @@ export default {
 import { toRefs } from 'vue'
 
 setup(prop) {
-	const { title } = toRefs(prop)
+ const { title } = toRefs(prop)
 
-	console.log(title.value)
+ console.log(title.value)
 }
 ```
 
@@ -80,7 +79,7 @@ export default {
 }
 ```
 
-`attrs` 和 `slots` 是有状态的对象，在组件本身更新时同步更新。你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `props` 不同的是， `attrs` 和 `slots` 这两个property 不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的变化应用一些副作用，则应在 `onUpdated` 生命周期钩子中进行。
+`attrs` 和 `slots` 是有状态的对象，在组件本身更新时同步更新。你应该避免它们对他们结构赋值，并按 `attrs.x` 或 `slots.x` 的方式使用它们。与 `props` 不同的是， `attrs` 和 `slots` 这两个 property 不具有**响应性**。如果你想基于 `attrs` 或 `slots` 的变化应用一些副作用，则应在 `onUpdated` 生命周期钩子中进行。
 
 ## 访问组件 property
 
@@ -129,7 +128,7 @@ export default {
 
 ## 配合渲染函数使用
 
-`setup` 还可以返回一个render函数，该函数可以直接使用在相同作用域内声明的响应式状态：
+`setup` 还可以返回一个 render 函数，该函数可以直接使用在相同作用域内声明的响应式状态：
 
 ```js
 // MyBook.vue
