@@ -1,6 +1,6 @@
 # 计算属性与侦听器
 
-> 这部分的示例代码采用的是 [单页面组件](single-file-component.html) 语法
+> 本章节将使用 [单文件组件](single-file-component.html)语法作为代码示例。
 
 ## 计算值
 
@@ -224,4 +224,4 @@ watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
 
 ### 和 `watchEffect` 共享行为
 
-`watch` 和 [`watchEffect`](#watcheffect) 在[停止侦听](#stopping-the-watcher), [清除副作用](#side-effect-invalidation) (相应地 `onInvalidate` 会作为回调的第三个参数传入)，[副作用刷新时机](#effect-flush-timing) 和 [侦听器调试](#watcher-debugging) 等方面行为一致。
+`watch` 和 [`watchEffect`](#watcheffect) 在 [停止侦听](#stopping-the-watcher), [清除副作用](#side-effect-invalidation) (相应地 `onInvalidate` 会作为回调的第三个参数传入)，[副作用刷新时机](#effect-flush-timing) 和 [侦听器调试](#watcher-debugging) 等方面行为一致。
